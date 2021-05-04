@@ -5,7 +5,7 @@ function App() {
   return (
         <Router>
             <Switch>
-                <Route path='/' component={ Authentication } exact />
+                <Route path='/login' component={ Authentication } exact />
             </Switch>
         </Router>
   );
