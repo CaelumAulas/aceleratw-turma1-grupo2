@@ -19,7 +19,7 @@ export default function App() {
     <Grid container spacing={3}>
       <Grid item xs={2}> <div/></Grid>
       <Grid item xs={12} lg={8} >
-        <div style={{ height: 300, width: '100%' }}>
+        <div id="data-grid" style={{ height: 300, width: '100%' }}>
           <DataGrid rows={rows} columns={columns} />
         </div>
        </Grid>

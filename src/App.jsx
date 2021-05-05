@@ -1,4 +1,4 @@
-import Header from "./components/organisms/Header.js"
+import Header from "./components/organisms/Header.jsx"
 import Authentication from "./pages/authentication/Authentication.js"
 import ListOfCars from "./pages/cars/List.js"
 import NewUser from "./pages/newUser/NewUser.js"
@@ -12,7 +12,7 @@ function App() {
         <Header />
         </div>
           <Switch>
-            <Route path="/">
+            <Route path="/" exact>
               <ListOfCars />
             </Route>
             <Route path="/login">
