@@ -80,6 +80,8 @@ export default function Authentication() {
             <Button
               type="submit"
               fullWidth
+              name="btnClick"
+              id="btnClick"
               variant="contained"
               color="primary"
               className={classes.submit}
