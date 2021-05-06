@@ -156,6 +156,8 @@ export default function PersistentDrawerLeft() {
             <ListItem button key="Listagem de Marcas">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText id="cad-btn" primary="Listagem de Marcas" />
+            </ListItem>
+          </Link>
           <Link to="/cadastro-veiculo">
             <ListItem button key="Cadastro de Veículo">
               <ListItemIcon><InboxIcon /></ListItemIcon>

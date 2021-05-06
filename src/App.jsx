@@ -23,7 +23,7 @@ function App() {
             </Route>
             <Route path="/cadastro-usuario">
               <NewUser />
-            </Route
+            </Route>  
             <Route path="/list-brands">
               <ListBrands />
             </Route>
