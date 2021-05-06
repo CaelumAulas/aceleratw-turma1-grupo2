@@ -164,6 +164,12 @@ export default function PersistentDrawerLeft() {
               <ListItemText primary="Cadastrar Veículo" />
             </ListItem>
           </Link>
+          <Link to="/edit-password">
+            <ListItem button key="Editar Senha">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary="Editar Senha" />
+            </ListItem>
+          </Link>
         </List>
       </Drawer>
       <main
