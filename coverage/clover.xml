@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1620313261046" clover="3.2.0">
+  <project timestamp="1620313261046" name="All files">
+    <metrics statements="23" coveredstatements="21" conditionals="6" coveredconditionals="3" methods="11" coveredmethods="9" elements="40" coveredelements="33" complexity="0" loc="23" ncloc="23" packages="7" files="7" classes="7"/>
+    <package name="assets.images">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="logo_carango_bom.jpeg" path="/Users/izalena.barbosa/aceleratw-turma1-grupo2/src/assets/images/logo_carango_bom.jpeg">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.atoms">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="Button.jsx" path="/Users/izalena.barbosa/aceleratw-turma1-grupo2/src/components/atoms/Button.jsx">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="components.molecules">
+      <metrics statements="10" coveredstatements="8" conditionals="4" coveredconditionals="2" methods="4" coveredmethods="2"/>
+      <file name="Header.jsx" path="/Users/izalena.barbosa/aceleratw-turma1-grupo2/src/components/molecules/Header.jsx">
+        <metrics statements="10" coveredstatements="8" conditionals="4" coveredconditionals="2" methods="4" coveredmethods="2"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="80" count="6" type="stmt"/>
+        <line num="81" count="6" type="stmt"/>
+        <line num="82" count="6" type="stmt"/>
+        <line num="84" count="6" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="88" count="6" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="92" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.organisms">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="NewUser.jsx" path="/Users/izalena.barbosa/aceleratw-turma1-grupo2/src/components/organisms/NewUser.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="8" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.authentication">
+      <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+      <file name="Authentication.js" path="/Users/izalena.barbosa/aceleratw-turma1-grupo2/src/pages/authentication/Authentication.js">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
+        <line num="48" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.cars">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="List.js" path="/Users/izalena.barbosa/aceleratw-turma1-grupo2/src/pages/cars/List.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.newUser">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="NewUser.js" path="/Users/izalena.barbosa/aceleratw-turma1-grupo2/src/pages/newUser/NewUser.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="33" count="3" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

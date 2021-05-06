@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -16,7 +17,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 240;
 
@@ -100,6 +100,7 @@ export default function PersistentDrawerLeft() {
       >
         <Toolbar>
           <IconButton
+            id="icon-btn"
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -108,12 +109,13 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography id="header-title" variant="h6" noWrap>
             CARANGO BOM
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
+        id="header-drawer"
         className={classes.drawer}
         variant="persistent"
         anchor="left"
@@ -123,27 +125,33 @@ export default function PersistentDrawerLeft() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton id="header-arrow-icon-btn" onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
         <Divider />
         <List>
-          {['Listar Veículos à Venda'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          <Link to="/">
+            <ListItem button key="Listar Veículos à Venda">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText id="listar-btn" primary="Listar Veículos à Venda" />
             </ListItem>
-          ))}
+          </Link>
         </List>
         <Divider />
         <List>
-          {['Cadastrar Veículos', 'Sair'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+          <Link to="/login">
+            <ListItem button key="Acesso Administrador">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText id="cad-btn" primary="Acesso Administrador" />
             </ListItem>
-          ))}
+          </Link>
+          <Link to="/cadastro-usuario">
+            <ListItem button key="Cadastro de Usuário">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText primary="Cadastrar Usuário" />
+            </ListItem>
+          </Link>
         </List>
       </Drawer>
       <main
