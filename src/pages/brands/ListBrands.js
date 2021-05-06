@@ -1,10 +1,10 @@
 import React from 'react';
-import ListCars from "../../components/organisms/ListCars.jsx";
+import ListBrands from "../../components/organisms/ListBrands.jsx";
 
 export default function Checkout() {
   return (
     <React.Fragment>
-      <ListCars id="list-cars-page" />
+      <ListBrands id="list-brands-page" />
     </React.Fragment>
   );
 }

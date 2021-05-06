@@ -137,19 +137,25 @@ export default function PersistentDrawerLeft() {
               <ListItemText id="listar-btn" primary="Listar Veículos à Venda" />
             </ListItem>
           </Link>
-        </List>
-        <Divider />
-        <List>
           <Link to="/login">
             <ListItem button key="Acesso Administrador">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText id="cad-btn" primary="Acesso Administrador" />
             </ListItem>
           </Link>
+        </List>
+        <Divider />
+        <List>
           <Link to="/cadastro-usuario">
             <ListItem button key="Cadastro de Usuário">
               <ListItemIcon><InboxIcon /></ListItemIcon>
               <ListItemText primary="Cadastrar Usuário" />
+            </ListItem>
+          </Link>
+          <Link to="/list-brands">
+            <ListItem button key="Listagem de Marcas">
+              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemText id="cad-btn" primary="Listagem de Marcas" />
             </ListItem>
           </Link>
         </List>
