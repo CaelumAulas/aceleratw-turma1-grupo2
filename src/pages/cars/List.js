@@ -1,6 +1,17 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 
 const rows = [
   { id: 1, marca: 'Fiat', modelo: 'Ford KA', ano: '2016', valor: '15.000,00' },
@@ -14,16 +25,29 @@ const columns = [
   { field: 'valor', headerName: 'Valor', width: 150 },
 ];
 
-export default function App() {
+export default function List() {
+  const classes = useStyles();
+  
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} className={classes.root}>
       <Grid item xs={2}> <div/></Grid>
       <Grid item xs={12} lg={8} >
         <div id="data-grid" style={{ height: 300, width: '100%' }}>
           <DataGrid rows={rows} columns={columns} />
         </div>
+        <div>
+          <Button variant="outlined" color="primary" id="delete">
+            Excluir
+          </Button>
+          <Button variant="outlined" color="primary" id="edit">
+            Alterar
+          </Button>
+          <Button variant="outlined" color="primary" id="new">
+            Incluir
+          </Button>
+        </div>
        </Grid>
-       <Grid item xs={2}> <div/></Grid>
+       <Grid item xs={2}><div/></Grid>
     </Grid>
   );
 }

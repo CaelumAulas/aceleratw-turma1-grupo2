@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">84.62% </span>
+                <span class="strong">81.82% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/13</span>
+                <span class='fraction'>9/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/8</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.67% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/6</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">80% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/12</span>
+                <span class='fraction'>8/10</span>
             </div>
         
             
@@ -218,7 +218,13 @@
 <a name='L159'></a><a href='#L159'>159</a>
 <a name='L160'></a><a href='#L160'>160</a>
 <a name='L161'></a><a href='#L161'>161</a>
-<a name='L162'></a><a href='#L162'>162</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -352,7 +358,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -361,7 +366,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -382,6 +394,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -397,7 +410,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 &nbsp;
 const drawerWidth = 240;
 &nbsp;
@@ -512,21 +524,27 @@ export default function PersistentDrawerLeft() {
         &lt;/div&gt;
         &lt;Divider /&gt;
         &lt;List&gt;
-          {['Listar Veículos à Venda'].map((text, index) =&gt; (
-            &lt;ListItem button key={text}&gt;
-              &lt;ListItemIcon&gt;{index % 2 === 0 ? &lt;InboxIcon /&gt; : <span class="branch-1 cbranch-no" title="branch not covered" >&lt;MailIcon /&gt;}</span>&lt;/ListItemIcon&gt;
-              &lt;ListItemText  id="listar-btn" primary={text} /&gt;
+          &lt;Link to="/"&gt;
+            &lt;ListItem button key="Listar Veículos à Venda"&gt;
+              &lt;ListItemIcon&gt;&lt;InboxIcon /&gt;&lt;/ListItemIcon&gt;
+              &lt;ListItemText id="listar-btn" primary="Listar Veículos à Venda" /&gt;
             &lt;/ListItem&gt;
-          ))}
+          &lt;/Link&gt;
         &lt;/List&gt;
         &lt;Divider /&gt;
         &lt;List&gt;
-          {['Cadastrar Veículos', 'Sair'].map((text, index) =&gt; (
-            &lt;ListItem button key={text}&gt;
-              &lt;ListItemIcon&gt;{index % 2 === 0 ? &lt;InboxIcon /&gt; : &lt;MailIcon /&gt;}&lt;/ListItemIcon&gt;
-              &lt;ListItemText id="cad-btn" primary={text} /&gt;
+          &lt;Link to="/login"&gt;
+            &lt;ListItem button key="Acesso Administrador"&gt;
+              &lt;ListItemIcon&gt;&lt;InboxIcon /&gt;&lt;/ListItemIcon&gt;
+              &lt;ListItemText id="cad-btn" primary="Acesso Administrador" /&gt;
             &lt;/ListItem&gt;
-          ))}
+          &lt;/Link&gt;
+          &lt;Link to="/cadastro-usuario"&gt;
+            &lt;ListItem button key="Cadastro de Usuário"&gt;
+              &lt;ListItemIcon&gt;&lt;InboxIcon /&gt;&lt;/ListItemIcon&gt;
+              &lt;ListItemText primary="Cadastrar Usuário" /&gt;
+            &lt;/ListItem&gt;
+          &lt;/Link&gt;
         &lt;/List&gt;
       &lt;/Drawer&gt;
       &lt;main
@@ -547,7 +565,7 @@ export default function PersistentDrawerLeft() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu May 06 2021 11:46:11 GMT-0300 (Horário Padrão de Brasília)
+                at Thu May 06 2021 11:53:58 GMT-0300 (Horário Padrão de Brasília)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
