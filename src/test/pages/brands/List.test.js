@@ -1,6 +1,6 @@
 import React from 'react';
 import Enzyme from 'enzyme';
-import List from '../../../pages/cars/List.js';
+import List from '../../../pages/brands/ListBrands.js';
 
 describe("List", () => {
   let wrapper;
@@ -14,7 +14,7 @@ describe("List", () => {
   });
  
   it("Page should exist", () => {
-      const title = wrapper.find("#list-cars-page");
+      const title = wrapper.find("#list-brands-page");
       expect(title.exists()).toBeTruthy();
   });
 });
