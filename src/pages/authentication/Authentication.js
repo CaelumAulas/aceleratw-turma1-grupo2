@@ -84,13 +84,14 @@ export default function Authentication() {
               id="btnClick"
               variant="contained"
               color="primary"
+              href="/"
               className={classes.submit}
             >
               Entrar
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/cadastro-usuario" variant="body2">
                   {"Não possui uma conta? Cadastre-se"}
                 </Link>
               </Grid>
