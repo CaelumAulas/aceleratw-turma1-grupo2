@@ -36,10 +36,10 @@ export default function List() {
             <Button variant="outlined" color="primary" id="delete">
               Excluir
             </Button>
-            <Button variant="outlined" color="primary" id="edit">
+            <Button href="/new-brand" variant="outlined" color="primary" id="edit">
               Alterar
             </Button>
-            <Button variant="outlined" color="primary" id="new">
+            <Button href="/new-brand" variant="outlined" color="primary" id="new">
               Incluir
             </Button>
           </div>
