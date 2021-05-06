@@ -28,7 +28,7 @@ describe("List", () => {
     expect(btn.exists()).toBeTruthy();
   });
 
-  it("Button delete should exist", () => {
+  it("Button delete should exist ", () => {
     const btn = wrapper.find("#delete").at(0);
     expect(btn.exists()).toBeTruthy();
   });
