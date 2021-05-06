@@ -100,6 +100,7 @@ export default function PersistentDrawerLeft() {
       >
         <Toolbar>
           <IconButton
+            id="icon-btn"
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -108,12 +109,13 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography id="header-title" variant="h6" noWrap>
             CARANGO BOM
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
+        id="header-drawer"
         className={classes.drawer}
         variant="persistent"
         anchor="left"
@@ -123,7 +125,7 @@ export default function PersistentDrawerLeft() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton id="header-arrow-icon-btn" onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
@@ -132,7 +134,7 @@ export default function PersistentDrawerLeft() {
           {['Listar Veículos à Venda'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText  id="listar-btn" primary={text} />
             </ListItem>
           ))}
         </List>
@@ -141,7 +143,7 @@ export default function PersistentDrawerLeft() {
           {['Cadastrar Veículos', 'Sair'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText id="cad-btn" primary={text} />
             </ListItem>
           ))}
         </List>
