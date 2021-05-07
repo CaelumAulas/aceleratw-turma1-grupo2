@@ -1,11 +1,12 @@
-import Header from "./components/molecules/Header.jsx";
-import Authentication from "./pages/authentication/Authentication.js";
-import ListOfCars from "./pages/cars/List.js";
+import Header from "./components/molecules/Header.jsx"
+import Authentication from "./pages/authentication/Authentication.js"
+import ListOfCars from "./pages/cars/List.js"
+import NewUser from "./pages/newUser/NewUser.js"
+import ListUsers from "./pages/listUsers/ListUsers.js"
+import NewVehicle from "./pages/NewVehicle/NewVehicle.js"
 import ListBrands from "./pages/brands/ListBrands.js";
-import NewUser from "./pages/newUser/NewUser.js";
 import EditPassword from "./pages/newUser/EditPassword.js";
 import NewBrand from "./pages/brands/NewBrand.js";
-import NewVehicle from "./pages/NewVehicle/NewVehicle.js";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 
@@ -33,6 +34,9 @@ function App() {
             </Route>
             <Route path="/cadastro-veiculo">
               <NewVehicle />
+            </Route>
+            <Route path="/usuarios">
+              <ListUsers />
             </Route>
             <Route path="/edit-password">
               <EditPassword />
