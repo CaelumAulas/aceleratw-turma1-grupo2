@@ -18,7 +18,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import TableChart from '@material-ui/icons/TableChart';
 import LockOpen from '@material-ui/icons/LockOpen';
-import AddBox from '@material-ui/icons/AddBox';
 import Edit from '@material-ui/icons/Edit';
 
 const drawerWidth = 240;
@@ -149,22 +148,16 @@ export default function PersistentDrawerLeft() {
         </List>
         <Divider />
         <List>
-          <Link to="/cadastro-usuario">
-            <ListItem button key="Cadastro de Usuário">
-              <ListItemIcon><AddBox /></ListItemIcon>
-              <ListItemText primary="Cadastrar Usuário" />
-            </ListItem>
-          </Link>
-          <Link to="/list-brands">
-            <ListItem button key="Listagem de Marcas">
+         <Link to="/list-brands">
+            <ListItem button key="Marcas">
               <ListItemIcon><TableChart /></ListItemIcon>
-              <ListItemText id="cad-btn" primary="Listagem de Marcas" />
+              <ListItemText id="cad-btn" primary="Marcas" />
             </ListItem>
           </Link>
-          <Link to="/cadastro-veiculo">
-            <ListItem button key="Cadastro de Veículo">
-              <ListItemIcon><AddBox /></ListItemIcon>
-              <ListItemText primary="Cadastrar Veículo" />
+          <Link to="/usuarios">
+            <ListItem button key="Usuários">
+              <ListItemIcon><TableChart /></ListItemIcon>
+              <ListItemText primary="Usuários" />
             </ListItem>
           </Link>
           <Link to="/edit-password">
