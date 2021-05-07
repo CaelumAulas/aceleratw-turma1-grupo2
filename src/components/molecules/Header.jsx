@@ -16,7 +16,10 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import TableChart from '@material-ui/icons/TableChart';
+import LockOpen from '@material-ui/icons/LockOpen';
+import AddBox from '@material-ui/icons/AddBox';
+import Edit from '@material-ui/icons/Edit';
 
 const drawerWidth = 240;
 
@@ -133,13 +136,13 @@ export default function PersistentDrawerLeft() {
         <List>
           <Link to="/">
             <ListItem button key="Listar Veículos à Venda">
-              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemIcon><TableChart /></ListItemIcon>
               <ListItemText id="listar-btn" primary="Listar Veículos à Venda" />
             </ListItem>
           </Link>
           <Link to="/login">
             <ListItem button key="Acesso Administrador">
-              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemIcon><LockOpen /></ListItemIcon>
               <ListItemText id="cad-btn" primary="Acesso Administrador" />
             </ListItem>
           </Link>
@@ -148,25 +151,25 @@ export default function PersistentDrawerLeft() {
         <List>
           <Link to="/cadastro-usuario">
             <ListItem button key="Cadastro de Usuário">
-              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemIcon><AddBox /></ListItemIcon>
               <ListItemText primary="Cadastrar Usuário" />
             </ListItem>
           </Link>
           <Link to="/list-brands">
             <ListItem button key="Listagem de Marcas">
-              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemIcon><TableChart /></ListItemIcon>
               <ListItemText id="cad-btn" primary="Listagem de Marcas" />
             </ListItem>
           </Link>
           <Link to="/cadastro-veiculo">
             <ListItem button key="Cadastro de Veículo">
-              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemIcon><AddBox /></ListItemIcon>
               <ListItemText primary="Cadastrar Veículo" />
             </ListItem>
           </Link>
           <Link to="/edit-password">
             <ListItem button key="Editar Senha">
-              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemIcon><Edit /></ListItemIcon>
               <ListItemText primary="Editar Senha" />
             </ListItem>
           </Link>
