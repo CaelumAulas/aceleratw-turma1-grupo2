@@ -26,8 +26,8 @@ describe("NewUser", () => {
     expect(title.exists()).toBeTruthy();
   });
 
-  it("Field copyPassword should exist", () => {
-    const title = wrapper.find("#copyPassword").at(0);
+  it("Field confirmPassword should exist", () => {
+    const title = wrapper.find("#confirmPassword").at(0);
     expect(title.exists()).toBeTruthy();
   });
 });
