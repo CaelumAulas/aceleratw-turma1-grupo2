@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-export default function EditPasswordForm() {
+export default function EditUserPasswordForm() {
   return (
     <React.Fragment>
         <Typography component="h1" variant="h4" align="center">

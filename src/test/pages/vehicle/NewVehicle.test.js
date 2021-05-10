@@ -1,6 +1,6 @@
 import React from 'react';
 import Enzyme from 'enzyme';
-import NewVehicle from '../../../pages/newVehicle/NewVehicle.js';
+import NewVehicle from '../../../pages/vehicle/NewVehicle.js';
 
 describe("NewVehicle", () => {
   let wrapper;

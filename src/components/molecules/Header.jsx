@@ -134,45 +134,33 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-          <Link to="/">
-            <ListItem button key="Listar Veículos à Venda">
+          <ListItem to="/" component={Link} button key="Listar Veículos à Venda">
               <ListItemIcon><TableChart /></ListItemIcon>
               <ListItemText id="listar-btn" primary="Listar Veículos à Venda" />
-            </ListItem>
-          </Link>
-          <Link to="/login">
-            <ListItem button key="Acesso Administrador">
+          </ListItem>
+          <ListItem  to="/acesso" component={Link}  button key="Acesso Administrador">
               <ListItemIcon><LockOpen /></ListItemIcon>
               <ListItemText id="cad-btn" primary="Acesso Administrador" />
-            </ListItem>
-          </Link>
+          </ListItem>
         </List>
         <Divider />
         <List>
-         <Link to="/list-brands">
-            <ListItem button key="Marcas">
+          <ListItem to="/listar-marcas" component={Link} button key="Marcas">
               <ListItemIcon><TableChart /></ListItemIcon>
               <ListItemText id="cad-btn" primary="Marcas" />
-            </ListItem>
-          </Link>
-          <Link to="/usuarios">
-            <ListItem button key="Usuários">
+          </ListItem>
+          <ListItem to="/listar-usuarios" component={Link} button key="Usuários">
               <ListItemIcon><TableChart /></ListItemIcon>
               <ListItemText primary="Usuários" />
-            </ListItem>
-          </Link>
-          <Link to="/dashboard">
-            <ListItem button key="Dashboard">
+          </ListItem>
+          <ListItem to="/dashboard" component={Link} button key="Dashboard">
               <ListItemIcon><Dashboard /></ListItemIcon>
               <ListItemText primary="Dashboard" />
-            </ListItem>
-          </Link>
-          <Link to="/edit-password">
-            <ListItem button key="Editar Senha">
+          </ListItem>
+          <ListItem to="/editar-senha" component={Link} button key="Editar Senha">
               <ListItemIcon><Edit /></ListItemIcon>
               <ListItemText primary="Editar Senha" />
-            </ListItem>
-          </Link>
+          </ListItem>
         </List>
       </Drawer>
       <main

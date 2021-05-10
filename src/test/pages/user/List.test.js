@@ -1,5 +1,5 @@
 import React from 'react';
-import List from '../../../pages/listUsers/ListUsers.js';
+import List from '../../../pages/user/List.js';
 var enzyme = require('enzyme');
 
 describe("List", () => {

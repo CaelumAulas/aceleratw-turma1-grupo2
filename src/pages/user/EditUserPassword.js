@@ -1,5 +1,5 @@
 import React from 'react';
-import EditPassword from "../../components/molecules/EditPassword";
+import EditUserPassword from "../../components/molecules/EditUserPassword";
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -35,7 +35,7 @@ export default function Checkout() {
           <CssBaseline />
           <main className={classes.layout}>
             <Paper className={classes.paper}>
-                <EditPassword id="edit-pass-page" />
+                <EditUserPassword id="edit-pass-page" />
             </Paper>
           </main>
         </React.Fragment>
