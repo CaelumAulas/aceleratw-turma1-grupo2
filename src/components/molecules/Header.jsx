@@ -18,6 +18,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import TableChart from '@material-ui/icons/TableChart';
 import LockOpen from '@material-ui/icons/LockOpen';
+import Dashboard from '@material-ui/icons/Dashboard';
 import Edit from '@material-ui/icons/Edit';
 
 const drawerWidth = 240;
@@ -152,6 +153,11 @@ export default function PersistentDrawerLeft() {
             <ListItemIcon><TableChart /></ListItemIcon>
             <ListItemText primary="Usuários" />
           </ListItem>
+          <ListItem component={Link} to="/dashboard" button key="Dashboard">
+             <ListItemIcon><Dashboard /></ListItemIcon>
+             <ListItemText primary="Dashboard" />
+          </ListItem>
+          </Link>
           <ListItem button component={Link} to="/edit-password" key="Editar Senha">
             <ListItemIcon><Edit /></ListItemIcon>
             <ListItemText primary="Editar Senha" />
