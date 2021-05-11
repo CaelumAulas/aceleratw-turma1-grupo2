@@ -1,6 +1,6 @@
 import React from 'react';
 import Enzyme from 'enzyme';
-import NewUser from '../../../pages/newUser/NewUser.js';
+import NewUser from '../../../pages/user/NewUser.js';
 
 describe("NewUser", () => {
   let wrapper;

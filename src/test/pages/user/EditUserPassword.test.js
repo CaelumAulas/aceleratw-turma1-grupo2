@@ -1,12 +1,12 @@
 import React from 'react';
 import Enzyme from 'enzyme';
-import EditPassword from '../../../pages/newUser/EditPassword.js';
+import EditUserPassword from '../../../pages/user/EditUserPassword.js';
 
-describe("EditPassword", () => {
+describe("EditUserPassword", () => {
   let wrapper;
   
   beforeEach(() => {
-      wrapper = Enzyme.mount(Enzyme.shallow(<EditPassword />).get(0))
+      wrapper = Enzyme.mount(Enzyme.shallow(<EditUserPassword />).get(0))
   });
 
   afterEach(() => {

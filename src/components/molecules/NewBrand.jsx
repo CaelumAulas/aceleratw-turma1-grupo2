@@ -34,7 +34,7 @@ export default function AddressForm() {
         </Grid>
         <Grid item xs={12} md={6} lg={6}>
             <Button
-                href="/list-brands"
+                href="/listar-marcas"
                 type="button"
                 fullWidth
                 name="btnCancel"
