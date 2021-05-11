@@ -51,8 +51,8 @@ export default function Authentication() {
   const [password, setPassword] = useState('');
   const { isRequired } = useFormValidations();
   const validations = {
-    email: isRequired('E-mail é obrigatório!'),
-    password: isRequired('Senha é obrigatória!')
+    email: isRequired('E-mail é obrigatório !'),
+    password: isRequired('Senha é obrigatória !')
   }
 
   const [errors, validateFields, send] = useErrors(validations);
