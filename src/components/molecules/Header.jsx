@@ -134,7 +134,7 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-          <ListItem to="/" component={Link} button key="Listar Veículos à Venda">
+         <ListItem to="/" component={Link} button key="Listar Veículos à Venda">
               <ListItemIcon><TableChart /></ListItemIcon>
               <ListItemText id="listar-btn" primary="Listar Veículos à Venda" />
           </ListItem>
