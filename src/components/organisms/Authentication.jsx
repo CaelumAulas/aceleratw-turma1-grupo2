@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
 import background from '../../assets/images/logo_carango_bom.jpeg';
+import useFormValidations from '../../hooks/useFormValidations.js';
+import useErrors from '../../hooks/useErrors.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +47,16 @@ const useStyles = makeStyles((theme) => ({
 export default function Authentication() {
   const classes = useStyles();
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { isRequired } = useFormValidations();
+  const validations = {
+    email: isRequired('E-mail é obrigatório !'),
+    password: isRequired('Senha é obrigatória !')
+  }
+
+  const [errors, validateFields, send] = useErrors(validations);
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -54,7 +66,7 @@ export default function Authentication() {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={() => email && password && send()}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -65,6 +77,11 @@ export default function Authentication() {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onBlur={validateFields}
+              error={!errors.email.valid}
+              helperText={errors.email.text}
             />
             <TextField
               variant="outlined"
@@ -76,6 +93,11 @@ export default function Authentication() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onBlur={validateFields}
+              error={!errors.password.valid}
+              helperText={errors.password.text}
             />
             <Button
               type="submit"
