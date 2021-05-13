@@ -1,17 +1,7 @@
 import React from 'react';
 import Header from '../../../components/molecules/Header.jsx'
-var enzyme = require('enzyme');
 
 describe("Header", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = enzyme.shallow(<Header />);
-  });
-
-  afterEach(() => {
-    wrapper = null;
-  });
  
   it("Test should find Icon button's id", () => {
       const iconBtn = wrapper.find("#icon-btn");

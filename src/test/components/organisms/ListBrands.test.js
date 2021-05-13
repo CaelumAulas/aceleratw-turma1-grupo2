@@ -1,17 +1,7 @@
 import React from 'react';
 import List from '../../../components/organisms/ListBrands.jsx';
-var enzyme = require('enzyme');
 
 describe("ListBrands", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = enzyme.shallow(<List />);
-  });
-
-  afterEach(() => {
-    wrapper = null;
-  });
  
   it("Test should find data grid", () => {
       const grid = wrapper.find("#data-grid");
