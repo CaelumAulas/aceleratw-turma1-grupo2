@@ -1,28 +1,28 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import TableChart from '@material-ui/icons/TableChart';
-import LockOpen from '@material-ui/icons/LockOpen';
-import Dashboard from '@material-ui/icons/Dashboard';
-import Edit from '@material-ui/icons/Edit';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import AppBar from '@material-ui/core/AppBar'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Divider from '@material-ui/core/Divider'
+import Drawer from '@material-ui/core/Drawer'
+import IconButton from '@material-ui/core/IconButton'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
+import Dashboard from '@material-ui/icons/Dashboard'
+import Edit from '@material-ui/icons/Edit'
+import LockOpen from '@material-ui/icons/LockOpen'
+import MenuIcon from '@material-ui/icons/Menu'
+import TableChart from '@material-ui/icons/TableChart'
+import clsx from 'clsx'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -78,20 +78,20 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
-}));
+}))
 
 export default function PersistentDrawerLeft() {
-  const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const classes = useStyles()
+  const theme = useTheme()
+  const [open, setOpen] = React.useState(false)
 
   const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const handleDrawerClose = () => {
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
   return (
     <Router>
@@ -115,7 +115,7 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography id="header-title" variant="h6" noWrap>
+          <Typography id="headerTitle" variant="h6" noWrap>
             CARANGO BOM
           </Typography>
         </Toolbar>
@@ -138,11 +138,11 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-         <ListItem to="/" component={Link}   button key="Listar Veículos à Venda">
+         <ListItem to="/" component={Link} button key="Listar Veículos à Venda">
               <ListItemIcon><TableChart /></ListItemIcon>
               <ListItemText data-testid="linkListVehicle" id="linkListVehicle" primary="Listar Veículos à Venda" />
           </ListItem>
-          <ListItem  to="/acesso" component={Link}  button key="Acesso Administrador">
+          <ListItem  to="/acesso" component={Link} button key="Acesso Administrador">
               <ListItemIcon><LockOpen /></ListItemIcon>
               <ListItemText id="linkAdminAcess" data-testid="linkAdminAccess" primary="Acesso Administrador" />
           </ListItem>
@@ -177,5 +177,5 @@ export default function PersistentDrawerLeft() {
       </main>
     </div>
     </Router>
-  );
+  )
 }

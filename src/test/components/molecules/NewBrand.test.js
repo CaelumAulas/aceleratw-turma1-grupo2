@@ -1,21 +1,22 @@
-import React from 'react';
+import React from 'react'
 import { render, screen }  from '@testing-library/react'
-import NewBrand from '../../../components/molecules/NewBrand.jsx';
+import NewBrand from '../../../components/molecules/NewBrand.jsx'
 describe("NewBrand", () => {
-/*  it("Brand should exist", () => {
-      const brand = wrapper.find("#brand");
-      expect(brand.exists()).toBeTruthy();
-  });
 
-  it("Brand save button should exist", () => {
-    const btnSave = wrapper.find("#btnSave");
-    expect(btnSave.exists()).toBeTruthy();
-  });
+  it("btnSave should exist", () => {
+    render(<NewBrand />)
+    expect(screen.getByTestId('brand')).toBeInTheDocument()
+  })
 
-  it("Brand cancel button should exist", () => {
-    const btnCancel = wrapper.find("#btnCancel");
-    expect(btnCancel.exists()).toBeTruthy();
-  });*/
-});
+  it("btnEdit should exist", () => {
+    render(<NewBrand />)
+    expect(screen.getByTestId('btnCancel')).toBeInTheDocument()
+  })
+
+  it("btnSave should exist", () => {
+    render(<NewBrand />)
+    expect(screen.getByTestId('btnSave')).toBeInTheDocument()
+  })
+})
  
  

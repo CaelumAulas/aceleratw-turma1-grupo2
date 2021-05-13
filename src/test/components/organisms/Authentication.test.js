@@ -1,22 +1,24 @@
-import React from 'react';
-import Authentication from '../../../components/organisms/Authentication.jsx';
+import React from 'react'
+import Authentication from '../../../components/organisms/Authentication.jsx'
 import { render, screen }  from '@testing-library/react'
 describe("Authentication", () => {
  
- /* it("Email should exist", () => {
-      const title = wrapper.find("#email").at(0);
-      expect(title.exists()).toBeTruthy();
-  });
+  describe("Test if fields exists", () => {
+    it("email should exist", () => {
+      render(<Authentication />)
+      expect(screen.getByTestId('email')).toBeInTheDocument()
+    })
 
-  it("Password should exist", () => {
-    const pass = wrapper.find("#password").at(0);
-    expect(pass.exists()).toBeTruthy();
-  });
+    it("password should exist", () => {
+      render(<Authentication />)
+      expect(screen.getByTestId('password')).toBeInTheDocument()
+    })
 
-  it("BtnClick should exist", () => {
-    const btnClick = wrapper.find("#btnClick").at(0);
-    expect(btnClick.exists()).toBeTruthy();
-  });*/
-});
+    it("btnClick should exist", () => {
+      render(<Authentication />)
+      expect(screen.getByTestId('btnClick')).toBeInTheDocument()
+    })
+  })
+})
  
  

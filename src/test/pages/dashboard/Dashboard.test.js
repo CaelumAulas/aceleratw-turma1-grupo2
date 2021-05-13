@@ -1,22 +1,15 @@
-import React from 'react';
-import Enzyme from 'enzyme';
-import Dashboard from '../../../pages/dashboard/Dashboard.js';
+import React from 'react'
+import { render, screen }  from '@testing-library/react'
+import Dashboard from '../../../pages/dashboard/Dashboard.js'
 
-describe("List", () => {
-  let wrapper;
-  
-  beforeEach(() => {
-      wrapper = Enzyme.mount(Enzyme.shallow(<Dashboard />).get(0))
-  });
+describe("Dashboard shoul exists", () => {
 
-  afterEach(() => {
-      wrapper = null;
-  });
- 
-  it("Page should exist", () => {
-      const title = wrapper.find("#dashboard-page");
-      expect(title.exists()).toBeTruthy();
-  });
-});
+  describe("Testing if field and buttons exists", ()=>{
+    it("DataGrid should exist", () => {
+        render(<Dashboard />)
+        expect(screen.getByTestId('dataGrid')).toBeInTheDocument()
+      })
+    })
+})
  
  

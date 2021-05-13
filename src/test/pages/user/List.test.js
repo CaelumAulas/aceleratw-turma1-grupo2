@@ -1,20 +1,28 @@
-import React from 'react';
-import List from '../../../pages/user/List.js';
+import React from 'react'
+import List from '../../../pages/user/List.js'
 import { render, screen }  from '@testing-library/react'
 
-describe("List", () => {
-  it("lbtnDelete should exist", () => {
-    render(<List />);
-    expect(screen.getByTestId('btnDelete')).toBeInTheDocument();
-  })
+describe("Test List Users Page", () => {
 
-  it("btnEdit should exist", () => {
-    render(<List />);
-    expect(screen.getByTestId('btnEdit')).toBeInTheDocument();
-  })
-  
-  it("btnNew should exist", () => {
-    render(<List />);
-    expect(screen.getByTestId('btnNew')).toBeInTheDocument();
+  describe("Testing if buttons and field exists", () => {
+    it("Button Delete should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnDelete')).toBeInTheDocument()
+    })
+
+    it("Button Edit should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnEdit')).toBeInTheDocument()
+    })
+    
+    it("Button new User should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnNewUser')).toBeInTheDocument()
+    })
+
+    it("Button Edit should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnEdit')).toBeInTheDocument()
+    })
   })
 })

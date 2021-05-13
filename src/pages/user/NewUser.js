@@ -1,7 +1,7 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Paper from '@material-ui/core/Paper'
 import NewUser from "../../components/organisms/NewUser.jsx"
 
 const newUserStyles = makeStyles((theme) => ({
@@ -25,10 +25,10 @@ const newUserStyles = makeStyles((theme) => ({
       padding: theme.spacing(3),
     },
   },
-}));
+}))
 
 export default function Checkout() {
-  const classes = newUserStyles();
+  const classes = newUserStyles()
 
   return (
     <React.Fragment>
@@ -39,5 +39,5 @@ export default function Checkout() {
         </Paper>
       </main>
     </React.Fragment>
-  );
+  )
 }

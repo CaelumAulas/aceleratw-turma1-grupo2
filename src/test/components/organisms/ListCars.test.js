@@ -1,25 +1,24 @@
-import React from 'react';
+import React from 'react'
 import { render, screen }  from '@testing-library/react'
+import ListCars from '../../../components/organisms/ListCars.jsx'
 
 describe("ListCars", () => {
- 
- /* it("Test should find data grid", () => {
-      const grid = wrapper.find("#data-grid");
-      expect(grid.exists()).toBeTruthy();
-  });
 
-  it("Button new should exist", () => {
-    const btn = wrapper.find("#new").at(0);
-    expect(btn.exists()).toBeTruthy();
-  });
+  describe("Test if fields exists", () => {
+    
+    it("Button Edit should exist", () => {
+      render(<ListCars />)
+      expect(screen.getByTestId('btnEdit')).toBeInTheDocument()
+    })
 
-  it("Button edit should exist", () => {
-    const btn = wrapper.find("#edit").at(0);
-    expect(btn.exists()).toBeTruthy();
-  });
-
-  it("Button delete should exist ", () => {
-    const btn = wrapper.find("#delete").at(0);
-    expect(btn.exists()).toBeTruthy();
-  });*/
-});
+    it("Button delete should exist", () => {
+      render(<ListCars />)
+      expect(screen.getByTestId('btnDelete')).toBeInTheDocument()
+    })
+    
+    it("Button New Vehicle should exist", () => {
+      render(<ListCars />)
+      expect(screen.getByTestId('btnNewVehicle')).toBeInTheDocument()
+    })
+  })
+})

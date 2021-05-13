@@ -1,7 +1,7 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Paper from '@material-ui/core/Paper'
 import NewVehicle from "../../components/organisms/NewVehicle"
 
 const newVehicleStyles = makeStyles((theme) => ({
@@ -25,10 +25,10 @@ const newVehicleStyles = makeStyles((theme) => ({
       padding: theme.spacing(3),
     },
   },
-}));
+}))
 
 export default function Checkout() {
-  const classes = newVehicleStyles();
+  const classes = newVehicleStyles()
 
   return (
     <React.Fragment>
@@ -39,5 +39,5 @@ export default function Checkout() {
         </Paper>
       </main>
     </React.Fragment>
-  );
+  )
 }

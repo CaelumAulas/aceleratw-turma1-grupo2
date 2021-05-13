@@ -1,8 +1,8 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import React from 'react'
 
 export default function EditUserPasswordForm() {
   return (
@@ -14,9 +14,9 @@ export default function EditUserPasswordForm() {
         <Grid item xs={12}>
           <TextField
             required
-            id="old_pwd"
-            name="old_pwd"
-            data-testid="old_pwd"
+            id="oldPassword"
+            name="oldPassword"
+            data-testid="oldPassword"
             label="Senha anterior"
             fullWidth
           />
@@ -24,9 +24,9 @@ export default function EditUserPasswordForm() {
         <Grid item xs={12}>
           <TextField
             required
-            id="new_pwd"
-            name="new_pwd"
-            data-testid="new_pwd"
+            id="newPassword"
+            name="newPassword"
+            data-testid="newPassword"
             label="Nova senha"
             fullWidth
           />
@@ -34,9 +34,9 @@ export default function EditUserPasswordForm() {
         <Grid item xs={12}>
           <TextField
             required
-            id="conf_pwd"
-            data-testid="conf_pwd"
-            name="conf_pwd"
+            id="confirmPassword"
+            data-testid="confirmPassword"
+            name="confirmPassword"
             label="Confirmar nova senha"
             fullWidth
           />
@@ -70,5 +70,5 @@ export default function EditUserPasswordForm() {
         </Grid>
     </Grid>
     </React.Fragment>
-  );
+  )
 }
