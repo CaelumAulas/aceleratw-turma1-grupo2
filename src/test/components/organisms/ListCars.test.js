@@ -2,7 +2,7 @@ import React from 'react';
 
 describe("ListCars", () => {
  
-  it("Test should find data grid", () => {
+ /* it("Test should find data grid", () => {
       const grid = wrapper.find("#data-grid");
       expect(grid.exists()).toBeTruthy();
   });
@@ -20,5 +20,5 @@ describe("ListCars", () => {
   it("Button delete should exist ", () => {
     const btn = wrapper.find("#delete").at(0);
     expect(btn.exists()).toBeTruthy();
-  });
+  });*/
 });
