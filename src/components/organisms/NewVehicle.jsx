@@ -17,8 +17,8 @@ export default function VehicleForm() {
       <Grid container spacing={2}>
       <Grid item xs={12}>
         <FormControl >        
-            <Select labelId="brand"
-                id="brand">        
+            <Select 
+                labelId="brand" id="brand" data-testid="brand">        
                     <MenuItem select value={10}>Volks</MenuItem>
                     <MenuItem value={20}>Ford</MenuItem>
                     <MenuItem value={30}>Fiat</MenuItem>
@@ -30,6 +30,7 @@ export default function VehicleForm() {
           <TextField
             required
             id="vehicleModel"
+            data-testid="vehicleModel"
             name="vehicleModel"
             label="Modelo do Veículo"
             fullWidth
@@ -39,6 +40,7 @@ export default function VehicleForm() {
           <TextField
             required
             id="year"
+            data-testid="year"
             name="year"
             label="Ano"
             fullWidth
@@ -48,6 +50,7 @@ export default function VehicleForm() {
           <TextField
             required
             id="value"
+            data-testid="value"
             name="value"
             label="Valor"
             fullWidth
@@ -59,6 +62,7 @@ export default function VehicleForm() {
               fullWidth
               name="btnSubmit"
               id="btnSubmit"
+              data-testid="btnSubmit"
               variant="contained"
               color="primary">
               Cadastrar
@@ -71,6 +75,7 @@ export default function VehicleForm() {
               fullWidth
               name="btnCancel"
               id="btnCancel"
+              data-testid="btnCancel"
               variant="contained"
               color="primary"
             >

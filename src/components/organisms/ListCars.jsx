@@ -29,20 +29,20 @@ export default function List() {
     const classes = useStyles();
     
     return (
-      <Grid container spacing={3} className={classes.root}>
+      <Grid  container spacing={3} className={classes.root}>
         <Grid item xs={2}> <div/></Grid>
         <Grid item xs={12} lg={8} >
           <div id="data-grid" style={{ height: 300, width: '100%' }}>
             <DataGrid rows={rows} columns={columns} />
           </div>
           <div>
-            <Button variant="outlined" color="primary" id="delete">
+            <Button variant="outlined" color="primary" id="delete"  data-testid="delete">
               Excluir
             </Button>
-            <Button href="/cadastro-veiculo" variant="outlined" color="primary" id="edit">
+            <Button href="/cadastro-veiculo" variant="outlined" color="primary" id="edit" data-testid="edit">
               Alterar
             </Button>
-            <Button href="/cadastro-veiculo" variant="outlined" color="primary" id="new">
+            <Button href="/cadastro-veiculo" variant="outlined" color="primary" id="new" data-testid="new">
               Incluir
             </Button>
           </div>
