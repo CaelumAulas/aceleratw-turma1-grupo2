@@ -94,6 +94,7 @@ export default function PersistentDrawerLeft() {
   };
 
   return (
+    <Router>
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
@@ -137,7 +138,7 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-         <ListItem to="/" component={Link} button key="Listar Veículos à Venda">
+         <ListItem to="/" component={Link}   button key="Listar Veículos à Venda">
               <ListItemIcon><TableChart /></ListItemIcon>
               <ListItemText data-testid="linkListVehicle" id="linkListVehicle" primary="Listar Veículos à Venda" />
           </ListItem>
@@ -156,7 +157,7 @@ export default function PersistentDrawerLeft() {
               <ListItemIcon><TableChart /></ListItemIcon>
               <ListItemText id="linkUsers" data-testid="linkUsers" primary="Usuários" />
           </ListItem>
-          <ListItem to="/dashboard" id="linkUsers" data-testid="linkUsers" component={Link} button key="Dashboard">
+          <ListItem to="/dashboard" id="linkDashboard" data-testid="linkDashboard" component={Link} button key="Dashboard">
               <ListItemIcon><Dashboard /></ListItemIcon>
               <ListItemText primary="Dashboard" />
           </ListItem>
@@ -175,5 +176,6 @@ export default function PersistentDrawerLeft() {
        
       </main>
     </div>
+    </Router>
   );
 }
