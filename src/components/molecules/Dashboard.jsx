@@ -31,7 +31,7 @@ export default function List() {
       <Grid container spacing={3} className={classes.root}>
         <Grid item xs={2}> <div/></Grid>
         <Grid item xs={12} lg={8} >
-          <div id="data-grid" style={{ height: 300, width: '100%' }}>
+          <div id="data-grid" data-testid="data-grid" style={{ height: 300, width: '100%' }}>
             <DataGrid rows={rows} columns={columns} />
           </div>
          </Grid>
