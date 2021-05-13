@@ -2,24 +2,8 @@ import React from 'react';
 import List from '../../../pages/user/List.js';
 
 describe("List", () => {
-/* 
-  it("Test should find data grid", () => {
-      const grid = wrapper.find("#data-grid");
-      expect(grid.exists()).toBeTruthy();
-  });
-
-  it("Button new should exist", () => {
-    const btn = wrapper.find("#new").at(0);
-    expect(btn.exists()).toBeTruthy();
-  });
-
-  it("Button edit should exist", () => {
-    const btn = wrapper.find("#edit").at(0);
-    expect(btn.exists()).toBeTruthy();
-  });
-
-  it("Button delete should exist", () => {
-    const btn = wrapper.find("#delete").at(0);
-    expect(btn.exists()).toBeTruthy();
-  });*/
+  it("user should exist", () => {
+    render(<List />);
+    expect(screen.getByTestId('user')).toBeInTheDocument();
+  })
 })
