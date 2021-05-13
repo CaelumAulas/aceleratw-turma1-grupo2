@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, fireEvent }  from '@testing-library/react'
+import { render, screen }  from '@testing-library/react'
 import NewUser from '../../../pages/user/NewUser.js'
 
 describe("Testing NewUser Component", () => {
