@@ -16,6 +16,7 @@ export default function EditUserPasswordForm() {
             required
             id="old_pwd"
             name="old_pwd"
+            data-testid="old_pwd"
             label="Senha anterior"
             fullWidth
           />
@@ -25,6 +26,7 @@ export default function EditUserPasswordForm() {
             required
             id="new_pwd"
             name="new_pwd"
+            data-testid="new_pwd"
             label="Nova senha"
             fullWidth
           />
@@ -33,6 +35,7 @@ export default function EditUserPasswordForm() {
           <TextField
             required
             id="conf_pwd"
+            data-testid="conf_pwd"
             name="conf_pwd"
             label="Confirmar nova senha"
             fullWidth
@@ -44,6 +47,7 @@ export default function EditUserPasswordForm() {
                 fullWidth
                 name="btnSave"
                 id="btnSave"
+                data-testid="btnSave"
                 variant="contained"
                 color="primary"
             >
@@ -57,6 +61,7 @@ export default function EditUserPasswordForm() {
                 fullWidth
                 name="btnCancel"
                 id="btnCancel"
+                data-testid="btnCancel"
                 variant="contained"
                 color="primary"
                 >

@@ -1,22 +1,26 @@
 import React from 'react';
-import Enzyme from 'enzyme';
 import List from '../../../pages/brands/ListBrands.js';
 
-describe("List", () => {
-  let wrapper;
-  
-  beforeEach(() => {
-      wrapper = Enzyme.mount(Enzyme.shallow(<List />).get(0))
-  });
+import { render, screen }  from '@testing-library/react'
+describe("NewBrand", () => {
 
-  afterEach(() => {
-      wrapper = null;
-  });
- 
-  it("Page should exist", () => {
-      const title = wrapper.find("#list-brands-page");
-      expect(title.exists()).toBeTruthy();
-  });
-});
+    describe("Testing if the buttons exists", () => {
+      it("lbtnDelete should exist", () => {
+        render(<List />);
+        expect(screen.getByTestId('btnDelete')).toBeInTheDocument();
+      })
+
+      it("btnEdit should exist", () => {
+        render(<List />);
+        expect(screen.getByTestId('btnEdit')).toBeInTheDocument();
+      })
+      
+      it("btnNew should exist", () => {
+        render(<List />);
+        expect(screen.getByTestId('btnNew')).toBeInTheDocument();
+      })
+
+    })
+})
  
  

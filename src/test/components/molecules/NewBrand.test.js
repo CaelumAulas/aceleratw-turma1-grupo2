@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { render, screen }  from '@testing-library/react'
 describe("NewBrand", () => {
 /*  it("Brand should exist", () => {
       const brand = wrapper.find("#brand");

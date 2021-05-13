@@ -35,7 +35,7 @@ export default function Checkout() {
           <CssBaseline />
           <main className={classes.layout}>
             <Paper className={classes.paper}>
-                <NewBrand id="new-brands-page" />
+                <NewBrand id="new-brands-page"  data-testid="new-brands-page"/>
             </Paper>
           </main>
         </React.Fragment>

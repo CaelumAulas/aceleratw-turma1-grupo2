@@ -15,6 +15,7 @@ export default function AddressForm() {
           <TextField
             required
             id="brand"
+            data-testid="brand"
             name="brand"
             label="Marca"
             fullWidth
@@ -26,6 +27,7 @@ export default function AddressForm() {
                 fullWidth
                 name="btnSave"
                 id="btnSave"
+                data-testid="btnSave"
                 variant="contained"
                 color="primary"
             >
@@ -39,6 +41,7 @@ export default function AddressForm() {
                 fullWidth
                 name="btnCancel"
                 id="btnCancel"
+                data-testid="btnCancel"
                 variant="contained"
                 color="primary"
                 >

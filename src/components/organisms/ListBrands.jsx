@@ -33,13 +33,13 @@ export default function List() {
             <DataGrid rows={rows} columns={columns} />
           </div>
           <div>
-            <Button variant="outlined" color="primary" id="delete">
+            <Button variant="outlined" color="primary" id="btnDelete" data-testid="btnDelete">
               Excluir
             </Button>
-            <Button href="/cadastro-marca" variant="outlined" color="primary" id="edit">
+            <Button href="/cadastro-marca" variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">
               Alterar
             </Button>
-            <Button href="/cadastro-marca" variant="outlined" color="primary" id="new">
+            <Button href="/cadastro-marca" variant="outlined" color="primary" id="btnNew" data-testid="btnNew">
               Incluir
             </Button>
           </div>

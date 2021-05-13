@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../../components/molecules/Header.jsx'
-
+import { render, screen }  from '@testing-library/react'
 describe("Header", () => {
  
   /*it("Test should find Icon button's id", () => {

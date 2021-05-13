@@ -1,31 +1,30 @@
 import React from 'react';
-
+import { render, screen }  from '@testing-library/react'
+import EditUserPassword from '../../../components/molecules/EditUserPassword.jsx';
 describe("EditPassword", () => {
- 
-  /*it("Old Password should exist", () => {
-      const old = wrapper.find("#old_pwd");
-      expect(old.exists()).toBeTruthy();
-  });
 
-  it("New Password should exist", () => {
-    const newPwd = wrapper.find("#new_pwd");
-    expect(newPwd.exists()).toBeTruthy();
-  });
-
-  it("New Password should exist", () => {
-    const confPwd = wrapper.find("#conf_pwd");
-    expect(confPwd.exists()).toBeTruthy();
-  });
-
-  it("Save button should exist", () => {
-    const btnSave = wrapper.find("#btnSave");
-    expect(btnSave.exists()).toBeTruthy();
-  });
-
-  it("Cancel button should exist", () => {
-    const btnCancel = wrapper.find("#btnCancel");
-    expect(btnCancel.exists()).toBeTruthy();
-  });*/
+  describe("Test if exists", ()=>{
+    it("Last password exist", () => {
+      render(<EditUserPassword />);
+      expect(screen.getByTestId('old_pwd')).toBeInTheDocument();
+    })
+    it("New password exist", () => {
+      render(<EditUserPassword />);
+      expect(screen.getByTestId('new_pwd')).toBeInTheDocument();
+    })
+    it("Confirm password should exist", () => {
+      render(<EditUserPassword />);
+      expect(screen.getByTestId('conf_pwd')).toBeInTheDocument();
+    })
+    it("Button save should exist", () => {
+      render(<EditUserPassword />);
+      expect(screen.getByTestId('btnSave')).toBeInTheDocument();
+    })
+    it("Button cancel should exist", () => {
+      render(<EditUserPassword />);
+      expect(screen.getByTestId('btnCancel')).toBeInTheDocument();
+    })
+  })
 });
  
  

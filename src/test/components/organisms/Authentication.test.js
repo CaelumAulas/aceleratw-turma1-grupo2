@@ -1,6 +1,6 @@
 import React from 'react';
 import Authentication from '../../../components/organisms/Authentication.jsx';
-
+import { render, screen }  from '@testing-library/react'
 describe("Authentication", () => {
  
  /* it("Email should exist", () => {

@@ -1,22 +1,21 @@
 import React from 'react';
-import Enzyme from 'enzyme';
 import NewBrand from '../../../pages/brands/NewBrand.js';
-
+import { render, screen }  from '@testing-library/react'
 describe("NewBrand", () => {
-  let wrapper;
-  
-  beforeEach(() => {
-      wrapper = Enzyme.mount(Enzyme.shallow(<NewBrand />).get(0))
-  });
+    it("brand should exist", () => {
+        render(<NewBrand />);
+        expect(screen.getByTestId('brand')).toBeInTheDocument();
+      })
 
-  afterEach(() => {
-      wrapper = null;
-  });
- 
-  it("NewBrand page should exist", () => {
-      const newBrand = wrapper.find("#new-brands-page");
-      expect(newBrand.exists()).toBeTruthy();
-  });
+      it("btnSave should exist", () => {
+        render(<NewBrand />);
+        expect(screen.getByTestId('btnSave')).toBeInTheDocument();
+      })
+
+      it("btnCancel should exist", () => {
+        render(<NewBrand />);
+        expect(screen.getByTestId('btnCancel')).toBeInTheDocument();
+      })
 });
  
  
