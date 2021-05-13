@@ -73,6 +73,7 @@ export default function Authentication() {
               required
               fullWidth
               id="email"
+              data-testid="email"
               label="Email"
               name="email"
               autoComplete="email"
@@ -90,6 +91,7 @@ export default function Authentication() {
               fullWidth
               name="password"
               label="Senha"
+              data-testid="password"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -103,6 +105,7 @@ export default function Authentication() {
               type="submit"
               fullWidth
               name="btnClick"
+              data-testid="btnClick"
               id="btnClick"
               variant="contained"
               color="primary"
@@ -113,7 +116,7 @@ export default function Authentication() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/cadastro-usuario" variant="body2">
+                <Link href="/cadastro-usuario" data-testid="linkOk" id="linkOk" variant="body2">
                   {"Não possui uma conta? Cadastre-se"}
                 </Link>
               </Grid>
