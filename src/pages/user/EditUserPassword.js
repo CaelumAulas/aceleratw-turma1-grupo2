@@ -35,7 +35,7 @@ export default function Checkout() {
           <CssBaseline />
           <main className={classes.layout}>
             <Paper className={classes.paper}>
-                <EditUserPassword id="edit-pass-page" />
+                <EditUserPassword id="edit-pass-page" data- />
             </Paper>
           </main>
         </React.Fragment>

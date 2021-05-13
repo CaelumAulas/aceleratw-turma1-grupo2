@@ -20,6 +20,7 @@ import TableChart from '@material-ui/icons/TableChart';
 import LockOpen from '@material-ui/icons/LockOpen';
 import Dashboard from '@material-ui/icons/Dashboard';
 import Edit from '@material-ui/icons/Edit';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 const drawerWidth = 240;
 
@@ -103,7 +104,8 @@ export default function PersistentDrawerLeft() {
       >
         <Toolbar>
           <IconButton
-            id="icon-btn"
+            id="btnIcon"
+            data-testid="btnIcon"
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -118,7 +120,8 @@ export default function PersistentDrawerLeft() {
         </Toolbar>
       </AppBar>
       <Drawer
-        id="header-drawer"
+        id="headerDrawer"
+        data-testid="headerDrawer"
         className={classes.drawer}
         variant="persistent"
         anchor="left"
@@ -128,7 +131,7 @@ export default function PersistentDrawerLeft() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton id="header-arrow-icon-btn" onClick={handleDrawerClose}>
+          <IconButton  data-testid="btnHeaderArrowIcon" id="btnHeaderArrowIcon" onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
@@ -136,28 +139,28 @@ export default function PersistentDrawerLeft() {
         <List>
          <ListItem to="/" component={Link} button key="Listar Veículos à Venda">
               <ListItemIcon><TableChart /></ListItemIcon>
-              <ListItemText id="listar-btn" primary="Listar Veículos à Venda" />
+              <ListItemText data-testid="linkListVehicle" id="linkListVehicle" primary="Listar Veículos à Venda" />
           </ListItem>
           <ListItem  to="/acesso" component={Link}  button key="Acesso Administrador">
               <ListItemIcon><LockOpen /></ListItemIcon>
-              <ListItemText id="cad-btn" primary="Acesso Administrador" />
+              <ListItemText id="linkAdminAcess" data-testid="linkAdminAccess" primary="Acesso Administrador" />
           </ListItem>
         </List>
         <Divider />
         <List>
           <ListItem to="/listar-marcas" component={Link} button key="Marcas">
               <ListItemIcon><TableChart /></ListItemIcon>
-              <ListItemText id="cad-btn" primary="Marcas" />
+              <ListItemText id="linkListBrands" data-testid="linkListBrands" primary="Marcas" />
           </ListItem>
           <ListItem to="/listar-usuarios" component={Link} button key="Usuários">
               <ListItemIcon><TableChart /></ListItemIcon>
-              <ListItemText primary="Usuários" />
+              <ListItemText id="linkUsers" data-testid="linkUsers" primary="Usuários" />
           </ListItem>
-          <ListItem to="/dashboard" component={Link} button key="Dashboard">
+          <ListItem to="/dashboard" id="linkUsers" data-testid="linkUsers" component={Link} button key="Dashboard">
               <ListItemIcon><Dashboard /></ListItemIcon>
               <ListItemText primary="Dashboard" />
           </ListItem>
-          <ListItem to="/editar-senha" component={Link} button key="Editar Senha">
+          <ListItem to="/editar-senha" id="linkEditPassword" data-testid="linkEditPassword" component={Link} button key="Editar Senha">
               <ListItemIcon><Edit /></ListItemIcon>
               <ListItemText primary="Editar Senha" />
           </ListItem>
