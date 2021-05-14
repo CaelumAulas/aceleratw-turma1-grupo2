@@ -20,7 +20,7 @@ import TableChart from '@material-ui/icons/TableChart'
 import clsx from 'clsx'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+//import { BrowserRouter as Router } from 'react-router-dom'
 
 const drawerWidth = 240
 
@@ -94,7 +94,7 @@ export default function PersistentDrawerLeft() {
   }
 
   return (
-    <Router>
+  //  <Router>
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
@@ -176,6 +176,6 @@ export default function PersistentDrawerLeft() {
        
       </main>
     </div>
-    </Router>
+  //  </Router>
   )
 }
