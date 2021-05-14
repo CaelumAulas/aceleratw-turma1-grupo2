@@ -1,8 +1,8 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React from 'react'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 export default function UserForm() {
   return (
@@ -16,6 +16,7 @@ export default function UserForm() {
             required
             id="user"
             name="user"
+            data-testid="user"
             label="Usuário"
             fullWidth
           />
@@ -24,6 +25,7 @@ export default function UserForm() {
           <TextField
             required
             id="password"
+            data-testid="password"
             name="password"
             label="Senha"
             fullWidth
@@ -34,6 +36,7 @@ export default function UserForm() {
             required
             id="copyPassword"
             name="copyPassword"
+            data-testid="copyPassword"
             label="Confirmação de Senha"
             fullWidth
           />
@@ -44,6 +47,7 @@ export default function UserForm() {
               fullWidth
               name="btnSubmit"
               id="btnSubmit"
+              data-testid="btnSubmit"
               variant="contained"
               color="primary"
             >
@@ -57,6 +61,7 @@ export default function UserForm() {
               fullWidth
               name="btnCancel"
               id="btnCancel"
+              data-testid="btnCancel"
               variant="contained"
               color="primary"
             >
@@ -65,5 +70,5 @@ export default function UserForm() {
         </Grid>
       </Grid>
     </React.Fragment>
-  );
+  )
 }

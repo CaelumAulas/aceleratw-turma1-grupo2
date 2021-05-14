@@ -1,35 +1,23 @@
-import React from 'react';
-import List from '../../../components/organisms/ListBrands.jsx';
-var enzyme = require('enzyme');
-
+import React from 'react'
+import List from '../../../components/organisms/ListBrands.jsx'
+import { render, screen }  from '@testing-library/react'
 describe("ListBrands", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = enzyme.shallow(<List />);
-  });
-
-  afterEach(() => {
-    wrapper = null;
-  });
  
-  it("Test should find data grid", () => {
-      const grid = wrapper.find("#data-grid");
-      expect(grid.exists()).toBeTruthy();
-  });
-
-  it("Button new should exist", () => {
-    const btn = wrapper.find("#new").at(0);
-    expect(btn.exists()).toBeTruthy();
-  });
-
-  it("Button edit should exist", () => {
-    const btn = wrapper.find("#edit").at(0);
-    expect(btn.exists()).toBeTruthy();
-  });
-
-  it("Button delete should exist ", () => {
-    const btn = wrapper.find("#delete").at(0);
-    expect(btn.exists()).toBeTruthy();
-  });
-});
+  describe("Test if fields and buttons exists", () => {
+    
+    it("Button Edit should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnEdit')).toBeInTheDocument()
+    })
+  
+    it("Button delete should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnDelete')).toBeInTheDocument()
+    })
+    
+    it("Button New Brand should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnNewBrand')).toBeInTheDocument()
+    })
+  })
+})

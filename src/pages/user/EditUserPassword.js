@@ -1,8 +1,8 @@
-import React from 'react';
-import EditUserPassword from "../../components/molecules/EditUserPassword";
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
+import React from 'react'
+import EditUserPassword from "../../components/molecules/EditUserPassword"
+import { makeStyles } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Paper from '@material-ui/core/Paper'
 
 const editPassStyles = makeStyles((theme) => ({
   layout: {
@@ -25,19 +25,19 @@ const editPassStyles = makeStyles((theme) => ({
       padding: theme.spacing(3),
     },
   },
-}));
+}))
 
 export default function Checkout() {
-    const classes = editPassStyles();
+    const classes = editPassStyles()
 
     return (
         <React.Fragment>
           <CssBaseline />
           <main className={classes.layout}>
             <Paper className={classes.paper}>
-                <EditUserPassword id="edit-pass-page" />
+                <EditUserPassword id="editPassPage" data- />
             </Paper>
           </main>
         </React.Fragment>
-      );
+      )
 }

@@ -1,35 +1,36 @@
-import React from 'react';
-import Enzyme from 'enzyme';
-import NewUser from '../../../pages/user/NewUser.js';
+import React from 'react'
+import { render, screen }  from '@testing-library/react'
+import NewUser from '../../../pages/user/NewUser.js'
 
-describe("NewUser", () => {
-  let wrapper;
-  const setState = jest.fn();
-  const useStateSpy = jest.spyOn(React, "useState")
-  useStateSpy.mockImplementation((init) => [init, setState]);
+describe("Testing NewUser Component", () => {
 
-  beforeEach(() => {
-      wrapper = Enzyme.mount(Enzyme.shallow(<NewUser />).get(0))
-  });
+  describe("Test if fields and buttons exists", () => {
+    it("user should exist", () => {
+      render(<NewUser />)
+      expect(screen.getByTestId('user')).toBeInTheDocument()
+    })
 
-  afterEach(() => {
-      jest.clearAllMocks();
-  });
- 
-  it("Field user should exist", () => {
-      const title = wrapper.find("#user").at(0);
-      expect(title.exists()).toBeTruthy();
-  });
+    it("password should exist", () => {
+      render(<NewUser />)
+      expect(screen.getByTestId('password')).toBeInTheDocument()
+    })
 
-  it("Field password should exist", () => {
-    const title = wrapper.find("#password").at(0);
-    expect(title.exists()).toBeTruthy();
-  });
+    it("copyPassword should exist", () => {
+      render(<NewUser />)
+      expect(screen.getByTestId('copyPassword')).toBeInTheDocument()
+    })
 
-  it("Field copyPassword should exist", () => {
-    const title = wrapper.find("#copyPassword").at(0);
-    expect(title.exists()).toBeTruthy();
-  });
-});
+    it("btnSubmit should exist", () => {
+      render(<NewUser />)
+      expect(screen.getByTestId('btnSubmit')).toBeInTheDocument()
+    })
+
+    it("btnCancel should exist", () => {
+      render(<NewUser />)
+      expect(screen.getByTestId('btnCancel')).toBeInTheDocument()
+    })
+  })
+  
+})
  
  

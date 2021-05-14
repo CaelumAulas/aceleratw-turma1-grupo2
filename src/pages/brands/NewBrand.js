@@ -1,8 +1,8 @@
-import React from 'react';
-import NewBrand from "../../components/molecules/NewBrand.jsx";
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
+import React from 'react'
+import NewBrand from "../../components/molecules/NewBrand.jsx"
+import { makeStyles } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Paper from '@material-ui/core/Paper'
 
 const newBrandStyles = makeStyles((theme) => ({
   layout: {
@@ -25,19 +25,19 @@ const newBrandStyles = makeStyles((theme) => ({
       padding: theme.spacing(3),
     },
   },
-}));
+}))
 
 export default function Checkout() {
-    const classes = newBrandStyles();
+    const classes = newBrandStyles()
 
     return (
         <React.Fragment>
           <CssBaseline />
           <main className={classes.layout}>
             <Paper className={classes.paper}>
-                <NewBrand id="new-brands-page" />
+                <NewBrand id="newBrandsPage"  data-testid="newBrandsPage"/>
             </Paper>
           </main>
         </React.Fragment>
-      );
+      )
 }

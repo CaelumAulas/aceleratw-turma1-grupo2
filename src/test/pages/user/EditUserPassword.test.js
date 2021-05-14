@@ -1,22 +1,35 @@
-import React from 'react';
-import Enzyme from 'enzyme';
-import EditUserPassword from '../../../pages/user/EditUserPassword.js';
+import React from 'react'
+import EditUserPassword from '../../../pages/user/EditUserPassword.js'
+import { render, screen }  from '@testing-library/react'
 
-describe("EditUserPassword", () => {
-  let wrapper;
-  
-  beforeEach(() => {
-      wrapper = Enzyme.mount(Enzyme.shallow(<EditUserPassword />).get(0))
-  });
+describe("EditUserPassword", () => { 
 
-  afterEach(() => {
-      wrapper = null;
-  });
- 
-  it("Edit Password page should exist", () => {
-      const editPass = wrapper.find("#edit-pass-page");
-      expect(editPass.exists()).toBeTruthy();
-  });
-});
+  describe("Testing if field and buttons exists", ()=>{
+    it("Field old password exist", () => {
+      render(<EditUserPassword />)
+      expect(screen.getByTestId('oldPassword')).toBeInTheDocument()
+    })
+
+    it("Button New password exist", () => {
+      render(<EditUserPassword />)
+      expect(screen.getByTestId('newPassword')).toBeInTheDocument()
+    })
+
+    it("Button Confirm password should exist", () => {
+      render(<EditUserPassword />)
+      expect(screen.getByTestId('confirmPassword')).toBeInTheDocument()
+    })
+
+    it("Button save should exist", () => {
+      render(<EditUserPassword />)
+      expect(screen.getByTestId('btnSave')).toBeInTheDocument()
+    })
+    
+    it("Button cancel should exist", () => {
+      render(<EditUserPassword />)
+      expect(screen.getByTestId('btnCancel')).toBeInTheDocument()
+    })
+  })
+})
  
  

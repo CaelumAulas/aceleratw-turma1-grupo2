@@ -1,22 +1,25 @@
-import React from 'react';
-import Enzyme from 'enzyme';
-import Authentication from '../../../pages/authentication/Authentication.js';
+import React from 'react'
+import { render, screen }  from '@testing-library/react'
+import Authentication from '../../../pages/authentication/Authentication.js'
 
-describe("List", () => {
-  let wrapper;
-  
-  beforeEach(() => {
-      wrapper = Enzyme.mount(Enzyme.shallow(<Authentication />).get(0))
-  });
+describe("Testing Authentication Component", () => {
 
-  afterEach(() => {
-      wrapper = null;
-  });
- 
-  it("Page should exist", () => {
-      const title = wrapper.find("#authentication-page");
-      expect(title.exists()).toBeTruthy();
-  });
-});
+    describe("Test if fields exists", () => {
+          it("email should exist", () => {
+            render(<Authentication />)
+            expect(screen.getByTestId('email')).toBeInTheDocument()
+          })
+      
+          it("password should exist", () => {
+            render(<Authentication />)
+            expect(screen.getByTestId('password')).toBeInTheDocument()
+          })
+      
+          it("btnClick should exist", () => {
+            render(<Authentication />)
+            expect(screen.getByTestId('btnClick')).toBeInTheDocument()
+          })
+    })
+  })
  
  

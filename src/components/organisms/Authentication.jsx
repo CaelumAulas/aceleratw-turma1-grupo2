@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { makeStyles } from '@material-ui/core/styles';
-import background from '../../assets/images/logo_carango_bom.jpeg';
-import useFormValidations from '../../hooks/useFormValidations.js';
-import useErrors from '../../hooks/useErrors.js';
+import { useState } from 'react'
+import Avatar from '@material-ui/core/Avatar'
+import Button from '@material-ui/core/Button'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import TextField from '@material-ui/core/TextField'
+import Link from '@material-ui/core/Link'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import { makeStyles } from '@material-ui/core/styles'
+import background from '../../assets/images/logo_carango_bom.jpeg'
+import useFormValidations from '../../hooks/useFormValidations.js'
+import useErrors from '../../hooks/useErrors.js'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -42,20 +42,20 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}));
+}))
 
 export default function Authentication() {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { isRequired } = useFormValidations();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { isRequired } = useFormValidations()
   const validations = {
     email: isRequired('E-mail é obrigatório !'),
     password: isRequired('Senha é obrigatória !')
   }
 
-  const [errors, validateFields, send] = useErrors(validations);
+  const [errors, validateFields, send] = useErrors(validations)
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -73,6 +73,7 @@ export default function Authentication() {
               required
               fullWidth
               id="email"
+              data-testid="email"
               label="Email"
               name="email"
               autoComplete="email"
@@ -90,6 +91,7 @@ export default function Authentication() {
               fullWidth
               name="password"
               label="Senha"
+              data-testid="password"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -103,6 +105,7 @@ export default function Authentication() {
               type="submit"
               fullWidth
               name="btnClick"
+              data-testid="btnClick"
               id="btnClick"
               variant="contained"
               color="primary"
@@ -113,7 +116,7 @@ export default function Authentication() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/cadastro-usuario" variant="body2">
+                <Link href="/cadastro-usuario" data-testid="linkOk" id="linkOk" variant="body2">
                   {"Não possui uma conta? Cadastre-se"}
                 </Link>
               </Grid>
@@ -122,5 +125,5 @@ export default function Authentication() {
         </div>
       </Grid>
     </Grid>
-  );
+  )
 }

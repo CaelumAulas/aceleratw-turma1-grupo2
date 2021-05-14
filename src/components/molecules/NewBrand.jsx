@@ -1,8 +1,8 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React from 'react'
+import Grid from '@material-ui/core/Grid'
+import Typography from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 export default function AddressForm() {
   return (
@@ -15,6 +15,7 @@ export default function AddressForm() {
           <TextField
             required
             id="brand"
+            data-testid="brand"
             name="brand"
             label="Marca"
             fullWidth
@@ -26,6 +27,7 @@ export default function AddressForm() {
                 fullWidth
                 name="btnSave"
                 id="btnSave"
+                data-testid="btnSave"
                 variant="contained"
                 color="primary"
             >
@@ -39,6 +41,7 @@ export default function AddressForm() {
                 fullWidth
                 name="btnCancel"
                 id="btnCancel"
+                data-testid="btnCancel"
                 variant="contained"
                 color="primary"
                 >
@@ -47,5 +50,5 @@ export default function AddressForm() {
         </Grid>
     </Grid>
     </React.Fragment>
-  );
+  )
 }

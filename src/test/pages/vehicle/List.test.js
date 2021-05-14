@@ -1,22 +1,26 @@
-import React from 'react';
-import Enzyme from 'enzyme';
-import List from '../../../pages/vehicle/List.js';
+import React from 'react'
+import { render, screen }  from '@testing-library/react'
+import List from '../../../pages/vehicle/List.js'
 
 describe("List", () => {
-  let wrapper;
+  describe("Test if fields and exists", () => {
+    
+    it("Button Edit should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnEdit')).toBeInTheDocument()
+    })
   
-  beforeEach(() => {
-      wrapper = Enzyme.mount(Enzyme.shallow(<List />).get(0))
-  });
-
-  afterEach(() => {
-      wrapper = null;
-  });
- 
-  it("Page should exist", () => {
-      const title = wrapper.find("#list-cars-page");
-      expect(title.exists()).toBeTruthy();
-  });
-});
+    it("Button delete should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnDelete')).toBeInTheDocument()
+    })
+    
+    it("Button New Vehicle should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnNewVehicle')).toBeInTheDocument()
+    })
+  })
+  
+})
  
  

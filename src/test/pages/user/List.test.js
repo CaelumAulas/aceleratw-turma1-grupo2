@@ -1,35 +1,28 @@
-import React from 'react';
-import List from '../../../pages/user/List.js';
-var enzyme = require('enzyme');
+import React from 'react'
+import List from '../../../pages/user/List.js'
+import { render, screen }  from '@testing-library/react'
 
-describe("List", () => {
-  let wrapper;
+describe("Test List Users Page", () => {
 
-  beforeEach(() => {
-    wrapper = enzyme.shallow(<List />);
-  });
+  describe("Testing if buttons and field exists", () => {
+    it("Button Delete should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnDelete')).toBeInTheDocument()
+    })
 
-  afterEach(() => {
-    wrapper = null;
-  });
- 
-  it("Test should find data grid", () => {
-      const grid = wrapper.find("#data-grid");
-      expect(grid.exists()).toBeTruthy();
-  });
+    it("Button Edit should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnEdit')).toBeInTheDocument()
+    })
+    
+    it("Button new User should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnNewUser')).toBeInTheDocument()
+    })
 
-  it("Button new should exist", () => {
-    const btn = wrapper.find("#new").at(0);
-    expect(btn.exists()).toBeTruthy();
-  });
-
-  it("Button edit should exist", () => {
-    const btn = wrapper.find("#edit").at(0);
-    expect(btn.exists()).toBeTruthy();
-  });
-
-  it("Button delete should exist", () => {
-    const btn = wrapper.find("#delete").at(0);
-    expect(btn.exists()).toBeTruthy();
-  });
-});
+    it("Button Edit should exist", () => {
+      render(<List />)
+      expect(screen.getByTestId('btnEdit')).toBeInTheDocument()
+    })
+  })
+})

@@ -1,40 +1,40 @@
-import React from 'react';
-import Enzyme from 'enzyme';
-import NewVehicle from '../../../pages/vehicle/NewVehicle.js';
+import React from 'react'
+import { render, screen }  from '@testing-library/react'
+import NewVehicle from '../../../pages/vehicle/NewVehicle.js'
 
-describe("NewVehicle", () => {
-  let wrapper;
-  const setState = jest.fn();
-  const useStateSpy = jest.spyOn(React, "useState")
-  useStateSpy.mockImplementation((init) => [init, setState]);
+describe("Test Page NewVehicle", () => {
 
-  beforeEach(() => {
-      wrapper = Enzyme.mount(Enzyme.shallow(<NewVehicle />).get(0))
-  });
+  describe("Testing if fields and buttons exists", () => {
+    it("Select brand should exist", () => {
+      render(<NewVehicle />)
+      expect(screen.getByTestId('brand')).toBeInTheDocument()
+    })
 
-  afterEach(() => {
-      jest.clearAllMocks();
-  });
- 
-  it("Field brand should exist", () => {
-    const title = wrapper.find("#brand").at(0);
-    expect(title.exists()).toBeTruthy();
-  });
+    it("Field Vehicle Model should exist", () => {
+      render(<NewVehicle />)
+      expect(screen.getByTestId('vehicleModel')).toBeInTheDocument()
+    })
 
-  it("Field vehicleModel should exist", () => {
-    const title = wrapper.find("#vehicleModel").at(0);
-    expect(title.exists()).toBeTruthy();
-  });
+    it("Field year should exist", () => {
+      render(<NewVehicle />)
+      expect(screen.getByTestId('year')).toBeInTheDocument()
+    })
 
-  it("Field year should exist", () => {
-    const title = wrapper.find("#year").at(0);
-    expect(title.exists()).toBeTruthy();
-  });
+    it("Field value should exist", () => {
+      render(<NewVehicle />)
+      expect(screen.getByTestId('value')).toBeInTheDocument()
+    })
 
-  it("Field value should exist", () => {
-    const title = wrapper.find("#value").at(0);
-    expect(title.exists()).toBeTruthy();
-  });
-});
- 
+    it("Button Cancel should exist", () => {
+      render(<NewVehicle />)
+      expect(screen.getByTestId('btnCancel')).toBeInTheDocument()
+    })
+
+    it("Button Submit should exist", () => {
+      render(<NewVehicle />)
+      expect(screen.getByTestId('btnSubmit')).toBeInTheDocument()
+    })
+
+  })
+})
  
