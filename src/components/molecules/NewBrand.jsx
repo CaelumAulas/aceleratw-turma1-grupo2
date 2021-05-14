@@ -1,24 +1,63 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
+import useFormValidations from '../../hooks/useFormValidations.js'
+import useErrors from '../../hooks/useErrors.js'
+import { useParams } from 'react-router-dom'
 
-export default function AddressForm() {
+export default function BrandsForm() {
+  const { id } = useParams();
+
+  console.log(id);
+
+  //Incluir
+  const handleSubmit = evt => {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ descricao: descricao })
+    };
+    
+    try{
+      fetch('http://localhost:8081/marcas/incluir', requestOptions)
+        .then(response => response.json());
+        alert("Marca incluída com sucesso!");
+    } catch(error){
+      alert("Tente novamente.");
+      throw new Error(`Error`, error);
+    }    
+  }
+
+  const [descricao, setDescricao] = useState('')
+  const { isRequired } = useFormValidations()
+  const validations = {
+    descricao: isRequired('Marca é obrigatória !')
+  }
+
+  const [errors, validateFields, send] = useErrors(validations)
   return (
     <React.Fragment>
+      <form onSubmit={() => send() && handleSubmit()}>
         <Typography component="h1" variant="h4" align="center">
-            Adicione o nome da marca
+            Incluir / Editar Marca
         </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField
             required
-            id="brand"
+            id="descricao"
             data-testid="brand"
-            name="brand"
+            name="descricao"
             label="Marca"
             fullWidth
+            value={descricao}
+            onChange={(e) => setDescricao(e.target.value)}
+            onBlur={validateFields}
+            error={!errors.descricao.valid}
+            helperText={errors.descricao.text}
           />
         </Grid>
         <Grid item xs={12} md={6} lg={6}>
@@ -35,8 +74,8 @@ export default function AddressForm() {
             </Button>
         </Grid>
         <Grid item xs={12} md={6} lg={6}>
+          <Link to="/listar-marcas" >
             <Button
-                href="/listar-marcas"
                 type="button"
                 fullWidth
                 name="btnCancel"
@@ -45,10 +84,12 @@ export default function AddressForm() {
                 variant="contained"
                 color="primary"
                 >
-                Cancelar
+                Voltar
             </Button>
+          </Link>  
         </Grid>
-    </Grid>
+      </Grid>
+    </form>
     </React.Fragment>
   )
 }

@@ -3,6 +3,8 @@ import { DataGrid } from '@material-ui/data-grid'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,10 +41,10 @@ export default function List() {
             <Button variant="outlined" color="primary" id="btnDelete"  data-testid="btnDelete">
               Excluir
             </Button>
-            <Button href="/cadastro-veiculo" variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">
+            <Button to="/cadastro-veiculo" component={Link} variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">
               Alterar
             </Button>
-            <Button href="/cadastro-veiculo" variant="outlined" color="primary" id="btnNewVehicle" data-testid="btnNewVehicle">
+            <Button to="/cadastro-veiculo" component={Link} variant="outlined" color="primary" id="btnNewVehicle" data-testid="btnNewVehicle">
               Incluir
             </Button>
           </div>

@@ -3,6 +3,7 @@ import { DataGrid } from '@material-ui/data-grid'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,12 +15,14 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const rows = [
-  { id: 1, nome: 'admin' },
-  { id: 2, nome: 'Paulo' }
+  { id: 1, name: 'Luana'},
+  { id: 2, name: 'Juliana'},
+  { id: 3, name: 'Gisele'},
+  { id: 4, name: 'Izalena'}
 ]
 
 const columns = [
-  { field: 'nome', headerName: 'Nome', width: `100%` }
+  { field: 'name', headerName: 'Nome', width: 150 }
 ]
 
 export default function List() {
@@ -39,7 +42,7 @@ export default function List() {
           <Button variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">
             Alterar
           </Button>
-          <Button variant="outlined" color="primary" id="btnNewUser" data-testid="btnNewUser" href="/cadastro-usuario">
+          <Button variant="outlined" color="primary" id="btnNewUser" data-testid="btnNewUser" component={Link}  to="/cadastro-usuario">
             Incluir
           </Button>
         </div>

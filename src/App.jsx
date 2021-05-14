@@ -33,6 +33,9 @@ function App() {
             <Route path="/cadastro-marca">
               <NewBrand />
             </Route>
+            <Route path="/cadastro-marca/:id">
+              <NewBrand />
+            </Route>
             <Route path="/cadastro-veiculo">
               <NewVehicle />
             </Route>

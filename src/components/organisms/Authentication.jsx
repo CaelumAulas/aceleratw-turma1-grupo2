@@ -3,7 +3,7 @@ import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import TextField from '@material-ui/core/TextField'
-import Link from '@material-ui/core/Link'
+import { Link } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
@@ -109,14 +109,15 @@ export default function Authentication() {
               id="btnClick"
               variant="contained"
               color="primary"
-              href="/"
+              to="/"
+              component={Link}
               className={classes.submit}
             >
               Entrar
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/cadastro-usuario" data-testid="linkOk" id="linkOk" variant="body2">
+                <Link to="/cadastro-usuario" data-testid="linkOk" id="linkOk" variant="body2">
                   {"Não possui uma conta? Cadastre-se"}
                 </Link>
               </Grid>
