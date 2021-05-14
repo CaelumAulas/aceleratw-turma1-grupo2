@@ -1,8 +1,9 @@
-import React from 'react'
-import EditUserPassword from "../../components/molecules/EditUserPassword"
-import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Paper from '@material-ui/core/Paper'
+import { makeStyles } from '@material-ui/core/styles'
+import React from 'react'
+
+import EditUserPassword from "../../components/molecules/EditUserPassword"
 
 const editPassStyles = makeStyles((theme) => ({
   layout: {
@@ -35,7 +36,7 @@ export default function Checkout() {
           <CssBaseline />
           <main className={classes.layout}>
             <Paper className={classes.paper}>
-                <EditUserPassword id="editPassPage" data- />
+                <EditUserPassword />
             </Paper>
           </main>
         </React.Fragment>

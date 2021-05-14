@@ -4,10 +4,12 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 export default function EditUserPasswordForm() {
   return (
     <React.Fragment>
+      <Router>
         <Typography component="h1" variant="h4" align="center">
             Editar senha
         </Typography>
@@ -71,6 +73,7 @@ export default function EditUserPasswordForm() {
             </Button>
         </Grid>
     </Grid>
+    </Router>
     </React.Fragment>
   )
 }

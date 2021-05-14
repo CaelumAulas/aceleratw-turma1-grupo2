@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import useFormValidations from '../../hooks/useFormValidations.js'
-import useErrors from '../../hooks/useErrors.js'
 import { useParams } from 'react-router-dom'
+
+import useErrors from '../../hooks/useErrors.js'
+import useFormValidations from '../../hooks/useFormValidations.js'
 
 export default function BrandsForm() {
   const { id } = useParams();
@@ -49,7 +50,7 @@ export default function BrandsForm() {
           <TextField
             required
             id="descricao"
-            data-testid="brand"
+            data-testid="descricao"
             name="descricao"
             label="Marca"
             fullWidth
