@@ -67,7 +67,7 @@ export default function EditUserPasswordForm() {
                 variant="contained"
                 color="primary"
                 >
-                Cancelar
+                Voltar
             </Button>
         </Grid>
     </Grid>

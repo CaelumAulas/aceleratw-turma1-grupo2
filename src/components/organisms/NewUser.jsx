@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 export default function UserForm() {
   return (
@@ -56,6 +57,7 @@ export default function UserForm() {
            
         </Grid>
         <Grid item xs={12} md={6} lg={6}>
+        <Link to="/listar-usuarios" >
         <Button
               type="button"
               fullWidth
@@ -65,8 +67,9 @@ export default function UserForm() {
               variant="contained"
               color="primary"
             >
-              Cancelar
+              Voltar
             </Button>
+        </Link>
         </Grid>
       </Grid>
     </React.Fragment>

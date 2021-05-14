@@ -39,7 +39,7 @@ export default function List() {
           <Button variant="outlined" color="primary" id="btnDelete" data-testid="btnDelete">
             Excluir
           </Button>
-          <Button variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">
+          <Button variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit" component={Link}  to="/cadastro-usuario">
             Alterar
           </Button>
           <Button variant="outlined" color="primary" id="btnNewUser" data-testid="btnNewUser" component={Link}  to="/cadastro-usuario">

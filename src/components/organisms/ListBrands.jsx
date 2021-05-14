@@ -25,7 +25,7 @@ export default function List() {
 
   const handleRowSelection = (e) => {
     setDeletedRows([...deletedRows, ...descricao.filter((d) => d.id === e.data.id)]);
-    setEditRows([...editRows, ...descricao.filter((d) => d.id === e.data.id)]);
+    setEditRows(e.data.id);
   };
 
   //Deletar
@@ -70,7 +70,7 @@ export default function List() {
             <Button variant="outlined" color="primary" id="btnDelete" data-testid="btnDelete" onClick={handleDelete}>
               Excluir
             </Button>
-            <Button to={`/cadastro-marca/${editRows[0] ? editRows[0].id : ""}`} component={Link} variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">
+            <Button to={`/cadastro-marca/${editRows}`} component={Link} variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">
               Alterar
             </Button>
             <Button to="/cadastro-marca" component={Link} variant="outlined" color="primary" id="btnNewBrand" data-testid="btnNewBrand">

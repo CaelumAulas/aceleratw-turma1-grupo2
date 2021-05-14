@@ -14,13 +14,14 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import Dashboard from '@material-ui/icons/Dashboard'
 import Edit from '@material-ui/icons/Edit'
-import LockOpen from '@material-ui/icons/LockOpen'
+import Commute from '@material-ui/icons/Commute'
 import MenuIcon from '@material-ui/icons/Menu'
-import TableChart from '@material-ui/icons/TableChart'
+import Style from '@material-ui/icons/Style'
+import LockOpen from '@material-ui/icons/LockOpen'
+import PeopleAlt from '@material-ui/icons/PeopleAlt'
 import clsx from 'clsx'
 import React from 'react'
 import { Link } from 'react-router-dom'
-//import { BrowserRouter as Router } from 'react-router-dom'
 
 const drawerWidth = 240
 
@@ -94,7 +95,6 @@ export default function PersistentDrawerLeft() {
   }
 
   return (
-  //  <Router>
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
@@ -139,7 +139,7 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
          <ListItem to="/" component={Link} button key="Listar Veículos à Venda">
-              <ListItemIcon><TableChart /></ListItemIcon>
+              <ListItemIcon><Commute /></ListItemIcon>
               <ListItemText data-testid="linkListVehicle" id="linkListVehicle" primary="Listar Veículos à Venda" />
           </ListItem>
           <ListItem  to="/acesso" component={Link} button key="Acesso Administrador">
@@ -150,11 +150,11 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
           <ListItem to="/listar-marcas" component={Link} button key="Marcas">
-              <ListItemIcon><TableChart /></ListItemIcon>
+              <ListItemIcon><Style /></ListItemIcon>
               <ListItemText id="linkListBrands" data-testid="linkListBrands" primary="Marcas" />
           </ListItem>
           <ListItem to="/listar-usuarios" component={Link} button key="Usuários">
-              <ListItemIcon><TableChart /></ListItemIcon>
+              <ListItemIcon><PeopleAlt /></ListItemIcon>
               <ListItemText id="linkUsers" data-testid="linkUsers" primary="Usuários" />
           </ListItem>
           <ListItem to="/dashboard" id="linkDashboard" data-testid="linkDashboard" component={Link} button key="Dashboard">
@@ -176,6 +176,5 @@ export default function PersistentDrawerLeft() {
        
       </main>
     </div>
-  //  </Router>
   )
 }
