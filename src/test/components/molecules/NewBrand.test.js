@@ -1,7 +1,8 @@
-import React from 'react'
 import { render, screen }  from '@testing-library/react'
-import NewBrand from '../../../components/molecules/NewBrand.jsx'
+import React from 'react'
 import { MemoryRouter } from "react-router-dom";
+
+import NewBrand from '../../../components/organisms/NewBrand.jsx'
 
 describe("NewBrand", () => {
 

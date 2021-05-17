@@ -1,16 +1,85 @@
-import React from 'react'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
 import FormHelperText from '@material-ui/core/FormHelperText'
+import Grid from '@material-ui/core/Grid'
+import MenuItem from '@material-ui/core/MenuItem'
+import Select from '@material-ui/core/Select'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import React, { useEffect, useState } from 'react'
+import { useRouteMatch } from 'react-router-dom'
+
+import useErrors from '../../hooks/useErrors.js'
+import useFormValidations from '../../hooks/useFormValidations.js'
 
 export default function VehicleForm() {
+  
+  let [vehicle, setVehicle] = useState({value: '', year: '', vehicleModel:'', brand:''});
+  console.log('vehicle >>>>>',vehicle)
+  let [update, setUpdate] = useState({value: '', year: '', vehicleModel:'', brand:''});
+  const match = useRouteMatch('/cadastro-veiculo/:id');
+  console.log('match.params.', match)
+ useEffect(() => {
+    const vehicleId =  match ? match.params.id : '';
+    console.log('ID',vehicleId)
+    if(!id !== '' && id !== undefined){ 
+      setUpdate(true);
+      fetch(`http://localhost:8081/veiculos/listar/${vehicleId}`)
+        .then(response => response.json())
+        .then(data => setVehicle(data))
+      }
+   }, []) 
+
+  //Incluir e Editar
+  const handleSubmit = evt => {
+    console.log('update>>>',update)
+
+    if(update){
+      const requestOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ vehicle: vehicle })
+      };
+      
+      try{
+        fetch(`http://localhost:8081/veiculos/editar/${vehicle.id}`, requestOptions)
+          .then(response => response.json());
+          alert("Veículo cadastrado com sucesso!");
+      } catch(error){
+        alert("Tente novamente.");
+        throw new Error(`Error`, error);
+      }
+    } else {
+      alert('update POST>>>',update)
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ marca: vehicle.brand , valor: vehicle.value, modelo: vehicle.vehicleModel, ano: vehicle.year} ) //editar
+      };
+
+      console.log('requestOptions***',requestOptions)
+      alert('requestOptions***',requestOptions);
+      try{
+        fetch('http://localhost:8081/veiculos/incluir', requestOptions)
+          .then(response => response.json());
+          alert('requestOptions***',requestOptions);
+          alert("Veículo incluída com sucesso!");
+      } catch(error){
+        alert("Tente novamente.");
+        throw new Error(`Error`, error);
+      }
+    }        
+  }
+
+  const { isRequired } = useFormValidations()
+  const validations = {
+    vehicle: {value: isRequired('Valor é obrigatório !'), year: isRequired('Ano é obrigatória !'), vehicleModel: isRequired('Modelo é obrigatória !'), brand:isRequired('Marca é obrigatória !')}
+  }
+
+  const [errors, validateFields, send] = useErrors(validations)
   return (
     <React.Fragment>
+      <form onSubmit={() => send() && handleSubmit()}>
         <Typography component="h1" variant="h4" align="center">
             Cadastro de Veiculo
         </Typography>
@@ -30,10 +99,13 @@ export default function VehicleForm() {
           <TextField
             required
             id="vehicleModel"
+            defaultValue=''
             data-testid="vehicleModel"
             name="vehicleModel"
             label="Modelo do Veículo"
             fullWidth
+            value={vehicle.vehicleModel}
+            onChange={(e) => setVehicle({vehicleModel: e.target.value})}
           />
         </Grid>
         <Grid item xs={12}>
@@ -44,6 +116,9 @@ export default function VehicleForm() {
             name="year"
             label="Ano"
             fullWidth
+            defaultValue=''
+            value={vehicle.year}
+            onChange={(e) => setVehicle({year: e.target.value})}
           />
         </Grid>
         <Grid item xs={12} sm={12}>
@@ -54,6 +129,11 @@ export default function VehicleForm() {
             name="value"
             label="Valor"
             fullWidth
+            autoComplete="value"
+            defaultValue=''
+            label={vehicle.value ? '' : "Valor"}
+            value={vehicle.value}
+            onChange={(e) => setVehicle({value: e.target.value})}
           />
         </Grid>
         <Grid item xs={12} md={6} lg={6}>
@@ -83,6 +163,7 @@ export default function VehicleForm() {
             </Button>
         </Grid>
       </Grid>
+      </form>
     </React.Fragment>
   )
 }

@@ -1,16 +1,16 @@
 import React from 'react'
 import { render, screen }  from '@testing-library/react'
-import ListCars from '../../../components/organisms/ListCars.jsx'
+import ListVehicle from '../../../components/organisms/ListVehicle.jsx'
 import { MemoryRouter } from "react-router-dom"
 
-describe("ListCars", () => {
+describe("ListVehicle", () => {
 
   describe("Test if fields exists", () => {
     
     it("Button Edit should exist", () => {
         render(
           <MemoryRouter initialEntries={["/cadastro-marca"]}>
-            <ListCars />
+            <ListVehicle />
           </MemoryRouter>
         )
       expect(screen.getByTestId('btnEdit')).toBeInTheDocument()
@@ -19,7 +19,7 @@ describe("ListCars", () => {
     it("Button delete should exist", () => {
         render(
           <MemoryRouter initialEntries={["/cadastro-marca"]}>
-            <ListCars />
+            <ListVehicle />
           </MemoryRouter>
         )
       expect(screen.getByTestId('btnDelete')).toBeInTheDocument()
@@ -28,7 +28,7 @@ describe("ListCars", () => {
     it("Button New Vehicle should exist", () => {
         render(
           <MemoryRouter initialEntries={["/cadastro-marca"]}>
-            <ListCars />
+            <ListVehicle />
           </MemoryRouter>
         )
       expect(screen.getByTestId('btnNewVehicle')).toBeInTheDocument()

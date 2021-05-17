@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { DataGrid } from '@material-ui/data-grid'
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import { makeStyles } from '@material-ui/core/styles'
+import { DataGrid } from '@material-ui/data-grid'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +33,7 @@ export default function List() {
       descricao.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1)
     );
 
-    const marcaId = deletedRows[0].id;
+    const marcaId = deletedRows[0];
     const requestOptions = {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }

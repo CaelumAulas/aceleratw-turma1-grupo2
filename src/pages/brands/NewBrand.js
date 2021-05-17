@@ -1,8 +1,9 @@
-import React from 'react'
-import NewBrand from "../../components/molecules/NewBrand.jsx"
-import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Paper from '@material-ui/core/Paper'
+import { makeStyles } from '@material-ui/core/styles'
+import React from 'react'
+
+import NewBrand from "../../components/organisms/NewBrand.jsx"
 
 const newBrandStyles = makeStyles((theme) => ({
   layout: {
