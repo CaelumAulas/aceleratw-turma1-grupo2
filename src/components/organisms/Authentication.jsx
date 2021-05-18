@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import background from '../../assets/images/logo_carango_bom.jpeg'
 import useFormValidations from '../../hooks/useFormValidations.js'
 import useErrors from '../../hooks/useErrors.js'
+import AuthService from '../../service/auth/auth.service'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -51,11 +52,17 @@ export default function Authentication() {
   const [password, setPassword] = useState('')
   const { isRequired } = useFormValidations()
   const validations = {
-    email: isRequired('E-mail é obrigatório !'),
-    password: isRequired('Senha é obrigatória !')
+    email: isRequired('E-mail é obrigatório!'),
+    password: isRequired('Senha é obrigatória!')
   }
 
   const [errors, validateFields, send] = useErrors(validations)
+
+  const handleSubmit = evt => {
+    alert('chamou submit')
+    const mockInputLogin = { email:"gisele@email" , senha: "123456"}
+    AuthService.login(mockInputLogin.email, mockInputLogin.senha)
+  }
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -66,7 +73,7 @@ export default function Authentication() {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <form className={classes.form} onSubmit={() => email && password && send()}>
+          <form className={classes.form} onSubmit={() => email && password && send() && handleSubmit()}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -109,8 +116,8 @@ export default function Authentication() {
               id="btnClick"
               variant="contained"
               color="primary"
-              to="/"
-              component={Link}
+               //to="/"
+              //component={Link}
               className={classes.submit}
             >
               Entrar

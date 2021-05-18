@@ -1,4 +1,6 @@
 /* eslint-disable */
+const API_URL = "http://localhost:8081";
+
 function getVehicles(){
   try{
       const requestOptions = {

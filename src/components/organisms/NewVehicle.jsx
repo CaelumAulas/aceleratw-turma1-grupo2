@@ -11,7 +11,7 @@ import { useRouteMatch } from 'react-router-dom'
 
 import useErrors from '../../hooks/useErrors.js'
 import useFormValidations from '../../hooks/useFormValidations.js'
-import  vehicleService  from '../../service/VehicleService'
+import  vehicleService  from '../../service/vehicle/VehicleService'
 
 export default function VehicleForm() {
   
