@@ -11,6 +11,7 @@ import { useRouteMatch } from 'react-router-dom'
 
 import useErrors from '../../hooks/useErrors.js'
 import useFormValidations from '../../hooks/useFormValidations.js'
+import  VehicleService  from '../../service/VehicleService'
 
 export default function VehicleForm() {
   
@@ -19,14 +20,15 @@ export default function VehicleForm() {
   let [update, setUpdate] = useState({value: '', year: '', vehicleModel:'', brand:''});
   const match = useRouteMatch('/cadastro-veiculo/:id');
   console.log('match.params.', match)
+  
  useEffect(() => {
     const vehicleId =  match ? match.params.id : '';
     console.log('ID',vehicleId)
-    if(!id !== '' && id !== undefined){ 
+    if(!vehicleId !== '' && vehicleId !== undefined){ 
       setUpdate(true);
-      fetch(`http://localhost:8081/veiculos/listar/${vehicleId}`)
-        .then(response => response.json())
-        .then(data => setVehicle(data))
+      VehicleService.getVehicles().then((response) => {
+        setVehicle(response);
+      })
       }
    }, []) 
 

@@ -5,6 +5,8 @@ import { DataGrid } from '@material-ui/data-grid'
 import React, { useEffect, useState }  from 'react'
 import { Link } from 'react-router-dom'
 
+import  vehicleService  from '../../service/VehicleService'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -60,29 +62,11 @@ export default function List() {
 
    //Listar
    useEffect(() => {
-     try{
-      const requestOptions = {
-        method: 'GET',
-        headers: { 
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS' 
-      }
-      };
-    fetch('http://localhost:8081/veiculos/listar', {mode: 'cors'})
-      .then(response => response.json())
-      .then(data => {
-        setVehicle(data)  
-        alert(data)
-        console.log('DATA', data)
-      } )
-    } catch(error){
-      alert("Tente novamente.");
-      throw new Error(`Error`, error);
-    }
+    vehicleService.getVehicles().then((response) => {
+      setVehicle(response);
+    })
   }, [])
   
-
 
     return (
       <Grid  container spacing={3} className={classes.root}>
