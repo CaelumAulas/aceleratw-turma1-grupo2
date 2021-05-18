@@ -13,12 +13,11 @@ function getVehicles(){
       return fetch('http://localhost:8081/veiculos/listar', requestOptions)
       .then(response => response.json())
       .then(data => {
-        this.setVehicle(data)  
         alert(data)
-        console.log('DATA', data)
+        alert("Veículos listados com sucesso!");
       } )
     } catch(error){
-      alert("Tente novamente.", error);
+      alert("Error - Não foi possível listar veículo!");
       throw new Error(`Error`, error);
     }
 }
@@ -34,15 +33,14 @@ function getVehicles(){
         'Access-Control-Allow-Headers': '*'
       }
       };
-      return  fetch(`http://localhost:8081/veiculos/listar/${id}`, requestOptions)
+      return fetch(`http://localhost:8081/veiculos/listar/${id}`, requestOptions)
       .then(response => response.json())
       .then(data => {
-        this.setVehicle(data)  
-        alert(data)
+        alert("Veículo listado com sucesso!");
         console.log('DATA', data)
       } )
     } catch(error){
-      alert("Tente novamente.", error);
+      alert("Error - Não foi possível listar veículo por id!");
       throw new Error(`Error`, error);
     }
 }
@@ -57,13 +55,14 @@ function updateVehicle(vehicle){
   try{
     fetch(`http://localhost:8081/veiculos/editar/${vehicle.id}`, requestOptions)
       .then(response => response.json());
-      alert("Veículo cadastrado com sucesso!");
+      alert("Veículo atualizado com sucesso!");
   } catch(error){
+    alert("Error - Não foi possível atualizar veículo!");
     throw new Error(`Error`, error);
   }
 }
 
-function addVehicle(vehicle){
+function addVehicle(vehicle) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -74,9 +73,24 @@ function addVehicle(vehicle){
   try{
     fetch('http://localhost:8081/veiculos/incluir', requestOptions)
       .then(response => response.json());
-      alert('requestOptions***',requestOptions);
-      alert("Veículo incluída com sucesso!");
+      alert("Veículo incluído com sucesso!");
   } catch(error){
+    alert("Error - Não foi possível incluir veículo!");
+    throw new Error(`Error`, error);
+  }
+}
+
+function deleteVehicle(id){
+  const requestOptions = {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+  };
+  
+  try{
+    alert("Veículo deletado com sucesso!");
+    return fetch(`http://localhost:8081/veiculos/deletar/${id}`, requestOptions)
+  } catch(error){
+    alert("Error - Não foi possível deletar veículo!");
     throw new Error(`Error`, error);
   }
 }
@@ -85,5 +99,6 @@ export default {
   getVehicles,
   getVehiclesById,
   updateVehicle,
-  addVehicle
+  addVehicle,
+  deleteVehicle
 }

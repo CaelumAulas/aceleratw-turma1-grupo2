@@ -37,37 +37,26 @@ export default function List() {
     const handleRowSelection = (e) => {
       setDeletedRows([...deletedRows, ...vehicle.filter((d) => d.id === e.data.id)]);
       setEditRows(e.data.id);
-    };
+    }
 
     //Deletar
     const handleDelete = () => {
-    setVehicle(
-      vehicle.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1)
-    );
+      setVehicle(vehicle.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1))
 
-    const id = deletedRows[0];
-    const requestOptions = {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
-    };
-    
-    try{
-      fetch(`http://localhost:8081/veiculos/deletar/${id}`, requestOptions);
-      alert("Veículo deletado com sucesso!");
-      setDeletedRows([]);
-    } catch(error){
-      console.error(error);
-      alert("Tente novamente.");
+      const vehicleId = deletedRows[0];
+
+      vehicleService.deleteVehicle(vehicleId).then((response) => {
+        setDeletedRows([])
+        alert("Veículo deletado com sucesso!");
+      })
     }
-  };
 
    //Listar
    useEffect(() => {
       vehicleService.getVehicles().then((response) => {
       setVehicle(response);
       })
-  }, [])
-  
+   }, [])
 
     return (
       <Grid  container spacing={3} className={classes.root}>

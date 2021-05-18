@@ -16,7 +16,6 @@ import  vehicleService  from '../../service/VehicleService'
 export default function VehicleForm() {
   
   let [vehicle, setVehicle] = useState({value: '', year: '', vehicleModel:'', brand:''});
-  console.log('vehicle STATE>>>>>',vehicle)
   let [update, setUpdate] = useState({value: '', year: '', vehicleModel:'', brand:''});
   const route = useRouteMatch('/cadastro-veiculo/:id');
 
@@ -24,11 +23,11 @@ export default function VehicleForm() {
     const vehicleId =  route ? route.params.id : '';
     console.log('ID PEGO NA ROTA', vehicleId)
     if(vehicleId){ 
-      setUpdate(true);
+      setUpdate(true)
       vehicleService.getVehiclesById(vehicleId).then((response) => {
-      setVehicle(response);
+        setVehicle(response)
       })
-      }
+    }
       // eslint-disable-next-line 
    }, []) 
 
@@ -42,6 +41,7 @@ export default function VehicleForm() {
   }
 
   const { isRequired } = useFormValidations()
+
   const validations = {
     value: isRequired('Valor é obrigatório!'), year: isRequired('Ano é obrigatório!'), vehicleModel: isRequired('Modelo é obrigatório!'), brand:isRequired('Marca é obrigatória!')
   }
