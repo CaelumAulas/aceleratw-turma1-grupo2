@@ -1,10 +1,10 @@
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
+import Box from '@material-ui/core/Box'
 import { DataGrid } from '@material-ui/data-grid'
 import React, { useEffect, useState }  from 'react'
 import { Link } from 'react-router-dom'
-
 import  vehicleService  from '../../service/VehicleService'
 
 
@@ -65,7 +65,7 @@ export default function List() {
           <div id="dataGrid" style={{ height: 300, width: '100%' }}>
             <DataGrid rows={rows} columns={columns} onRowSelected={handleRowSelection}/>
           </div>
-          <div>
+          <Box display="flex" justifyContent="space-between" mt={2}>
             <Button variant="outlined" color="primary" id="btnDelete"  data-testid="btnDelete" onClick={handleDelete}>
               Excluir
             </Button>
@@ -75,7 +75,7 @@ export default function List() {
             <Button to="/cadastro-veiculo" component={Link} variant="outlined" color="primary" id="btnNewVehicle" data-testid="btnNewVehicle">
               Incluir
             </Button>
-          </div>
+          </Box>
          </Grid>
          <Grid item xs={2}><div/></Grid>
       </Grid>
