@@ -87,7 +87,7 @@ function deleteVehicle(id){
   };
   
   try{
-    alert("Veículo deletado com sucesso!");
+  
     return fetch(`http://localhost:8081/veiculos/deletar/${id}`, requestOptions)
   } catch(error){
     alert("Error - Não foi possível deletar veículo!");
