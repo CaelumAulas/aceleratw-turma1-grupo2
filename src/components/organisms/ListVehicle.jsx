@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 
 import  vehicleService  from '../../service/VehicleService'
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -38,8 +39,8 @@ export default function List() {
       setEditRows(e.data.id);
     };
 
-      //Deletar
-  const handleDelete = () => {
+    //Deletar
+    const handleDelete = () => {
     setVehicle(
       vehicle.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1)
     );
@@ -62,9 +63,9 @@ export default function List() {
 
    //Listar
    useEffect(() => {
-    vehicleService.getVehicles().then((response) => {
+      vehicleService.getVehicles().then((response) => {
       setVehicle(response);
-    })
+      })
   }, [])
   
 
@@ -76,7 +77,7 @@ export default function List() {
             <DataGrid rows={rows} columns={columns} onRowSelected={handleRowSelection}/>
           </div>
           <div>
-            <Button variant="outlined" color="primary" id="btnDelete"  data-testid="btnDelete">
+            <Button variant="outlined" color="primary" id="btnDelete"  data-testid="btnDelete" onClick={handleDelete}>
               Excluir
             </Button>
             <Button to={`/cadastro-veiculo/${editRows}`} component={Link} variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">

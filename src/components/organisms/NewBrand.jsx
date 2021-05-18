@@ -13,6 +13,8 @@ export default function BrandsForm() {
   let [update, setUpdate] = useState('');
   const match = useRouteMatch('/cadastro-marca/:id');
   
+
+  //listar
   useEffect(() => {
     
     const id =  match ? match.params.id : '';

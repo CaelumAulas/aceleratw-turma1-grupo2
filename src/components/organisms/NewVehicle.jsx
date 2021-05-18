@@ -11,71 +11,39 @@ import { useRouteMatch } from 'react-router-dom'
 
 import useErrors from '../../hooks/useErrors.js'
 import useFormValidations from '../../hooks/useFormValidations.js'
-import  VehicleService  from '../../service/VehicleService'
+import  vehicleService  from '../../service/VehicleService'
 
 export default function VehicleForm() {
   
   let [vehicle, setVehicle] = useState({value: '', year: '', vehicleModel:'', brand:''});
-  console.log('vehicle >>>>>',vehicle)
+  console.log('vehicle STATE>>>>>',vehicle)
   let [update, setUpdate] = useState({value: '', year: '', vehicleModel:'', brand:''});
-  const match = useRouteMatch('/cadastro-veiculo/:id');
-  console.log('match.params.', match)
-  
+  const route = useRouteMatch('/cadastro-veiculo/:id');
+
  useEffect(() => {
-    const vehicleId =  match ? match.params.id : '';
-    console.log('ID',vehicleId)
-    if(!vehicleId !== '' && vehicleId !== undefined){ 
+    const vehicleId =  route ? route.params.id : '';
+    console.log('ID PEGO NA ROTA', vehicleId)
+    if(vehicleId){ 
       setUpdate(true);
-      VehicleService.getVehicles().then((response) => {
-        setVehicle(response);
+      vehicleService.getVehiclesById(vehicleId).then((response) => {
+      setVehicle(response);
       })
       }
+      // eslint-disable-next-line 
    }, []) 
 
   //Incluir e Editar
   const handleSubmit = evt => {
-    console.log('update>>>',update)
-
     if(update){
-      const requestOptions = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ vehicle: vehicle })
-      };
-      
-      try{
-        fetch(`http://localhost:8081/veiculos/editar/${vehicle.id}`, requestOptions)
-          .then(response => response.json());
-          alert("Veículo cadastrado com sucesso!");
-      } catch(error){
-        alert("Tente novamente.");
-        throw new Error(`Error`, error);
-      }
+      vehicleService.updateVehicle(vehicle)
     } else {
-      alert('update POST>>>',update)
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ marca: vehicle.brand , valor: vehicle.value, modelo: vehicle.vehicleModel, ano: vehicle.year} ) //editar
-      };
-
-      console.log('requestOptions***',requestOptions)
-      alert('requestOptions***',requestOptions);
-      try{
-        fetch('http://localhost:8081/veiculos/incluir', requestOptions)
-          .then(response => response.json());
-          alert('requestOptions***',requestOptions);
-          alert("Veículo incluída com sucesso!");
-      } catch(error){
-        alert("Tente novamente.");
-        throw new Error(`Error`, error);
-      }
+      vehicleService.addVehicle(vehicle)
     }        
   }
 
   const { isRequired } = useFormValidations()
   const validations = {
-    vehicle: {value: isRequired('Valor é obrigatório !'), year: isRequired('Ano é obrigatória !'), vehicleModel: isRequired('Modelo é obrigatória !'), brand:isRequired('Marca é obrigatória !')}
+    value: isRequired('Valor é obrigatório!'), year: isRequired('Ano é obrigatório!'), vehicleModel: isRequired('Modelo é obrigatório!'), brand:isRequired('Marca é obrigatória!')
   }
 
   const [errors, validateFields, send] = useErrors(validations)
@@ -88,8 +56,15 @@ export default function VehicleForm() {
       <Grid container spacing={2}>
       <Grid item xs={12}>
         <FormControl >        
-            <Select 
-                labelId="brand" id="brand" data-testid="brand">        
+            <Select
+                required
+                labelId="brand" 
+                id="brand"
+                name="brand"
+                data-testid="brand"
+                value={vehicle.brand ? vehicle.brand : ''}
+                onChange={(e) => setVehicle({brand: e.target.value})}
+                >        
                     <MenuItem select value={10}>Volks</MenuItem>
                     <MenuItem value={20}>Ford</MenuItem>
                     <MenuItem value={30}>Fiat</MenuItem>
@@ -108,6 +83,9 @@ export default function VehicleForm() {
             fullWidth
             value={vehicle.vehicleModel}
             onChange={(e) => setVehicle({vehicleModel: e.target.value})}
+            onBlur={validateFields}
+            error={!errors.vehicleModel.valid}
+            helperText={errors.vehicleModel.text}
           />
         </Grid>
         <Grid item xs={12}>
@@ -121,6 +99,9 @@ export default function VehicleForm() {
             defaultValue=''
             value={vehicle.year}
             onChange={(e) => setVehicle({year: e.target.value})}
+            onBlur={validateFields}
+            error={!errors.year.valid}
+            helperText={errors.year.text}
           />
         </Grid>
         <Grid item xs={12} sm={12}>
@@ -133,9 +114,11 @@ export default function VehicleForm() {
             fullWidth
             autoComplete="value"
             defaultValue=''
-            label={vehicle.value ? '' : "Valor"}
             value={vehicle.value}
             onChange={(e) => setVehicle({value: e.target.value})}
+            onBlur={validateFields}
+            error={!errors.value.valid}
+            helperText={errors.value.text}
           />
         </Grid>
         <Grid item xs={12} md={6} lg={6}>
