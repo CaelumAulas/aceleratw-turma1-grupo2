@@ -1,23 +1,36 @@
 import React from 'react'
 import { render, screen }  from '@testing-library/react'
-import ListCars from '../../../components/organisms/ListCars.jsx'
+import ListVehicle from '../../../components/organisms/ListVehicle.jsx'
+import { MemoryRouter } from "react-router-dom"
 
-describe("ListCars", () => {
+describe("ListVehicle", () => {
 
   describe("Test if fields exists", () => {
     
     it("Button Edit should exist", () => {
-      render(<ListCars />)
+        render(
+          <MemoryRouter initialEntries={["/cadastro-marca"]}>
+            <ListVehicle />
+          </MemoryRouter>
+        )
       expect(screen.getByTestId('btnEdit')).toBeInTheDocument()
     })
 
     it("Button delete should exist", () => {
-      render(<ListCars />)
+        render(
+          <MemoryRouter initialEntries={["/cadastro-marca"]}>
+            <ListVehicle />
+          </MemoryRouter>
+        )
       expect(screen.getByTestId('btnDelete')).toBeInTheDocument()
     })
     
     it("Button New Vehicle should exist", () => {
-      render(<ListCars />)
+        render(
+          <MemoryRouter initialEntries={["/cadastro-marca"]}>
+            <ListVehicle />
+          </MemoryRouter>
+        )
       expect(screen.getByTestId('btnNewVehicle')).toBeInTheDocument()
     })
   })

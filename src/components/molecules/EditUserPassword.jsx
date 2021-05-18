@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function EditUserPasswordForm() {
   return (
@@ -56,7 +57,8 @@ export default function EditUserPasswordForm() {
         </Grid>
         <Grid item xs={12} md={6} lg={6}>
             <Button
-                href="/"
+                component={Link}
+                to="/"
                 type="button"
                 fullWidth
                 name="btnCancel"
@@ -65,7 +67,7 @@ export default function EditUserPasswordForm() {
                 variant="contained"
                 color="primary"
                 >
-                Cancelar
+                Voltar
             </Button>
         </Grid>
     </Grid>
