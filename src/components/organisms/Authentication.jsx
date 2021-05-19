@@ -58,10 +58,12 @@ export default function Authentication() {
 
   const [errors, validateFields, send] = useErrors(validations)
 
-  const handleSubmit = evt => {
-    alert('chamou submit')
-    const mockInputLogin = { email:"gisele@email" , senha: "123456"}
-    AuthService.login(mockInputLogin.email, mockInputLogin.senha)
+  const handleSubmit = event => {
+    event.preventDefault()
+    if (email && password && send()) {
+      const mockInputLogin = { email: "gisele@email", senha: "123456" }
+      AuthService.login(mockInputLogin.email, mockInputLogin.senha)
+    }
   }
 
   return (
@@ -73,7 +75,7 @@ export default function Authentication() {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <form className={classes.form} onSubmit={() => email && password && send() && handleSubmit()}>
+          <form className={classes.form} onSubmit={(event) => handleSubmit(event)}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -116,7 +118,7 @@ export default function Authentication() {
               id="btnClick"
               variant="contained"
               color="primary"
-               //to="/"
+              //to="/"
               //component={Link}
               className={classes.submit}
             >

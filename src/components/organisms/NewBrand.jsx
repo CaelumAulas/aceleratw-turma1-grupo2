@@ -12,27 +12,30 @@ export default function BrandsForm() {
   let [marca, setMarca] = useState('');
   let [update, setUpdate] = useState('');
   const route = useRouteMatch('/cadastro-marca/:id');
-  
+
 
   //listar
   useEffect(() => {
-    const brandId =  route ? route.params.id : '';
-    if(brandId){
+    const brandId = route ? route.params.id : '';
+    if (brandId) {
       setUpdate(true);
       brandService.getBrandById(brandId).then((response) => {
-        setMarca(response) 
+        setMarca(response)
       })
       // eslint-disable-next-line
     }
   }, [])
 
   //Incluir e Editar
-  const handleSubmit = evt => {
-    if(update){
-      brandService.updateBrand(marca)
-    } else {
-      brandService.addBrand(marca)
-    }        
+  const handleSubmit = event => {
+    event.preventDefault()
+    if (marca && send()) {
+      if (update) {
+        brandService.updateBrand(marca)
+      } else {
+        brandService.addBrand(marca)
+      }
+    }
   }
 
   const { isRequired } = useFormValidations()
@@ -43,41 +46,41 @@ export default function BrandsForm() {
   const [errors, validateFields, send] = useErrors(validations)
   return (
     <React.Fragment>
-      <form onSubmit={() => send() && handleSubmit()}>
+      <form onSubmit={(event) => handleSubmit(event)}>
         <Typography component="h1" variant="h4" align="center">
-            Incluir / Editar Marca
+          Incluir / Editar Marca
         </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <TextField
-            required
-            data-testid="brand"
-            name="descricao"
-            fullWidth
-            label={marca.descricao ? '' : "Marca"}
-            value={marca.descricao ? marca.descricao : ''}
-            onChange={(e) => setMarca({id: marca.id, descricao: e.target.value})}
-            onBlur={validateFields}
-            error={!errors.descricao.valid}
-            helperText={errors.descricao.text}
-          />
-        </Grid>
-        <Grid item xs={12} md={6} lg={6}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <TextField
+              required
+              data-testid="brand"
+              name="descricao"
+              fullWidth
+              label={marca.descricao ? '' : "Marca"}
+              value={marca.descricao ? marca.descricao : ''}
+              onChange={(e) => setMarca({ id: marca.id, descricao: e.target.value })}
+              onBlur={validateFields}
+              error={!errors.descricao.valid}
+              helperText={errors.descricao.text}
+            />
+          </Grid>
+          <Grid item xs={12} md={6} lg={6}>
             <Button
-                type="submit"
-                fullWidth
-                name="btnSave"
-                id="btnSave"
-                data-testid="btnSave"
-                variant="contained"
-                color="primary"
+              type="submit"
+              fullWidth
+              name="btnSave"
+              id="btnSave"
+              data-testid="btnSave"
+              variant="contained"
+              color="primary"
             >
-                Salvar
+              Salvar
             </Button>
-        </Grid>
-        <Grid item xs={12} md={6} lg={6}>
-          <Link to="/listar-marcas" >
-            <Button
+          </Grid>
+          <Grid item xs={12} md={6} lg={6}>
+            <Link to="/listar-marcas" >
+              <Button
                 type="button"
                 fullWidth
                 name="btnCancel"
@@ -85,13 +88,13 @@ export default function BrandsForm() {
                 data-testid="btnCancel"
                 variant="contained"
                 color="primary"
-                >
+              >
                 Voltar
             </Button>
-          </Link>  
+            </Link>
+          </Grid>
         </Grid>
-      </Grid>
-    </form>
+      </form>
     </React.Fragment>
   )
 }
