@@ -33,15 +33,10 @@ export default function List() {
 
     const marcaId = deletedRows[0];
 
-    try {
       brandService.deleteBrand(marcaId).then((response) => {
         setDeletedRows([])
         alert("Marca deletada com sucesso!");
       }) 
-    } catch(error){
-      console.error(error);
-      alert("Tente novamente.");
-    }
   }
 
   //Listar

@@ -12,9 +12,9 @@ function login(email, senha){
         };
          fetch('http://localhost:8081/auth', requestOptions)
         .then(response => {
-          console.error('response',  JSON.stringify(response))
-          alert('response service auth', JSON.stringify(response))
-          JSON.stringify(response)
+          let clone = response.clone();
+          console.error('response', clone)
+          alert('response service auth', clone)
            // response.json() 
             
         })
