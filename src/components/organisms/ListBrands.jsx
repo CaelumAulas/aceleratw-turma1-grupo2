@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { DataGrid } from '@material-ui/data-grid'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import brandService from '../../service/brand/brand.service'
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -29,25 +29,15 @@ export default function List() {
 
   //Deletar
   const handleDelete = () => {
-    setDescricao(
-      descricao.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1)
-    );
+    setDescricao( descricao.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1));
 
     const marcaId = deletedRows[0];
-    const requestOptions = {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
-    };
-    
-    try{
-      fetch(`http://localhost:8081/marcas/deletar/${marcaId}`, requestOptions);
-      alert("Marca deletada com sucesso!");
-      setDeletedRows([]);
-    } catch(error){
-      console.error(error);
-      alert("Tente novamente.");
-    }
-  };
+
+      brandService.deleteBrand(marcaId).then((response) => {
+        setDeletedRows([])
+        alert("Marca deletada com sucesso!");
+      }) 
+  }
 
   //Listar
   useEffect(() => {

@@ -1,18 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { DataGrid } from '@material-ui/data-grid'
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
+import  userService  from '../../service/user/user.service'
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}))
 
 const rows = [
   { id: 1, name: 'Luana'},
@@ -24,9 +18,24 @@ const rows = [
 const columns = [
   { field: 'name', headerName: 'Nome', width: 150 }
 ]
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}))
 export default function List() {
   const classes = useStyles()
+  const [user, setUser] = useState([])
+
+  
+
+useEffect(() => {
+  userService.getUsers().then((response) => {
+  setUser(response.content);
+  })
+}, [])
   
   return (
     <Grid container spacing={2} className={classes.root}>

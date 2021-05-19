@@ -6,60 +6,36 @@ import Button from '@material-ui/core/Button'
 import { Link, useRouteMatch } from 'react-router-dom'
 import useFormValidations from '../../hooks/useFormValidations.js'
 import useErrors from '../../hooks/useErrors.js'
-
+import brandService from '../../service/brand/brand.service'
 
 export default function BrandsForm() {
   let [marca, setMarca] = useState('');
   let [update, setUpdate] = useState('');
-  const match = useRouteMatch('/cadastro-marca/:id');
-  
+  const route = useRouteMatch('/cadastro-marca/:id');
+
 
   //listar
   useEffect(() => {
-    
-    const id =  match ? match.params.id : '';
-    if(id !== '' && id !== undefined){
+    const brandId = route ? route.params.id : '';
+    if (brandId) {
       setUpdate(true);
-      fetch(`http://localhost:8081/marcas/listar/${id}`)
-        .then(response => response.json())
-        .then(data => setMarca(data))
-      }
+      brandService.getBrandById(brandId).then((response) => {
+        setMarca(response)
+      })
       // eslint-disable-next-line
-   }, [])
+    }
+  }, [])
 
   //Incluir e Editar
-  const handleSubmit = evt => {
-    if(update){
-      const requestOptions = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ descricao: marca.descricao })
-      };
-      
-      try{
-        fetch(`http://localhost:8081/marcas/editar/${marca.id}`, requestOptions)
-          .then(response => response.json());
-          alert("Marca alterada com sucesso!");
-      } catch(error){
-        alert("Tente novamente.");
-        throw new Error(`Error`, error);
+  const handleSubmit = event => {
+    event.preventDefault()
+    if (marca && send()) {
+      if (update) {
+        brandService.updateBrand(marca)
+      } else {
+        brandService.addBrand(marca)
       }
-    }else{
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ descricao: marca.descricao })
-      };
-    
-      try{
-        fetch('http://localhost:8081/marcas/incluir', requestOptions)
-          .then(response => response.json());
-          alert("Marca incluída com sucesso!");
-      } catch(error){
-        alert("Tente novamente.");
-        throw new Error(`Error`, error);
-      }
-    }        
+    }
   }
 
   const { isRequired } = useFormValidations()
@@ -70,41 +46,41 @@ export default function BrandsForm() {
   const [errors, validateFields, send] = useErrors(validations)
   return (
     <React.Fragment>
-      <form onSubmit={() => send() && handleSubmit()}>
+      <form onSubmit={(event) => handleSubmit(event)}>
         <Typography component="h1" variant="h4" align="center">
-            Incluir / Editar Marca
+          Incluir / Editar Marca
         </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <TextField
-            required
-            data-testid="brand"
-            name="descricao"
-            fullWidth
-            label={marca.descricao ? '' : "Marca"}
-            value={marca.descricao ? marca.descricao : ''}
-            onChange={(e) => setMarca({id: marca.id, descricao: e.target.value})}
-            onBlur={validateFields}
-            error={!errors.descricao.valid}
-            helperText={errors.descricao.text}
-          />
-        </Grid>
-        <Grid item xs={12} md={6} lg={6}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <TextField
+              required
+              data-testid="brand"
+              name="descricao"
+              fullWidth
+              label={marca.descricao ? '' : "Marca"}
+              value={marca.descricao ? marca.descricao : ''}
+              onChange={(e) => setMarca({ id: marca.id, descricao: e.target.value })}
+              onBlur={validateFields}
+              error={!errors.descricao.valid}
+              helperText={errors.descricao.text}
+            />
+          </Grid>
+          <Grid item xs={12} md={6} lg={6}>
             <Button
-                type="submit"
-                fullWidth
-                name="btnSave"
-                id="btnSave"
-                data-testid="btnSave"
-                variant="contained"
-                color="primary"
+              type="submit"
+              fullWidth
+              name="btnSave"
+              id="btnSave"
+              data-testid="btnSave"
+              variant="contained"
+              color="primary"
             >
-                Salvar
+              Salvar
             </Button>
-        </Grid>
-        <Grid item xs={12} md={6} lg={6}>
-          <Link to="/listar-marcas" >
-            <Button
+          </Grid>
+          <Grid item xs={12} md={6} lg={6}>
+            <Link to="/listar-marcas" >
+              <Button
                 type="button"
                 fullWidth
                 name="btnCancel"
@@ -112,13 +88,13 @@ export default function BrandsForm() {
                 data-testid="btnCancel"
                 variant="contained"
                 color="primary"
-                >
+              >
                 Voltar
             </Button>
-          </Link>  
+            </Link>
+          </Grid>
         </Grid>
-      </Grid>
-    </form>
+      </form>
     </React.Fragment>
   )
 }
