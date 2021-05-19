@@ -24,6 +24,7 @@ export default function VehicleForm() {
     const vehicleId = route ? route.params.id : '';
     console.log('ID PEGO NA ROTA', vehicleId)
     if (vehicleId) {
+      console.log('vehicleId', vehicleId)
       setUpdate(true)
       vehicleService.getVehiclesById(vehicleId).then((response) => {
         setVehicle(response)
@@ -37,6 +38,7 @@ export default function VehicleForm() {
     event.preventDefault()
     if (send() && vehicle) {
       if (update) {
+        console.log('vehicle', vehicle)
         vehicleService.updateVehicle(vehicle)
       } else {
         vehicleService.addVehicle(vehicle)

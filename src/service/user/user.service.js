@@ -4,7 +4,8 @@ function getUsers(){
         const requestOptions = {
           method: 'GET',
           headers: { 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization' : 'Bearer ' + localStorage.getItem('token')
         }
         };
         return fetch('http://localhost:8081/usuarios/listar', requestOptions)
@@ -24,7 +25,8 @@ function getUsers(){
         const requestOptions = {
           method: 'GET',
           headers: { 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization' : 'Bearer ' + localStorage.getItem('token')
         }
         };
         return fetch(`http://localhost:8081/usuarios/listar/${id}`, requestOptions)
@@ -42,7 +44,10 @@ function getUsers(){
   function updateUser(user){
     const requestOptions = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization' : 'Bearer ' + localStorage.getItem('token')
+     },
       body: JSON.stringify({ user: user })
     };
     
@@ -59,7 +64,10 @@ function getUsers(){
   function addUser(user) {
     const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+      'Content-Type': 'application/json',
+      'Authorization' : 'Bearer ' + localStorage.getItem('token')
+     },
       body: JSON.stringify({ marca: user.brand , valor: user.value, modelo: user.userModel, ano: user.year} ) //editar
     };
   
@@ -77,7 +85,9 @@ function getUsers(){
   function deleteUser(id){
     const requestOptions = {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization' : 'Bearer ' + localStorage.getItem('token') }
     };
     
     try{

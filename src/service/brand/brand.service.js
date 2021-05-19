@@ -4,7 +4,8 @@ function getBrands(){
         const requestOptions = {
           method: 'GET',
           headers: { 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization' : 'Bearer ' + localStorage.getItem('token')
         }
         };
         return fetch('http://localhost:8081/marcas/listar', requestOptions)
@@ -24,7 +25,8 @@ function getBrands(){
         const requestOptions = {
           method: 'GET',
           headers: { 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization' : 'Bearer ' + localStorage.getItem('token')
         }
         };
         return fetch(`http://localhost:8081/marcas/listar/${id}`, requestOptions)
@@ -42,7 +44,10 @@ function getBrands(){
   function updateBrand(brand){
     const requestOptions = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization' : 'Bearer ' + localStorage.getItem('token')
+      },
       body: JSON.stringify({ descricao: brand.descricao })
     };
     
@@ -59,7 +64,10 @@ function getBrands(){
   function addBrand(brand) {
     const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization' : 'Bearer ' + localStorage.getItem('token') 
+      },
       body: JSON.stringify({  descricao: brand.descricao } ) 
     };
   
@@ -76,7 +84,10 @@ function getBrands(){
   function deleteBrand(id){
     const requestOptions = {
       method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization' : 'Bearer ' + localStorage.getItem('token') 
+      }
     };
     
     try{

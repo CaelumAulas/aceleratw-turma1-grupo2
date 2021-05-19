@@ -5,9 +5,7 @@ function getVehicles(){
         method: 'GET',
         headers: { 
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*'
+        'Authorization' : 'Bearer ' + localStorage.getItem('token')
       }
       };
       return fetch('http://localhost:8081/veiculos/listar', requestOptions)
@@ -27,7 +25,8 @@ function getVehicles(){
       const requestOptions = {
         method: 'GET',
         headers: { 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization' : 'Bearer ' + localStorage.getItem('token')
       }
       };
       return fetch(`http://localhost:8081/veiculos/listar/${id}`, requestOptions)
@@ -45,7 +44,10 @@ function getVehicles(){
 function updateVehicle(vehicle){
   const requestOptions = {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization' : 'Bearer ' + localStorage.getItem('token')
+    },
     body: JSON.stringify({ vehicle: vehicle })
   };
   
@@ -80,7 +82,10 @@ function addVehicle(vehicle) {
 function deleteVehicle(id){
   const requestOptions = {
     method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization' : 'Bearer ' + localStorage.getItem('token') 
+   }
   };
   
   try{

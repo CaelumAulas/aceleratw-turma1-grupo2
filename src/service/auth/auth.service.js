@@ -8,10 +8,7 @@ async function login(email, senha){
       body: JSON.stringify({ email, senha })
     }
 
-    debugger;
-
     await fetch("http://localhost:8081/auth", requestOptions).then(response => {
-      debugger;
       return response.json()
     })
     .then(response => {
