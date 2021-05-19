@@ -32,6 +32,7 @@ export default function UserForm() {
     event.preventDefault()
     if (user && send()) {
       if (update) {
+        console.log('user', user)
         userService.updateUser(user)
       } else {
         userService.addUser(user)

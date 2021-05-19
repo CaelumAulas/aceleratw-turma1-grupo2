@@ -39,15 +39,15 @@ function getUsers(){
       }
   }
   
-  function updateVehicle(vehicle){
+  function updateUser(user){
     const requestOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ vehicle: vehicle })
+      body: JSON.stringify({ user: user })
     };
     
     try{
-      fetch(`http://localhost:8081/usuarios/editar/${vehicle.id}`, requestOptions)
+      fetch(`http://localhost:8081/usuarios/editar/${user.id}`, requestOptions)
         .then(response => response.json());
         alert("Usuário atualizado com sucesso!");
     } catch(error){
@@ -56,11 +56,11 @@ function getUsers(){
     }
   }
   
-  function addVehicle(vehicle) {
+  function addUser(user) {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ marca: vehicle.brand , valor: vehicle.value, modelo: vehicle.vehicleModel, ano: vehicle.year} ) //editar
+      body: JSON.stringify({ marca: user.brand , valor: user.value, modelo: user.userModel, ano: user.year} ) //editar
     };
   
     console.log('requestOptions***',requestOptions)
@@ -74,7 +74,7 @@ function getUsers(){
     }
   }
   
-  function deleteVehicle(id){
+  function deleteUser(id){
     const requestOptions = {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
@@ -92,7 +92,7 @@ function getUsers(){
   export default {
     getUsers,
     getUsersById,
-    updateVehicle,
-    addVehicle,
-    deleteVehicle
+    updateUser,
+    addUser,
+    deleteUser
   }
