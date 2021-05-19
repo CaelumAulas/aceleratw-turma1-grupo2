@@ -6,59 +6,32 @@ import Button from '@material-ui/core/Button'
 import { Link, useRouteMatch } from 'react-router-dom'
 import useFormValidations from '../../hooks/useFormValidations.js'
 import useErrors from '../../hooks/useErrors.js'
-
+import brandService from '../../service/brand/brand.service'
 
 export default function BrandsForm() {
   let [marca, setMarca] = useState('');
   let [update, setUpdate] = useState('');
-  const match = useRouteMatch('/cadastro-marca/:id');
+  const route = useRouteMatch('/cadastro-marca/:id');
   
 
   //listar
   useEffect(() => {
-    
-    const id =  match ? match.params.id : '';
-    if(id !== '' && id !== undefined){
+    const brandId =  route ? route.params.id : '';
+    if(brandId){
       setUpdate(true);
-      fetch(`http://localhost:8081/marcas/listar/${id}`)
-        .then(response => response.json())
-        .then(data => setMarca(data))
-      }
+      brandService.getBrandById(brandId).then((response) => {
+        setMarca(response) 
+      })
       // eslint-disable-next-line
-   }, [])
+    }
+  }, [])
 
   //Incluir e Editar
   const handleSubmit = evt => {
     if(update){
-      const requestOptions = {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ descricao: marca.descricao })
-      };
-      
-      try{
-        fetch(`http://localhost:8081/marcas/editar/${marca.id}`, requestOptions)
-          .then(response => response.json());
-          alert("Marca alterada com sucesso!");
-      } catch(error){
-        alert("Tente novamente.");
-        throw new Error(`Error`, error);
-      }
-    }else{
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ descricao: marca.descricao })
-      };
-    
-      try{
-        fetch('http://localhost:8081/marcas/incluir', requestOptions)
-          .then(response => response.json());
-          alert("Marca incluída com sucesso!");
-      } catch(error){
-        alert("Tente novamente.");
-        throw new Error(`Error`, error);
-      }
+      brandService.updateBrand(marca)
+    } else {
+      brandService.addBrand(marca)
     }        
   }
 

@@ -1,6 +1,4 @@
 /* eslint-disable */
-const API_URL = "http://localhost:8081";
-
 function getVehicles(){
   try{
       const requestOptions = {
@@ -29,10 +27,7 @@ function getVehicles(){
       const requestOptions = {
         method: 'GET',
         headers: { 
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin' : '*',
-        'Access-Control-Allow-Methods': '*',
-        'Access-Control-Allow-Headers': '*'
+        'Content-Type': 'application/json'
       }
       };
       return fetch(`http://localhost:8081/veiculos/listar/${id}`, requestOptions)

@@ -6,7 +6,7 @@ import { DataGrid } from '@material-ui/data-grid'
 import React, { useEffect, useState }  from 'react'
 import { Link } from 'react-router-dom'
 
-import  vehicleService  from '../../service/vehicle/VehicleService'
+import  vehicleService  from '../../service/vehicle/vehicle.service'
 
 const useStyles = makeStyles((theme) => ({
   root: {

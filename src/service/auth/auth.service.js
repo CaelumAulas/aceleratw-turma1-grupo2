@@ -1,4 +1,3 @@
-const API_URL = "http://localhost:8080/auth/";
 
 function login(email, senha){
     console.log('chamou service auth', email, senha)
@@ -11,19 +10,21 @@ function login(email, senha){
         },
         body: JSON.stringify({ email, senha }) //editar
         };
-        return fetch('http://localhost:8081/auth', requestOptions)
+         fetch('http://localhost:8081/auth', requestOptions)
         .then(response => {
-            response.json() 
-            console.log('response',  response)
-            alert('response service auth', response)
+          console.error('response',  JSON.stringify(response))
+          alert('response service auth', JSON.stringify(response))
+          JSON.stringify(response)
+           // response.json() 
+            
         })
         .catch(error => { 
-            console.log('error', error)
-            alert("Error then - Não foi possível listar veículo!", error);
+            console.error('error', error)
+            alert("Error then - Não foi possível pegar o token!", error);
             throw new Error(`Error`, error);
         })
       } catch(error){
-        alert("Error - Não foi possível listar veículo!", error);
+        alert("Error - Não foi possível pegar o token!", error);
         throw new Error(`Error`, error);
       }
 }
