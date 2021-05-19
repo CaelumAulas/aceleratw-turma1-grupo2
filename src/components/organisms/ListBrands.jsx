@@ -29,13 +29,11 @@ export default function List() {
 
   //Deletar
   const handleDelete = () => {
-    setDescricao(
-      descricao.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1)
-    );
+    setDescricao( descricao.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1));
 
     const marcaId = deletedRows[0];
 
-    try{
+    try {
       brandService.deleteBrand(marcaId).then((response) => {
         setDeletedRows([])
         alert("Marca deletada com sucesso!");
@@ -44,7 +42,7 @@ export default function List() {
       console.error(error);
       alert("Tente novamente.");
     }
-  };
+  }
 
   //Listar
   useEffect(() => {

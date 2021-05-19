@@ -12,7 +12,7 @@ describe("Testing NewUser Component", () => {
           <NewUser />
         </MemoryRouter>
       )
-      expect(screen.getByTestId('user')).toBeInTheDocument()
+      expect(screen.getByTestId('email')).toBeInTheDocument()
     })
 
     it("password should exist", () => {
