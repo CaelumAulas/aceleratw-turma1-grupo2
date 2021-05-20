@@ -18,7 +18,6 @@ export default function UserForm() {
   //listar
   useEffect(() => {
     const userId = route ? route.params.id : '';
-    console.log('ID PEGO NA ROTA', userId)
     if (userId) {
       setUpdate(true)
       userService.getUsersById(userId).then((response) => {
@@ -32,7 +31,6 @@ export default function UserForm() {
     event.preventDefault()
     if (user && send()) {
       if (update) {
-        console.log('user', user)
         userService.updateUser(user)
       } else {
         userService.addUser(user)

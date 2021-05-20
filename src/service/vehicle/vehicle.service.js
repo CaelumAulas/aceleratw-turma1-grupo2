@@ -1,5 +1,5 @@
 /* eslint-disable */
-function getVehicles(){
+async function getVehicles(){
   try{
       const requestOptions = {
         method: 'GET',
@@ -8,11 +8,10 @@ function getVehicles(){
         'Authorization' : 'Bearer ' + localStorage.getItem('token')
       }
       };
-      return fetch('http://localhost:8081/veiculos/listar', requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        alert(data)
-        alert("Veículos listados com sucesso!");
+      return await fetch('http://localhost:8081/veiculos/listar', requestOptions)
+      .then(response => {return response.json()})
+      .then(reponse => {
+        return reponse
       } )
     } catch(error){
       alert("Error - Não foi possível listar veículo!");
@@ -33,7 +32,6 @@ function getVehicles(){
       .then(response => response.json())
       .then(data => {
         alert("Veículo listado com sucesso!");
-        console.log('DATA', data)
       } )
     } catch(error){
       alert("Error - Não foi possível listar veículo por id!");
@@ -68,7 +66,6 @@ function addVehicle(vehicle) {
     body: JSON.stringify({ marca: vehicle.brand , valor: vehicle.value, modelo: vehicle.vehicleModel, ano: vehicle.year} ) //editar
   };
 
-  console.log('requestOptions***',requestOptions)
   try{
     fetch('http://localhost:8081/veiculos/incluir', requestOptions)
       .then(response => response.json());

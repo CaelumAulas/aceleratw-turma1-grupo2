@@ -33,7 +33,6 @@ function getBrands(){
         .then(response => response.json())
         .then(data => {
           alert("Marca listada com sucesso!");
-          console.log('DATA', data)
         } )
       } catch(error){
         alert("Error - Não foi possível listar marca por id!");

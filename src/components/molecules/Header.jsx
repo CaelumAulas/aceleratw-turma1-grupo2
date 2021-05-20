@@ -20,14 +20,25 @@ import Style from '@material-ui/icons/Style'
 import LockOpen from '@material-ui/icons/LockOpen'
 import PeopleAlt from '@material-ui/icons/PeopleAlt'
 import clsx from 'clsx'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Avatar from '@material-ui/core/Avatar';
+import { deepOrange } from '@material-ui/core/colors';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Grid from '@material-ui/core/Grid';
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
+  orange: {
+    color: theme.palette.getContrastText(deepOrange[500]),
+    backgroundColor: deepOrange[500],
+  },
   root: {
     display: 'flex',
+    width: '100%'
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -78,15 +89,31 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
-  },
+  }
 }))
 
 export default function PersistentDrawerLeft() {
   const classes = useStyles()
   const theme = useTheme()
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
+  let [isUserLogged, setIsUserLogged] = useState(localStorage.getItem('token'))
+  const [anchorEl, setAnchorEl] = React.useState(null)
+
+  useEffect(() => {
+    const login = localStorage.getItem('token')
+    if (isUserLogged || login) {
+      isUserLogged = true
+      setIsUserLogged(isUserLogged)
+    } else {
+      isUserLogged = false
+      setIsUserLogged(isUserLogged)
+    }
+
+  }, [])
 
   const handleDrawerOpen = () => {
+    isUserLogged = !!localStorage.getItem('token')
+    setIsUserLogged(isUserLogged)
     setOpen(true)
   }
 
@@ -94,16 +121,31 @@ export default function PersistentDrawerLeft() {
     setOpen(false)
   }
 
+  const handleClickAvatar = (event) => {
+    setAnchorEl(event.currentTarget);
+  }
+
+  const history = useHistory();
+
+  const handleCloseAndLogout = () => {
+    setAnchorEl(null);
+    localStorage.removeItem('token');
+    isUserLogged = false
+    setIsUserLogged(false)
+    history.push('/acesso')
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
+      <AppBar display="flex"
+        style={{ width: '100%' }}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar style={{ width: '100%' }}>
           <IconButton
             id="btnIcon"
             data-testid="btnIcon"
@@ -117,7 +159,17 @@ export default function PersistentDrawerLeft() {
           </IconButton>
           <Typography id="headerTitle" variant="h6" noWrap>
             CARANGO BOM
-          </Typography>
+              </Typography>
+          {isUserLogged && <Avatar className={classes.orange} onClick={handleClickAvatar}>U</Avatar>}
+          {isUserLogged && <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleCloseAndLogout}
+          >
+            <MenuItem onClick={handleCloseAndLogout}>Logout</MenuItem>
+          </Menu>}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -132,40 +184,43 @@ export default function PersistentDrawerLeft() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton  data-testid="btnHeaderArrowIcon" id="btnHeaderArrowIcon" onClick={handleDrawerClose}>
+          <IconButton data-testid="btnHeaderArrowIcon" id="btnHeaderArrowIcon" onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
         <Divider />
+
         <List>
-         <ListItem to="/" component={Link} button key="Listar Veículos à Venda">
-              <ListItemIcon><Commute /></ListItemIcon>
-              <ListItemText data-testid="linkListVehicle" id="linkListVehicle" primary="Listar Veículos à Venda" />
+          <ListItem to="/" component={Link} button key="Listar Veículos à Venda">
+            <ListItemIcon><Commute /></ListItemIcon>
+            <ListItemText data-testid="linkListVehicle" id="linkListVehicle" primary="Listar Veículos à Venda" />
           </ListItem>
-          <ListItem  to="/acesso" component={Link} button key="Acesso Administrador">
-              <ListItemIcon><LockOpen /></ListItemIcon>
-              <ListItemText id="linkAdminAcess" data-testid="linkAdminAccess" primary="Acesso Administrador" />
+          <ListItem to="/acesso" component={Link} button key="Acesso Administrador">
+            <ListItemIcon><LockOpen /></ListItemIcon>
+            <ListItemText id="linkAdminAcess" data-testid="linkAdminAccess" primary="Acesso Administrador" />
           </ListItem>
         </List>
         <Divider />
-        <List>
-          <ListItem to="/listar-marcas" component={Link} button key="Marcas">
+        {isUserLogged &&
+          <List>
+            <ListItem to="/listar-marcas" component={Link} button key="Marcas">
               <ListItemIcon><Style /></ListItemIcon>
               <ListItemText id="linkListBrands" data-testid="linkListBrands" primary="Marcas" />
-          </ListItem>
-          <ListItem to="/listar-usuarios" component={Link} button key="Usuários">
+            </ListItem>
+            <ListItem to="/listar-usuarios" component={Link} button key="Usuários">
               <ListItemIcon><PeopleAlt /></ListItemIcon>
               <ListItemText id="linkUsers" data-testid="linkUsers" primary="Usuários" />
-          </ListItem>
-          <ListItem to="/dashboard" id="linkDashboard" data-testid="linkDashboard" component={Link} button key="Dashboard">
+            </ListItem>
+            <ListItem to="/dashboard" id="linkDashboard" data-testid="linkDashboard" component={Link} button key="Dashboard">
               <ListItemIcon><Dashboard /></ListItemIcon>
               <ListItemText primary="Dashboard" />
-          </ListItem>
-          <ListItem to="/editar-senha" id="linkEditPassword" data-testid="linkEditPassword" component={Link} button key="Editar Senha">
+            </ListItem>
+            <ListItem to="/editar-senha" id="linkEditPassword" data-testid="linkEditPassword" component={Link} button key="Editar Senha">
               <ListItemIcon><Edit /></ListItemIcon>
               <ListItemText primary="Editar Senha" />
-          </ListItem>
-        </List>
+            </ListItem>
+          </List>
+        }
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -173,8 +228,8 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
-       
+
       </main>
-    </div>
+    </div >
   )
 }

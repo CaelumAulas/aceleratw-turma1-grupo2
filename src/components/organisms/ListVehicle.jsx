@@ -3,10 +3,11 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles'
 import { DataGrid } from '@material-ui/data-grid'
-import React, { useEffect, useState }  from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 
-import  vehicleService  from '../../service/vehicle/vehicle.service'
+import vehicleService from '../../service/vehicle/vehicle.service'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,10 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const rows = [
-  { id: 1, marca: 'Fiat', modelo: 'Ford KA', ano: '2016', valor: '15.000,00' },
-  { id: 2, marca: 'Fiat', modelo: 'Ford KA', ano: '2020', valor: '25.000,00' }
-]
+let rows = []
 
 const columns = [
   { field: 'marca', headerName: 'Marca', width: 150 },
@@ -29,55 +27,72 @@ const columns = [
 ]
 
 export default function List() {
-    const classes = useStyles()
-    const [editRows, setEditRows] = useState([]);
-    const [vehicle, setVehicle] = useState([])
-    const [deletedRows, setDeletedRows] = useState([]);
-  
-    const handleRowSelection = (e) => {
-      setDeletedRows([...deletedRows, ...vehicle.filter((d) => d.id === e.data.id)]);
-      setEditRows(e.data.id);
-    }
+  const classes = useStyles()
+  const [editRows, setEditRows] = useState([]);
+  const [vehicle, setVehicle] = useState([])
+  const [deletedRows, setDeletedRows] = useState([]);
+  let [isUserLogged, setIsUserLogged] = useState(localStorage.getItem('token'))
 
-    //Deletar
-    const handleDelete = () => {
-      setVehicle(vehicle.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1))
+  const handleRowSelection = (e) => {
+    setDeletedRows([...deletedRows, ...vehicle.filter((d) => d.id === e.data.id)]);
+    setEditRows(e.data.id);
+  }
 
-      const vehicleId = deletedRows[0];
+  //Deletar
+  const handleDelete = () => {
+    setVehicle(vehicle.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1))
 
-      vehicleService.deleteVehicle(vehicleId).then((response) => {
-        setDeletedRows([])
-        alert("Veículo deletado com sucesso!");
-      })
-    }
+    const vehicleId = deletedRows[0];
 
-   //Listar
-   useEffect(() => {
+    vehicleService.deleteVehicle(vehicleId).then((response) => {
+      setDeletedRows([])
+      alert("Veículo deletado com sucesso!");
+    })
+  }
+  const history = useHistory();
+
+  let login = localStorage.getItem('token')
+  //Listar
+  useEffect(() => {
+    login = localStorage.getItem('token')
+    if (login) {
       vehicleService.getVehicles().then((response) => {
-      setVehicle(response.content);
+        if (response && response.content) {
+          response.content.map((vehicle) => {
+            vehicle = { ...vehicle, marca: vehicle.marca.descricao, }
+            rows.push(vehicle)
+          })
+          setVehicle(rows);
+        }
       })
-   }, [])
+    } else {
+      login = localStorage.getItem('token')
+      window.location.reload();
+    }
+  }, [])
 
-    return (
-      <Grid  container spacing={3} className={classes.root}>
-        <Grid item xs={2}> <div/></Grid>
-        <Grid item xs={12} lg={8} >
-          <div id="dataGrid" style={{ height: 300, width: '100%' }}>
-            <DataGrid rows={rows} columns={columns} onRowSelected={handleRowSelection}/>
-          </div>
+  return (
+    <Grid container spacing={3} className={classes.root}>
+      <Grid item xs={2}> <div /></Grid>
+      <Grid item xs={12} lg={8} >
+        <div id="dataGrid" style={{ height: 300, width: '100%' }}>
+          <DataGrid rows={rows} columns={columns} onRowSelected={handleRowSelection} />
+        </div>
+        {isUserLogged &&
           <Box display="flex" justifyContent="space-between" mt={2}>
-            <Button variant="outlined" color="primary" id="btnDelete"  data-testid="btnDelete" onClick={handleDelete}>
+            <Button variant="outlined" color="primary" id="btnDelete" data-testid="btnDelete" onClick={handleDelete}>
               Excluir
-            </Button>
+              </Button>
             <Button to={`/cadastro-veiculo/${editRows}`} component={Link} variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">
               Alterar
-            </Button>
+              </Button>
             <Button to="/cadastro-veiculo" component={Link} variant="outlined" color="primary" id="btnNewVehicle" data-testid="btnNewVehicle">
               Incluir
-            </Button>
+              </Button>
           </Box>
-         </Grid>
-         <Grid item xs={2}><div/></Grid>
+        }
       </Grid>
-    )
-  }
+      <Grid item xs={2}><div /></Grid>
+    </Grid>
+  )
+}

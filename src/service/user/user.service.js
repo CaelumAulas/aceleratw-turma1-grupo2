@@ -1,5 +1,5 @@
 /* eslint-disable */
-function getUsers(){
+async function getUsers(){
     try{
         const requestOptions = {
           method: 'GET',
@@ -8,11 +8,12 @@ function getUsers(){
           'Authorization' : 'Bearer ' + localStorage.getItem('token')
         }
         };
-        return fetch('http://localhost:8081/usuarios/listar', requestOptions)
-        .then(response => response.json())
-        .then(data => {
-          alert(data)
-          alert("Usuários listados com sucesso!");
+        return await fetch('http://localhost:8081/usuarios/listar', requestOptions)
+        .then(response => {
+          return response.json()
+        })
+        .then(response => {
+          return response
         } )
       } catch(error){
         alert("Error - Não foi possível listar usuário!");
@@ -33,7 +34,6 @@ function getUsers(){
         .then(response => response.json())
         .then(data => {
           alert("Usuário listado com sucesso!");
-          console.log('DATA', data)
         } )
       } catch(error){
         alert("Error - Não foi possível listar usuário por id!");
@@ -71,7 +71,6 @@ function getUsers(){
       body: JSON.stringify({ marca: user.brand , valor: user.value, modelo: user.userModel, ano: user.year} ) //editar
     };
   
-    console.log('requestOptions***',requestOptions)
     try{
       fetch('http://localhost:8081/usuarios/incluir', requestOptions)
         .then(response => response.json());
