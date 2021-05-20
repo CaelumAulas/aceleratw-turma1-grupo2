@@ -22,12 +22,23 @@ import PeopleAlt from '@material-ui/icons/PeopleAlt'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Avatar from '@material-ui/core/Avatar';
+import { deepOrange } from '@material-ui/core/colors';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Grid from '@material-ui/core/Grid';
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240
 
 const useStyles = makeStyles((theme) => ({
+  orange: {
+    color: theme.palette.getContrastText(deepOrange[500]),
+    backgroundColor: deepOrange[500],
+  },
   root: {
     display: 'flex',
+    width: '100%'
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -85,7 +96,8 @@ export default function PersistentDrawerLeft() {
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = useState(false)
-  let [isUserLogged, setIsUserLogged] = useState(false);
+  let [isUserLogged, setIsUserLogged] = useState(false)
+  const [anchorEl, setAnchorEl] = React.useState(null)
 
   useEffect(() => {
     isUserLogged = !!localStorage.getItem('token')
@@ -102,16 +114,30 @@ export default function PersistentDrawerLeft() {
     setOpen(false)
   }
 
+  const handleClickAvatar = (event) => {
+    setAnchorEl(event.currentTarget);
+  }
+
+  const history = useHistory();
+
+  const handleCloseAndLogout = () => {
+    setAnchorEl(null);
+    localStorage.removeItem('token');
+    isUserLogged = false
+    history.push('/acesso')
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
+      <AppBar display="flex"
+        style={{ width: '100%' }}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar style={{ width: '100%' }}>
           <IconButton
             id="btnIcon"
             data-testid="btnIcon"
@@ -125,7 +151,17 @@ export default function PersistentDrawerLeft() {
           </IconButton>
           <Typography id="headerTitle" variant="h6" noWrap>
             CARANGO BOM
-          </Typography>
+              </Typography>
+          {isUserLogged && <Avatar className={classes.orange} onClick={handleClickAvatar}>U</Avatar>}
+          {isUserLogged && <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleCloseAndLogout}
+          >
+            <MenuItem onClick={handleCloseAndLogout}>Logout</MenuItem>
+          </Menu>}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -186,6 +222,6 @@ export default function PersistentDrawerLeft() {
         <div className={classes.drawerHeader} />
 
       </main>
-    </div>
+    </div >
   )
 }

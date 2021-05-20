@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { DataGrid } from '@material-ui/data-grid'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 
 import vehicleService from '../../service/vehicle/vehicle.service'
 
@@ -30,6 +31,7 @@ export default function List() {
   const [editRows, setEditRows] = useState([]);
   const [vehicle, setVehicle] = useState([])
   const [deletedRows, setDeletedRows] = useState([]);
+
   let [isUserLogged, setIsUserLogged] = useState(false);
 
   const handleRowSelection = (e) => {
@@ -48,9 +50,11 @@ export default function List() {
       alert("Veículo deletado com sucesso!");
     })
   }
-
+  const history = useHistory();
   //Listar
   useEffect(() => {
+    alert('carregou pagina')
+    console.log('token>>>', localStorage.getItem('token'))
     isUserLogged = !!localStorage.getItem('token')
     setIsUserLogged(isUserLogged)
 
@@ -64,6 +68,7 @@ export default function List() {
         setVehicle(rows);
       }
     })
+    console.log('token>>>', localStorage.getItem('token'))
   }, [])
 
   return (

@@ -14,7 +14,8 @@ import useErrors from '../../hooks/useErrors.js'
 import AuthService from '../../service/auth/auth.service'
 import { Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"
+import React, { useEffect } from 'react'
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -70,6 +71,11 @@ export default function Authentication() {
       }
     }
   }
+
+  useEffect(() => {
+    history.push('/acesso')
+    alert('carregou pagina')
+  }, [])
 
   return (
     <Grid container component="main" className={classes.root}>
