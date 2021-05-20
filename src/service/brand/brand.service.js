@@ -1,23 +1,21 @@
 /* eslint-disable */
-function getBrands(){
-    try{
-        const requestOptions = {
-          method: 'GET',
-          headers: { 
-          'Content-Type': 'application/json',
-          'Authorization' : 'Bearer ' + localStorage.getItem('token')
-        }
-        };
-        return fetch('http://localhost:8081/marcas/listar', requestOptions)
-        .then(response => response.json())
-        .then(data => {
-          alert(data)
-          alert("Marcas listadas com sucesso!");
-        } )
-      } catch(error){
-        alert("Error - Não foi possível listar marca!");
-        throw new Error(`Error`, error);
-      }
+async function getBrands(){
+  try{
+    const requestOptions = {
+      method: 'GET',
+      headers: { 
+      'Content-Type': 'application/json',
+      'Authorization' : 'Bearer ' + localStorage.getItem('token')
+    }
+    };
+    return await fetch('http://localhost:8081/marcas/listar', requestOptions)
+    .then(response => {return response.json()})
+    .then(reponse => {
+      return reponse
+    } )
+  } catch(error){
+    throw new Error(`Error`, error);
+  }
   }
   
    function getBrandsById(id){
@@ -41,18 +39,18 @@ function getBrands(){
       }
   }
   
-  function updateBrand(brand){
+  function updateBrand(brand, id){
     const requestOptions = {
       method: 'PUT',
       headers: { 
         'Content-Type': 'application/json',
         'Authorization' : 'Bearer ' + localStorage.getItem('token')
       },
-      body: JSON.stringify({ descricao: brand.descricao })
+      body: JSON.stringify({ descricao: brand })
     };
     
     try{
-      fetch(`http://localhost:8081/veiculos/editar/${brand.id}`, requestOptions)
+      fetch("http://localhost:8081/veiculos/editar/ "+ id, requestOptions)
         .then(response => response.json());
         alert("Marca atualizado com sucesso!");
     } catch(error){
@@ -92,7 +90,7 @@ function getBrands(){
     
     try{
     
-      return fetch(`http://localhost:8081/marcas/deletar/${id}`, requestOptions)
+      return fetch(`http://localhost:8081/marcas/deletar/` + id, requestOptions)
     } catch(error){
       alert("Error - Não foi possível deletar marca!");
       throw new Error(`Error`, error);

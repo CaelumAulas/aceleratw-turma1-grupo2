@@ -12,6 +12,7 @@ export default function BrandsForm() {
   let [marca, setMarca] = useState('');
   let [update, setUpdate] = useState('');
   const route = useRouteMatch('/cadastro-marca/:id');
+  const brandId = route ? route.params.id : '';
 
 
   //listar
@@ -19,10 +20,6 @@ export default function BrandsForm() {
     const brandId = route ? route.params.id : '';
     if (brandId) {
       setUpdate(true);
-      brandService.getBrandById(brandId).then((response) => {
-        setMarca(response)
-      })
-      // eslint-disable-next-line
     }
   }, [])
 
@@ -30,8 +27,8 @@ export default function BrandsForm() {
   const handleSubmit = event => {
     event.preventDefault()
     if (marca && send()) {
-      if (update) {
-        brandService.updateBrand(marca)
+      if (brandId) {
+        brandService.updateBrand(marca, brandId)
       } else {
         brandService.addBrand(marca)
       }

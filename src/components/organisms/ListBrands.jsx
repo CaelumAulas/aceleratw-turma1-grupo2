@@ -41,9 +41,11 @@ export default function List() {
 
   //Listar
   useEffect(() => {
-    fetch('http://localhost:8081/marcas/listar')
-      .then(response => response.json())
-      .then(data => setDescricao(data))
+    brandService.getBrands().then((response) => {
+      setDescricao(response);
+    }).catch(error => {
+      console.error(error);
+    })
   }, [])
 
   const classes = useStyles()
