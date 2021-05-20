@@ -87,13 +87,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-
-
-
 export default function PersistentDrawerLeft() {
   const classes = useStyles()
   const theme = useTheme()
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
   let [isUserLogged, setIsUserLogged] = useState(false);
 
   useEffect(() => {
@@ -102,6 +99,8 @@ export default function PersistentDrawerLeft() {
   }, [])
 
   const handleDrawerOpen = () => {
+    isUserLogged = !!localStorage.getItem('token')
+    setIsUserLogged(isUserLogged)
     setOpen(true)
   }
 
