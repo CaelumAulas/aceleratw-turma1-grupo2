@@ -19,6 +19,7 @@ export default function EditUserPasswordForm() {
             name="oldPassword"
             data-testid="oldPassword"
             label="Senha anterior"
+            type="password"
             fullWidth
           />
         </Grid>
@@ -28,6 +29,7 @@ export default function EditUserPasswordForm() {
             id="newPassword"
             name="newPassword"
             data-testid="newPassword"
+            type="password"
             label="Nova senha"
             fullWidth
           />

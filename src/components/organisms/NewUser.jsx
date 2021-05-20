@@ -78,6 +78,7 @@ export default function UserForm() {
               data-testid="password"
               name="password"
               label="Senha"
+              type="password"
               fullWidth
               value={user.password}
               onChange={(e) => setUser({ ...user, password: e.target.value })}
@@ -93,6 +94,7 @@ export default function UserForm() {
               name="copyPassword"
               data-testid="copyPassword"
               label="Confirmação de Senha"
+              type="password"
               fullWidth
               value={user.copyPassword}
               onChange={(e) => setUser({ ...user, copyPassword: e.target.value })}
