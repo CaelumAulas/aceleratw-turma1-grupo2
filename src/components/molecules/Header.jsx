@@ -20,7 +20,7 @@ import Style from '@material-ui/icons/Style'
 import LockOpen from '@material-ui/icons/LockOpen'
 import PeopleAlt from '@material-ui/icons/PeopleAlt'
 import clsx from 'clsx'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const drawerWidth = 240
@@ -79,12 +79,27 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
+  unloggedUser: {
+    visibility: 'hidden'
+  },
+  loggedUser: {
+    visibility: 'visible'
+  }
 }))
+
+
+
 
 export default function PersistentDrawerLeft() {
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
+  let [isUserLogged, setIsUserLogged] = useState(false);
+
+  useEffect(() => {
+    isUserLogged = !!localStorage.getItem('token')
+    setIsUserLogged(isUserLogged)
+  }, [])
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -132,40 +147,43 @@ export default function PersistentDrawerLeft() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton  data-testid="btnHeaderArrowIcon" id="btnHeaderArrowIcon" onClick={handleDrawerClose}>
+          <IconButton data-testid="btnHeaderArrowIcon" id="btnHeaderArrowIcon" onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </div>
         <Divider />
+
         <List>
-         <ListItem to="/" component={Link} button key="Listar Veículos à Venda">
-              <ListItemIcon><Commute /></ListItemIcon>
-              <ListItemText data-testid="linkListVehicle" id="linkListVehicle" primary="Listar Veículos à Venda" />
+          <ListItem to="/" component={Link} button key="Listar Veículos à Venda">
+            <ListItemIcon><Commute /></ListItemIcon>
+            <ListItemText data-testid="linkListVehicle" id="linkListVehicle" primary="Listar Veículos à Venda" />
           </ListItem>
-          <ListItem  to="/acesso" component={Link} button key="Acesso Administrador">
-              <ListItemIcon><LockOpen /></ListItemIcon>
-              <ListItemText id="linkAdminAcess" data-testid="linkAdminAccess" primary="Acesso Administrador" />
+          <ListItem to="/acesso" component={Link} button key="Acesso Administrador">
+            <ListItemIcon><LockOpen /></ListItemIcon>
+            <ListItemText id="linkAdminAcess" data-testid="linkAdminAccess" primary="Acesso Administrador" />
           </ListItem>
         </List>
         <Divider />
-        <List>
-          <ListItem to="/listar-marcas" component={Link} button key="Marcas">
+        {isUserLogged &&
+          <List>
+            <ListItem to="/listar-marcas" component={Link} button key="Marcas">
               <ListItemIcon><Style /></ListItemIcon>
               <ListItemText id="linkListBrands" data-testid="linkListBrands" primary="Marcas" />
-          </ListItem>
-          <ListItem to="/listar-usuarios" component={Link} button key="Usuários">
+            </ListItem>
+            <ListItem to="/listar-usuarios" component={Link} button key="Usuários">
               <ListItemIcon><PeopleAlt /></ListItemIcon>
               <ListItemText id="linkUsers" data-testid="linkUsers" primary="Usuários" />
-          </ListItem>
-          <ListItem to="/dashboard" id="linkDashboard" data-testid="linkDashboard" component={Link} button key="Dashboard">
+            </ListItem>
+            <ListItem to="/dashboard" id="linkDashboard" data-testid="linkDashboard" component={Link} button key="Dashboard">
               <ListItemIcon><Dashboard /></ListItemIcon>
               <ListItemText primary="Dashboard" />
-          </ListItem>
-          <ListItem to="/editar-senha" id="linkEditPassword" data-testid="linkEditPassword" component={Link} button key="Editar Senha">
+            </ListItem>
+            <ListItem to="/editar-senha" id="linkEditPassword" data-testid="linkEditPassword" component={Link} button key="Editar Senha">
               <ListItemIcon><Edit /></ListItemIcon>
               <ListItemText primary="Editar Senha" />
-          </ListItem>
-        </List>
+            </ListItem>
+          </List>
+        }
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -173,7 +191,7 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
-       
+
       </main>
     </div>
   )

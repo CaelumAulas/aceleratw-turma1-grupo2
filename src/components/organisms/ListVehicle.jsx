@@ -51,12 +51,14 @@ export default function List() {
   //Listar
   useEffect(() => {
     vehicleService.getVehicles().then((response) => {
-      response.content.map((vehicle) => {
-        vehicle = { ...vehicle, marca: vehicle.marca.descricao, }
-        rows.push(vehicle)
-      })
-      console.log(rows)
-      setVehicle(rows);
+      if (response && response.content) {
+        response.content.map((vehicle) => {
+          vehicle = { ...vehicle, marca: vehicle.marca.descricao, }
+          rows.push(vehicle)
+        })
+        console.log(rows)
+        setVehicle(rows);
+      }
     })
   }, [])
 
