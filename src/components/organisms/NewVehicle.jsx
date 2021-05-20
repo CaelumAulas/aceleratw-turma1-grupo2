@@ -18,17 +18,15 @@ export default function VehicleForm() {
   let [vehicle, setVehicle] = useState({ value: '', year: '', vehicleModel: '', brand: '' });
   let [update, setUpdate] = useState({ value: '', year: '', vehicleModel: '', brand: '' });
   const route = useRouteMatch('/cadastro-veiculo/:id');
-
+  const vehicleId = route ? route.params.id : '';
   //listar
   useEffect(() => {
-    const vehicleId = route ? route.params.id : '';
-    console.log('ID PEGO NA ROTA', vehicleId)
     if (vehicleId) {
       console.log('vehicleId', vehicleId)
       setUpdate(true)
-      vehicleService.getVehiclesById(vehicleId).then((response) => {
-        setVehicle(response)
-      })
+      // vehicleService.getVehiclesById(vehicleId).then((response) => {
+      //   setVehicle(response)
+      // })
     }
     // eslint-disable-next-line 
   }, [])
@@ -36,20 +34,24 @@ export default function VehicleForm() {
   //Incluir e Editar
   const handleSubmit = event => {
     event.preventDefault()
+    // vehicleService.addVehicle(vehicle)
     if (send() && vehicle) {
       if (update) {
         console.log('vehicle', vehicle)
-        vehicleService.updateVehicle(vehicle)
+        vehicleService.updateVehicle(vehicle, vehicleId)
       } else {
+        console.log('vehicle', vehicle)
         vehicleService.addVehicle(vehicle)
       }
     }
   }
-
   const { isRequired } = useFormValidations()
 
   const validations = {
-    value: isRequired('Valor é obrigatório!'), year: isRequired('Ano é obrigatório!'), vehicleModel: isRequired('Modelo é obrigatório!'), brand: isRequired('Marca é obrigatória!')
+    value: isRequired('Valor é obrigatório!'),
+    year: isRequired('Ano é obrigatório!'), 
+    vehicleModel: isRequired('Modelo é obrigatório!'), 
+    brand: isRequired('Marca é obrigatória!')
   }
 
   const [errors, validateFields, send] = useErrors(validations)
@@ -66,14 +68,12 @@ export default function VehicleForm() {
                 required
                 labelId="brand"
                 id="brand"
-                name="brand"
-                data-testid="brand"
-                value={vehicle.brand ? vehicle.brand : ''}
-                onChange={(e) => setVehicle({ brand: e.target.value })}
+                value={vehicle.brand}
+                onChange={(e) => setVehicle({ ...vehicle, brand: e.target.value })}
               >
-                <MenuItem select value={10}>Volks</MenuItem>
-                <MenuItem value={20}>Ford</MenuItem>
-                <MenuItem value={30}>Fiat</MenuItem>
+                <MenuItem value={10}>VOLKS</MenuItem>
+                <MenuItem value={20}>FORD</MenuItem>
+                <MenuItem value={30}>FIAT</MenuItem>
               </Select>
               <FormHelperText>Selecione a Marca do Veículo </FormHelperText>
             </FormControl>
@@ -82,13 +82,14 @@ export default function VehicleForm() {
             <TextField
               required
               id="vehicleModel"
-              defaultValue=''
               data-testid="vehicleModel"
               name="vehicleModel"
               label="Modelo do Veículo"
               fullWidth
               value={vehicle.vehicleModel}
-              onChange={(e) => setVehicle({ vehicleModel: e.target.value })}
+              onChange={(e) => setVehicle({
+                 ...vehicle, vehicleModel: e.target.value
+                })}
               onBlur={validateFields}
               error={!errors.vehicleModel.valid}
               helperText={errors.vehicleModel.text}
@@ -102,9 +103,8 @@ export default function VehicleForm() {
               name="year"
               label="Ano"
               fullWidth
-              defaultValue=''
               value={vehicle.year}
-              onChange={(e) => setVehicle({ year: e.target.value })}
+              onChange={(e) => setVehicle({ ...vehicle, year: e.target.value })}
               onBlur={validateFields}
               error={!errors.year.valid}
               helperText={errors.year.text}
@@ -119,9 +119,8 @@ export default function VehicleForm() {
               label="Valor"
               fullWidth
               autoComplete="value"
-              defaultValue=''
               value={vehicle.value}
-              onChange={(e) => setVehicle({ value: e.target.value })}
+              onChange={(e) => setVehicle({ ...vehicle,value: e.target.value })}
               onBlur={validateFields}
               error={!errors.value.valid}
               helperText={errors.value.text}

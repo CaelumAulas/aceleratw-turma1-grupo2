@@ -42,18 +42,21 @@ async function getUsers(){
       }
   }
   
-  function updateUser(user){
+  function updateUser(user, id){
     const requestOptions = {
       method: 'PUT',
       headers: { 
         'Content-Type': 'application/json',
         'Authorization' : 'Bearer ' + localStorage.getItem('token')
      },
-      body: JSON.stringify({ user: user })
+      body: JSON.stringify({
+        email: user.email,
+        senha: user.password
+      })
     };
     
     try{
-      fetch(`http://localhost:8081/usuarios/editar/${user.id}`, requestOptions)
+      fetch("http://localhost:8081/usuarios/editar/" + id, requestOptions)
         .then(response => response.json());
         alert("Usuário atualizado com sucesso!");
     } catch(error){
@@ -69,8 +72,11 @@ async function getUsers(){
       'Content-Type': 'application/json',
       'Authorization' : 'Bearer ' + localStorage.getItem('token')
      },
-      body: JSON.stringify({ marca: user.brand , valor: user.value, modelo: user.userModel, ano: user.year} ) //editar
-    };
+      body: JSON.stringify({
+          email: user.email,
+          senha: user.password
+        })
+      };
   
     console.log('requestOptions***',requestOptions)
     try{

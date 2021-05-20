@@ -14,16 +14,17 @@ export default function UserForm() {
   let [update, setUpdate] = useState({ email: '', password: '', copyPassword: '' })
 
   const route = useRouteMatch('/cadastro-usuario/:id');
+  const userId = route ? route.params.id : '';
 
   //listar
   useEffect(() => {
-    const userId = route ? route.params.id : '';
-    console.log('ID PEGO NA ROTA', userId)
+    // const userId = route ? route.params.id : '';
     if (userId) {
+      console.log('userId', userId)
       setUpdate(true)
-      userService.getUsersById(userId).then((response) => {
-        setUser(response)
-      })
+      // userService.getUsersById(userId).then((response) => {
+      //   setUser(response)
+      // })
     } // eslint-disable-next-line 
   }, [])
 
@@ -31,9 +32,9 @@ export default function UserForm() {
   const handleSubmit = event => {
     event.preventDefault()
     if (user && send()) {
-      if (update) {
+      if (userId) {
         console.log('user', user)
-        userService.updateUser(user)
+        userService.updateUser(user, userId)
       } else {
         userService.addUser(user)
       }
@@ -64,7 +65,7 @@ export default function UserForm() {
               label="Email"
               fullWidth
               value={user.email}
-              onChange={(e) => setUser({ email: e.target.value })}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
               onBlur={validateFields}
               error={!errors.email.valid}
               helperText={errors.email.text}
@@ -79,7 +80,7 @@ export default function UserForm() {
               label="Senha"
               fullWidth
               value={user.password}
-              onChange={(e) => setUser({ password: e.target.value })}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
               onBlur={validateFields}
               error={!errors.password.valid}
               helperText={errors.password.text}
@@ -94,7 +95,7 @@ export default function UserForm() {
               label="Confirmação de Senha"
               fullWidth
               value={user.copyPassword}
-              onChange={(e) => setUser({ copyPassword: e.target.value })}
+              onChange={(e) => setUser({ ...user, copyPassword: e.target.value })}
               onBlur={validateFields}
               error={!errors.copyPassword.valid}
               helperText={errors.copyPassword.text}

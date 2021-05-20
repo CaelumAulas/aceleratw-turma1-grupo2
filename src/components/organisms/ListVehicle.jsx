@@ -34,11 +34,12 @@ export default function List() {
     //Listar
     useEffect(() => {
       vehicleService.getVehicles().then((response) => {
+        console.log(response)
         rows = response.content;
         response.content.map((vehicle) => {
           vehicle = { ...vehicle, 
             marca: vehicle.marca.descricao}
-          rows.push(vehicle)
+            return rows.push(vehicle)
         })
         setVehicle(rows);
       })
@@ -77,7 +78,7 @@ export default function List() {
             </Button>
           <Button to="/cadastro-veiculo" component={Link} variant="outlined" color="primary" id="btnNewVehicle" data-testid="btnNewVehicle">
             Incluir
-            </Button>
+          </Button>
         </Box>
       </Grid>
       <Grid item xs={2}><div /></Grid>
