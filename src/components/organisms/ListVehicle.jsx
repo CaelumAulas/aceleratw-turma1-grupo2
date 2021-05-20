@@ -31,6 +31,19 @@ export default function List() {
   const [vehicle, setVehicle] = useState([])
   const [deletedRows, setDeletedRows] = useState([]);
 
+    //Listar
+    useEffect(() => {
+      vehicleService.getVehicles().then((response) => {
+        rows = response.content;
+        response.content.map((vehicle) => {
+          vehicle = { ...vehicle, 
+            marca: vehicle.marca.descricao}
+          rows.push(vehicle)
+        })
+        setVehicle(rows);
+      })
+    }, [])
+
   const handleRowSelection = (e) => {
     setDeletedRows([...deletedRows, ...vehicle.filter((d) => d.id === e.data.id)]);
     setEditRows(e.data.id);
@@ -47,18 +60,6 @@ export default function List() {
       alert("Veículo deletado com sucesso!");
     })
   }
-
-  //Listar
-  useEffect(() => {
-    vehicleService.getVehicles().then((response) => {
-      response.content.map((vehicle) => {
-        vehicle = { ...vehicle, marca: vehicle.marca.descricao, }
-        rows.push(vehicle)
-      })
-      console.log(rows)
-      setVehicle(rows);
-    })
-  }, [])
 
   return (
     <Grid container spacing={3} className={classes.root}>

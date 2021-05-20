@@ -10,8 +10,7 @@ let rows = []
 
 const columns = [
   { field: 'id', headerName: 'Id', width: 150 },
-  { field: 'email', headerName: 'Email', width: 150 },
-  { field: 'senha', headerName: 'Senha', width: 500 }
+  { field: 'email', headerName: 'Email', width: 150 }
 ]
 const useStyles = makeStyles((theme) => ({
   root: {

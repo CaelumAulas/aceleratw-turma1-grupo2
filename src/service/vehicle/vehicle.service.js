@@ -14,7 +14,6 @@ async function getVehicles(){
         return reponse
       } )
     } catch(error){
-      alert("Error - Não foi possível listar veículo!");
       throw new Error(`Error`, error);
     }
 }
