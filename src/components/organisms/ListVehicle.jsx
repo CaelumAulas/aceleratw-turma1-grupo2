@@ -31,8 +31,7 @@ export default function List() {
   const [editRows, setEditRows] = useState([]);
   const [vehicle, setVehicle] = useState([])
   const [deletedRows, setDeletedRows] = useState([]);
-
-  let [isUserLogged, setIsUserLogged] = useState(false);
+  let [isUserLogged, setIsUserLogged] = useState(localStorage.getItem('token'))
 
   const handleRowSelection = (e) => {
     setDeletedRows([...deletedRows, ...vehicle.filter((d) => d.id === e.data.id)]);
@@ -51,24 +50,25 @@ export default function List() {
     })
   }
   const history = useHistory();
+
+  let login = localStorage.getItem('token')
   //Listar
   useEffect(() => {
-    alert('carregou pagina')
-    console.log('token>>>', localStorage.getItem('token'))
-    isUserLogged = !!localStorage.getItem('token')
-    setIsUserLogged(isUserLogged)
-
-    vehicleService.getVehicles().then((response) => {
-      if (response && response.content) {
-        response.content.map((vehicle) => {
-          vehicle = { ...vehicle, marca: vehicle.marca.descricao, }
-          rows.push(vehicle)
-        })
-        console.log(rows)
-        setVehicle(rows);
-      }
-    })
-    console.log('token>>>', localStorage.getItem('token'))
+    login = localStorage.getItem('token')
+    if (login) {
+      vehicleService.getVehicles().then((response) => {
+        if (response && response.content) {
+          response.content.map((vehicle) => {
+            vehicle = { ...vehicle, marca: vehicle.marca.descricao, }
+            rows.push(vehicle)
+          })
+          setVehicle(rows);
+        }
+      })
+    } else {
+      login = localStorage.getItem('token')
+      window.location.reload();
+    }
   }, [])
 
   return (

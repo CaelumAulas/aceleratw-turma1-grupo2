@@ -96,12 +96,19 @@ export default function PersistentDrawerLeft() {
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = useState(false)
-  let [isUserLogged, setIsUserLogged] = useState(false)
+  let [isUserLogged, setIsUserLogged] = useState(localStorage.getItem('token'))
   const [anchorEl, setAnchorEl] = React.useState(null)
 
   useEffect(() => {
-    isUserLogged = !!localStorage.getItem('token')
-    setIsUserLogged(isUserLogged)
+    const login = localStorage.getItem('token')
+    if (isUserLogged || login) {
+      isUserLogged = true
+      setIsUserLogged(isUserLogged)
+    } else {
+      isUserLogged = false
+      setIsUserLogged(isUserLogged)
+    }
+
   }, [])
 
   const handleDrawerOpen = () => {
@@ -124,6 +131,7 @@ export default function PersistentDrawerLeft() {
     setAnchorEl(null);
     localStorage.removeItem('token');
     isUserLogged = false
+    setIsUserLogged(false)
     history.push('/acesso')
   };
 

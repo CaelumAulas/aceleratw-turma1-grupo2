@@ -52,7 +52,11 @@ export default function Authentication() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false);
   const { isRequired } = useFormValidations()
+
+
+
   const validations = {
     email: isRequired('E-mail é obrigatório!'),
     password: isRequired('Senha é obrigatória!')
@@ -62,19 +66,21 @@ export default function Authentication() {
 
   const [errors, validateFields, send] = useErrors(validations)
 
+
+
   const handleSubmit = event => {
     event.preventDefault()
-    if (email && password && send()) {
+    if ((email && password && send())) {
       const login = AuthService.login(email, password)
-      if (login) {
+      if (login && localStorage.getItem('token')) {
         history.push('/')
       }
     }
   }
 
   useEffect(() => {
-    history.push('/acesso')
-    alert('carregou pagina')
+    const login = localStorage.getItem('token')
+    if (login) { history.push('/') }
   }, [])
 
   return (

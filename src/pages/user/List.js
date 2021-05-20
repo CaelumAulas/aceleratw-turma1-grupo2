@@ -28,7 +28,6 @@ export default function List() {
 
 useEffect(() => {
   userService.getUsers().then((response) => {
-    console.log(response)
     rows = response
     setUser(response);
   })

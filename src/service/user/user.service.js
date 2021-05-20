@@ -34,7 +34,6 @@ async function getUsers(){
         .then(response => response.json())
         .then(data => {
           alert("Usuário listado com sucesso!");
-          console.log('DATA', data)
         } )
       } catch(error){
         alert("Error - Não foi possível listar usuário por id!");
@@ -72,7 +71,6 @@ async function getUsers(){
       body: JSON.stringify({ marca: user.brand , valor: user.value, modelo: user.userModel, ano: user.year} ) //editar
     };
   
-    console.log('requestOptions***',requestOptions)
     try{
       fetch('http://localhost:8081/usuarios/incluir', requestOptions)
         .then(response => response.json());
