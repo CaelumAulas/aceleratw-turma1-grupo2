@@ -13,44 +13,44 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
   return (
-      <Router>
-        <div className="App">
-        <Header />
-        </div>
-          <Switch>
-            <Route path="/" exact>
-              <ListOfCars />
-            </Route>
-            <Route path="/acesso">
-              <Authentication />
-            </Route>
-            <Route path="/cadastro-usuario">
-              <NewUser />
-            </Route>  
-            <Route path="/listar-marcas">
-              <ListBrands />
-            </Route>
-            <Route path="/cadastro-marca">
-              <NewBrand />
-            </Route>
-            <Route path="/cadastro-marca/:id">
-              <NewBrand />
-            </Route>
-            <Route path="/cadastro-veiculo">
-              <NewVehicle />
-            </Route>
-            <Route path="/listar-usuarios">
-              <ListUsers />
-            </Route>
-            <Route path="/editar-senha">
-              <EditPassword />
-            </Route>
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
-          </Switch>
-      </Router>
-)
+    <Router>
+      <div className="App">
+        <Header data-testid="header" />
+      </div>
+      <Switch>
+        <Route path="/" exact>
+          <ListOfCars />
+        </Route>
+        <Route path="/acesso">
+          <Authentication />
+        </Route>
+        <Route path="/cadastro-usuario">
+          <NewUser />
+        </Route>
+        <Route path="/listar-marcas">
+          <ListBrands />
+        </Route>
+        <Route path="/cadastro-marca">
+          <NewBrand />
+        </Route>
+        <Route path="/cadastro-marca/:id">
+          <NewBrand />
+        </Route>
+        <Route path="/cadastro-veiculo">
+          <NewVehicle />
+        </Route>
+        <Route path="/listar-usuarios">
+          <ListUsers />
+        </Route>
+        <Route path="/editar-senha">
+          <EditPassword />
+        </Route>
+        <Route path="/dashboard">
+          <Dashboard />
+        </Route>
+      </Switch>
+    </Router>
+  )
 }
 
 export default App

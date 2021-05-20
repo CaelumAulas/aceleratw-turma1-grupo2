@@ -17,7 +17,7 @@
     })
     .catch(error => {
         alert("Não foi possível logar!");
-        throw new Error(`Error`, error);
+        throw new Error(`Error`);
     })
 }
 
