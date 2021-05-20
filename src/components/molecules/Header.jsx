@@ -132,7 +132,7 @@ export default function PersistentDrawerLeft() {
     localStorage.removeItem('token');
     isUserLogged = false
     setIsUserLogged(false)
-    history.push('/acesso')
+    history.push('/login')
   };
 
   return (
@@ -195,7 +195,7 @@ export default function PersistentDrawerLeft() {
             <ListItemIcon><Commute /></ListItemIcon>
             <ListItemText data-testid="linkListVehicle" id="linkListVehicle" primary="Listar Veículos à Venda" />
           </ListItem>
-          <ListItem to="/acesso" component={Link} button key="Acesso Administrador">
+          <ListItem to="/login" component={Link} button key="Acesso Administrador">
             <ListItemIcon><LockOpen /></ListItemIcon>
             <ListItemText id="linkAdminAcess" data-testid="linkAdminAccess" primary="Acesso Administrador" />
           </ListItem>

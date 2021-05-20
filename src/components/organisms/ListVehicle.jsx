@@ -65,9 +65,6 @@ export default function List() {
           setVehicle(rows);
         }
       })
-    } else {
-      login = localStorage.getItem('token')
-      window.location.reload();
     }
   }, [])
 
