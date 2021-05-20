@@ -30,6 +30,7 @@ export default function List() {
   const [editRows, setEditRows] = useState([]);
   const [vehicle, setVehicle] = useState([])
   const [deletedRows, setDeletedRows] = useState([]);
+  let [isUserLogged, setIsUserLogged] = useState(false);
 
   const handleRowSelection = (e) => {
     setDeletedRows([...deletedRows, ...vehicle.filter((d) => d.id === e.data.id)]);
@@ -50,6 +51,9 @@ export default function List() {
 
   //Listar
   useEffect(() => {
+    isUserLogged = !!localStorage.getItem('token')
+    setIsUserLogged(isUserLogged)
+
     vehicleService.getVehicles().then((response) => {
       if (response && response.content) {
         response.content.map((vehicle) => {
@@ -69,17 +73,19 @@ export default function List() {
         <div id="dataGrid" style={{ height: 300, width: '100%' }}>
           <DataGrid rows={rows} columns={columns} onRowSelected={handleRowSelection} />
         </div>
-        <Box display="flex" justifyContent="space-between" mt={2}>
-          <Button variant="outlined" color="primary" id="btnDelete" data-testid="btnDelete" onClick={handleDelete}>
-            Excluir
-            </Button>
-          <Button to={`/cadastro-veiculo/${editRows}`} component={Link} variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">
-            Alterar
-            </Button>
-          <Button to="/cadastro-veiculo" component={Link} variant="outlined" color="primary" id="btnNewVehicle" data-testid="btnNewVehicle">
-            Incluir
-            </Button>
-        </Box>
+        {isUserLogged &&
+          <Box display="flex" justifyContent="space-between" mt={2}>
+            <Button variant="outlined" color="primary" id="btnDelete" data-testid="btnDelete" onClick={handleDelete}>
+              Excluir
+              </Button>
+            <Button to={`/cadastro-veiculo/${editRows}`} component={Link} variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">
+              Alterar
+              </Button>
+            <Button to="/cadastro-veiculo" component={Link} variant="outlined" color="primary" id="btnNewVehicle" data-testid="btnNewVehicle">
+              Incluir
+              </Button>
+          </Box>
+        }
       </Grid>
       <Grid item xs={2}><div /></Grid>
     </Grid>

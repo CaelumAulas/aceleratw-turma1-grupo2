@@ -17,8 +17,8 @@ async function login(email, senha){
       return response
     })
     .catch(error => {
-      console.error(error);
-      alert("CATCH ERROR: ", error);
+        alert("Não foi possível logar!");
+        throw new Error(`Error`, error);
     })
 }
 

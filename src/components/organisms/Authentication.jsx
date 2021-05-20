@@ -12,8 +12,9 @@ import background from '../../assets/images/logo_carango_bom.jpeg'
 import useFormValidations from '../../hooks/useFormValidations.js'
 import useErrors from '../../hooks/useErrors.js'
 import AuthService from '../../service/auth/auth.service'
-
-
+import { Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -56,13 +57,17 @@ export default function Authentication() {
     password: isRequired('Senha é obrigatória!')
   }
 
+  const history = useHistory();
+
   const [errors, validateFields, send] = useErrors(validations)
 
   const handleSubmit = event => {
     event.preventDefault()
     if (email && password && send()) {
-      const mockInputLogin = { email: "gisele@email", senha: "123456" }
-      AuthService.login(mockInputLogin.email, mockInputLogin.senha)
+      const login = AuthService.login(email, password)
+      if (login) {
+        history.push('/')
+      }
     }
   }
 
