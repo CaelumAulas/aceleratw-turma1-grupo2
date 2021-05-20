@@ -1,5 +1,5 @@
 /* eslint-disable */
-function getUsers(){
+async function getUsers(){
     try{
         const requestOptions = {
           method: 'GET',
@@ -8,11 +8,12 @@ function getUsers(){
           'Authorization' : 'Bearer ' + localStorage.getItem('token')
         }
         };
-        return fetch('http://localhost:8081/usuarios/listar', requestOptions)
-        .then(response => response.json())
-        .then(data => {
-          alert(data)
-          alert("Usuários listados com sucesso!");
+        return await fetch('http://localhost:8081/usuarios/listar', requestOptions)
+        .then(response => {
+          return response.json()
+        })
+        .then(response => {
+          return response
         } )
       } catch(error){
         alert("Error - Não foi possível listar usuário!");

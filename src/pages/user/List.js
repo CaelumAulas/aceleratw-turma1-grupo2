@@ -6,17 +6,12 @@ import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
 import  userService  from '../../service/user/user.service'
 
-
-
-const rows = [
-  { id: 1, name: 'Luana'},
-  { id: 2, name: 'Juliana'},
-  { id: 3, name: 'Gisele'},
-  { id: 4, name: 'Izalena'}
-]
+let rows = []
 
 const columns = [
-  { field: 'name', headerName: 'Nome', width: 150 }
+  { field: 'id', headerName: 'Id', width: 150 },
+  { field: 'email', headerName: 'Email', width: 150 },
+  { field: 'senha', headerName: 'Senha', width: 500 }
 ]
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,13 +22,13 @@ const useStyles = makeStyles((theme) => ({
 }))
 export default function List() {
   const classes = useStyles()
-  const [user, setUser] = useState([])
-
-  
+  const [users,  setUser] = useState([])
 
 useEffect(() => {
   userService.getUsers().then((response) => {
-  setUser(response.content);
+    console.log(response)
+    rows = response
+    setUser(response);
   })
 }, [])
   
