@@ -27,7 +27,7 @@ describe("Test if fields exists", () => {
 
   it("Token should called", () => {
     render( 
-      <MemoryRouter initialEntries={["/acesso"]}>
+      <MemoryRouter initialEntries={["/login"]}>
         <Authentication />
       </MemoryRouter>
     )
@@ -51,7 +51,7 @@ describe("Test if fields exists", () => {
 
   it("Token should called", () => {
     render( 
-      <MemoryRouter initialEntries={["/acesso"]}>
+      <MemoryRouter initialEntries={["/login"]}>
         <Authentication />
       </MemoryRouter>
     )
