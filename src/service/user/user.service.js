@@ -16,7 +16,6 @@ async function getUsers(){
           return response
         } )
       } catch(error){
-        alert("Error - Não foi possível listar usuário!");
         throw new Error(`Error`, error);
       }
   }
@@ -33,10 +32,9 @@ async function getUsers(){
         return fetch(`http://localhost:8081/usuarios/listar/${id}`, requestOptions)
         .then(response => response.json())
         .then(data => {
-          alert("Usuário listado com sucesso!");
+          return data
         } )
       } catch(error){
-        alert("Error - Não foi possível listar usuário por id!");
         throw new Error(`Error`, error);
       }
   }
@@ -54,9 +52,7 @@ async function getUsers(){
     try{
       fetch(`http://localhost:8081/usuarios/editar/${user.id}`, requestOptions)
         .then(response => response.json());
-        alert("Usuário atualizado com sucesso!");
     } catch(error){
-      alert("Error - Não foi possível atualizar usuário!");
       throw new Error(`Error`, error);
     }
   }
@@ -74,9 +70,8 @@ async function getUsers(){
     try{
       fetch('http://localhost:8081/usuarios/incluir', requestOptions)
         .then(response => response.json());
-        alert("Usuário incluído com sucesso!");
+        return response
     } catch(error){
-      alert("Error - Não foi possível incluir usuário!");
       throw new Error(`Error`, error);
     }
   }
@@ -90,10 +85,8 @@ async function getUsers(){
     };
     
     try{
-    
       return fetch(`http://localhost:8081/usuarios/deletar/${id}`, requestOptions)
     } catch(error){
-      alert("Error - Não foi possível deletar usuário!");
       throw new Error(`Error`, error);
     }
   }

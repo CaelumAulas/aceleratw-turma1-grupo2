@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/extend-expect'
 /* istanbul ignore next */ 
 describe("Test if fields exists", () => {
 
-  it("Token should called", () => {
+  test("Token should called", () => {
     
     jest.mock("../reportWebVitals.js", () => {
       return {
