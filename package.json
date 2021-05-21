@@ -45,5 +45,8 @@
   "devDependencies": {
     "@testing-library/react": "^11.2.6",
     "sonarqube-scanner": "^2.8.0"
-  }
+  },
+  "coveragePathIgnorePatterns": [
+    "src/reportWebVitals.js"
+  ]
 }

@@ -14,7 +14,6 @@ async function getVehicles(){
         return reponse
       } )
     } catch(error){
-      alert("Error - Não foi possível listar veículo!");
       throw new Error(`Error`, error);
     }
 }
@@ -31,10 +30,9 @@ async function getVehicles(){
       return fetch(`http://localhost:8081/veiculos/listar/${id}`, requestOptions)
       .then(response => response.json())
       .then(data => {
-        alert("Veículo listado com sucesso!");
+        return data
       } )
     } catch(error){
-      alert("Error - Não foi possível listar veículo por id!");
       throw new Error(`Error`, error);
     }
 }
@@ -52,9 +50,7 @@ function updateVehicle(vehicle){
   try{
     fetch(`http://localhost:8081/veiculos/editar/${vehicle.id}`, requestOptions)
       .then(response => response.json());
-      alert("Veículo atualizado com sucesso!");
   } catch(error){
-    alert("Error - Não foi possível atualizar veículo!");
     throw new Error(`Error`, error);
   }
 }
@@ -69,9 +65,8 @@ function addVehicle(vehicle) {
   try{
     fetch('http://localhost:8081/veiculos/incluir', requestOptions)
       .then(response => response.json());
-      alert("Veículo incluído com sucesso!");
+   return response
   } catch(error){
-    alert("Error - Não foi possível incluir veículo!");
     throw new Error(`Error`, error);
   }
 }
@@ -89,7 +84,6 @@ function deleteVehicle(id){
   
     return fetch(`http://localhost:8081/veiculos/deletar/${id}`, requestOptions)
   } catch(error){
-    alert("Error - Não foi possível deletar veículo!");
     throw new Error(`Error`, error);
   }
 }

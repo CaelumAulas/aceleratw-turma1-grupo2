@@ -11,11 +11,9 @@ function getBrands(){
         return fetch('http://localhost:8081/marcas/listar', requestOptions)
         .then(response => response.json())
         .then(data => {
-          alert(data)
-          alert("Marcas listadas com sucesso!");
+          return data
         } )
       } catch(error){
-        alert("Error - Não foi possível listar marca!");
         throw new Error(`Error`, error);
       }
   }
@@ -32,10 +30,9 @@ function getBrands(){
         return fetch(`http://localhost:8081/marcas/listar/${id}`, requestOptions)
         .then(response => response.json())
         .then(data => {
-          alert("Marca listada com sucesso!");
+          return data
         } )
       } catch(error){
-        alert("Error - Não foi possível listar marca por id!");
         throw new Error(`Error`, error);
       }
   }
@@ -53,9 +50,7 @@ function getBrands(){
     try{
       fetch(`http://localhost:8081/veiculos/editar/${brand.id}`, requestOptions)
         .then(response => response.json());
-        alert("Marca atualizado com sucesso!");
     } catch(error){
-      alert("Error - Não foi possível atualizar marca!");
       throw new Error(`Error`, error);
     }
   }
@@ -73,9 +68,7 @@ function getBrands(){
     try{
       fetch('http://localhost:8081/marcas/incluir', requestOptions)
         .then(response => response.json());
-        alert("Marca incluído com sucesso!");
     } catch(error){
-      alert("Error - Não foi possível incluir marca!");
       throw new Error(`Error`, error);
     }
   }
@@ -93,7 +86,6 @@ function getBrands(){
     
       return fetch(`http://localhost:8081/marcas/deletar/${id}`, requestOptions)
     } catch(error){
-      alert("Error - Não foi possível deletar marca!");
       throw new Error(`Error`, error);
     }
   }
