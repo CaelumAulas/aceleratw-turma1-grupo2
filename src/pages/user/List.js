@@ -12,6 +12,7 @@ const columns = [
   { field: 'id', headerName: 'Id', width: 150 },
   { field: 'email', headerName: 'Email', width: 150 }
 ]
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }))
+
 export default function List() {
   const classes = useStyles()
   const [users,  setUser] = useState([])

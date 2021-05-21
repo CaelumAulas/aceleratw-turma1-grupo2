@@ -9,10 +9,7 @@ async function getVehicles(){
       }
       };
       return await fetch('http://localhost:8081/veiculos/listar', requestOptions)
-      .then(response => {return response.json()})
-      .then(reponse => {
-        return reponse
-      } )
+      .then(response =>  response.json())
     } catch(error){
       throw new Error(`Error`, error);
     }
@@ -31,7 +28,6 @@ async function getVehicles(){
       .then(response => response.json())
       .then(data => {
         alert("Veículo listado com sucesso!");
-        console.log('DATA', data)
       } )
     } catch(error){
       alert("Error - Não foi possível listar veículo por id!");
@@ -97,7 +93,6 @@ function addVehicle(vehicle) {
       } ) 
   };
 
-  console.log('requestOptions***',requestOptions)
   try{
     fetch('http://localhost:8081/veiculos/incluir', requestOptions)
       .then(response => response.json());

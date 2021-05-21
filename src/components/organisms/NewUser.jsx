@@ -18,7 +18,7 @@ export default function UserForm() {
 
   //listar
   useEffect(() => {
-    // const userId = route ? route.params.id : '';
+    const userId = route ? route.params.id : '';
     if (userId) {
       console.log('userId', userId)
       setUpdate(true)
@@ -33,7 +33,6 @@ export default function UserForm() {
     event.preventDefault()
     if (user && send()) {
       if (userId) {
-        console.log('user', user)
         userService.updateUser(user, userId)
       } else {
         userService.addUser(user)

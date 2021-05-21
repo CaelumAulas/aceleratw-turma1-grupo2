@@ -21,8 +21,8 @@ export default function VehicleForm() {
   const vehicleId = route ? route.params.id : '';
   //listar
   useEffect(() => {
+    const vehicleId = route ? route.params.id : '';
     if (vehicleId) {
-      console.log('vehicleId', vehicleId)
       setUpdate(true)
       // vehicleService.getVehiclesById(vehicleId).then((response) => {
       //   setVehicle(response)
@@ -36,7 +36,7 @@ export default function VehicleForm() {
     event.preventDefault()
     // vehicleService.addVehicle(vehicle)
     if (send() && vehicle) {
-      if (update) {
+      if (vehicleId) {
         console.log('vehicle', vehicle)
         vehicleService.updateVehicle(vehicle, vehicleId)
       } else {
@@ -49,8 +49,8 @@ export default function VehicleForm() {
 
   const validations = {
     value: isRequired('Valor é obrigatório!'),
-    year: isRequired('Ano é obrigatório!'), 
-    vehicleModel: isRequired('Modelo é obrigatório!'), 
+    year: isRequired('Ano é obrigatório!'),
+    vehicleModel: isRequired('Modelo é obrigatório!'),
     brand: isRequired('Marca é obrigatória!')
   }
 
@@ -88,8 +88,8 @@ export default function VehicleForm() {
               fullWidth
               value={vehicle.vehicleModel}
               onChange={(e) => setVehicle({
-                 ...vehicle, vehicleModel: e.target.value
-                })}
+                ...vehicle, vehicleModel: e.target.value
+              })}
               onBlur={validateFields}
               error={!errors.vehicleModel.valid}
               helperText={errors.vehicleModel.text}
@@ -120,7 +120,7 @@ export default function VehicleForm() {
               fullWidth
               autoComplete="value"
               value={vehicle.value}
-              onChange={(e) => setVehicle({ ...vehicle,value: e.target.value })}
+              onChange={(e) => setVehicle({ ...vehicle, value: e.target.value })}
               onBlur={validateFields}
               error={!errors.value.valid}
               helperText={errors.value.text}

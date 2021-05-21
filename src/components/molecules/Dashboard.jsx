@@ -24,17 +24,17 @@ const columns = [
 ]
 
 export default function List() {
-    const classes = useStyles()
-    
-    return (
-      <Grid container spacing={3} className={classes.root}>
-        <Grid item xs={2}> <div/></Grid>
-        <Grid item xs={12} lg={8} >
-          <div id="dataGrid" data-testid="dataGrid" style={{ height: 300, width: '100%' }}>
-            <DataGrid rows={rows} columns={columns} />
-          </div>
-         </Grid>
-         <Grid item xs={2}><div/></Grid>
+  const classes = useStyles()
+
+  return (
+    <Grid container spacing={3} className={classes.root}>
+      <Grid item xs={2}> <div /></Grid>
+      <Grid item xs={12} lg={8} >
+        <div id="dataGrid" data-testid="dataGrid" style={{ height: 300, width: '100%' }}>
+          <DataGrid rows={rows} columns={columns} />
+        </div>
       </Grid>
-    )
-  }
+      <Grid item xs={2}><div /></Grid>
+    </Grid>
+  )
+}

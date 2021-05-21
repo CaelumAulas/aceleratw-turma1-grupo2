@@ -1,9 +1,23 @@
 import React from 'react'
 import EditUserPassword from '../../../pages/user/EditUserPassword.js'
-import { render, screen }  from '@testing-library/react'
+import { render, screen, fireEvent }  from '@testing-library/react'
 import { MemoryRouter } from "react-router-dom"
 
 describe("EditUserPassword", () => { 
+
+  window.alert = jest.fn();
+  test("test form", () => {
+    render(
+      <MemoryRouter initialEntries={["/editar-senha"]}>
+        <EditUserPassword />
+      </MemoryRouter>
+    );
+    const onSubmit = jest.fn();
+    const { getByText } = render(<form onSubmit={onSubmit} />);
+    fireEvent.click(getByText("Salvar"));
+    expect(onSubmit).toBeDefined();
+    window.alert.mockClear();
+  });
 
   describe("Testing if field and buttons exists", ()=>{
     it("Field old password exist", () => {

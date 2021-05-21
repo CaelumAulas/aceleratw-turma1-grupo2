@@ -12,8 +12,10 @@ import background from '../../assets/images/logo_carango_bom.jpeg'
 import useFormValidations from '../../hooks/useFormValidations.js'
 import useErrors from '../../hooks/useErrors.js'
 import AuthService from '../../service/auth/auth.service'
-
-
+import { Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { useHistory } from "react-router-dom"
+import React, { useEffect } from 'react'
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -50,21 +52,36 @@ export default function Authentication() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false);
   const { isRequired } = useFormValidations()
+
+
+
   const validations = {
     email: isRequired('E-mail é obrigatório!'),
     password: isRequired('Senha é obrigatória!')
   }
 
+  const history = useHistory();
+
   const [errors, validateFields, send] = useErrors(validations)
+
+
 
   const handleSubmit = event => {
     event.preventDefault()
-    if (email && password && send()) {
-      const mockInputLogin = { email: "gisele@email", senha: "123456" }
-      AuthService.login(mockInputLogin.email, mockInputLogin.senha)
+    if ((email && password && send())) {
+      const login = AuthService.login(email, password)
+      if (login && localStorage.getItem('token')) {
+        history.push('/')
+      }
     }
   }
+
+  useEffect(() => {
+    const login = localStorage.getItem('token')
+    if (login) { history.push('/') }
+  }, [])
 
   return (
     <Grid container component="main" className={classes.root}>
