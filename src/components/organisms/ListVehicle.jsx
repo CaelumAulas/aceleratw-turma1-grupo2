@@ -72,7 +72,7 @@ export default function List() {
     <Grid container spacing={3} className={classes.root}>
       <Grid item xs={2}> <div /></Grid>
       <Grid item xs={12} lg={8} >
-        <div id="dataGrid" style={{ height: 300, width: '100%' }}>
+        <div id="dataGrid" data-testid="dataGrid" style={{ height: 300, width: '100%' }}>
           <DataGrid rows={rows} columns={columns} onRowSelected={handleRowSelection} />
         </div>
         {isUserLogged &&

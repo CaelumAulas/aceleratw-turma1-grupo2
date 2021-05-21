@@ -12,26 +12,9 @@ describe("List", () => {
           <List />
         </MemoryRouter>
       )
-      expect(screen.getByTestId('btnEdit')).toBeInTheDocument()
+      expect(screen.getByTestId('dataGrid')).toBeInTheDocument()
     })
   
-    it("Button delete should exist", () => {
-      render(
-        <MemoryRouter initialEntries={["/"]}>
-          <List />
-        </MemoryRouter>
-      )
-      expect(screen.getByTestId('btnDelete')).toBeInTheDocument()
-    })
-    
-    it("Button New Vehicle should exist", () => {
-      render(
-        <MemoryRouter initialEntries={["/"]}>
-          <List />
-        </MemoryRouter>
-      )
-      expect(screen.getByTestId('btnNewVehicle')).toBeInTheDocument()
-    })
   })
   
 })

@@ -5,6 +5,7 @@ import { MemoryRouter } from "react-router-dom"
 import BrandService from '../../../service/brand/brand.service'
 
 describe("Brand List Service Test", () => {
+  window.alert = jest.fn();
 
   it("Should be fetch list Brand", () => {
     render( 
@@ -17,4 +18,15 @@ describe("Brand List Service Test", () => {
     //expect(AuthService.login()).toHaveBeenCalledWith();
     // highlight-end
   })
+
+  it("Brands should called", () => {
+   /* jest.mock("../../../service/brand/brand.service", () => {
+        return {
+          getBrands: jest.fn(() => Promise.resolve())
+        };
+    });*/
+      const mockGetToken = jest.spyOn(BrandService, 'getBrands');
+      mockGetToken.mockRejectedValue(new Error('Error'))
+      window.alert.mockClear();
+})
 })
