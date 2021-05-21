@@ -215,10 +215,6 @@ export default function PersistentDrawerLeft() {
               <ListItemIcon><Dashboard /></ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItem>
-            <ListItem to="/editar-senha" id="linkEditPassword" data-testid="linkEditPassword" component={Link} button key="Editar Senha">
-              <ListItemIcon><Edit /></ListItemIcon>
-              <ListItemText primary="Editar Senha" />
-            </ListItem>
           </List>
         }
       </Drawer>

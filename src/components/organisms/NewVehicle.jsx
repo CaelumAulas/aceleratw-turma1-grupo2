@@ -24,9 +24,6 @@ export default function VehicleForm() {
     const vehicleId = route ? route.params.id : '';
     if (vehicleId) {
       setUpdate(true)
-      // vehicleService.getVehiclesById(vehicleId).then((response) => {
-      //   setVehicle(response)
-      // })
     }
     // eslint-disable-next-line 
   }, [])

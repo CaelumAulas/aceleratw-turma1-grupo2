@@ -48,7 +48,7 @@ async function getBrands(){
     };
     
     try{
-      fetch("http://localhost:8081/veiculos/editar/ "+ id, requestOptions)
+      fetch("http://localhost:8081/marcas/editar/"+ id, requestOptions)
         .then(response => response.json());
     } catch(error){
       throw new Error(`Error`, error);

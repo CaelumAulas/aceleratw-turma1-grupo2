@@ -28,7 +28,7 @@ export default function BrandsForm() {
     event.preventDefault()
     if (marca && send()) {
       if (brandId) {
-        brandService.updateBrand(marca, brandId)
+        brandService.updateBrand(marca.descricao, brandId)
       } else {
         brandService.addBrand(marca)
       }

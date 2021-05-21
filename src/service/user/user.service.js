@@ -76,7 +76,6 @@ async function getUsers(){
     try{
       fetch('http://localhost:8081/usuarios/incluir', requestOptions)
         .then(response => response.json());
-        return response
     } catch(error){
       throw new Error(`Error`, error);
     }

@@ -22,11 +22,7 @@ export default function UserForm() {
     if (userId) {
       console.log('userId', userId)
       setUpdate(true)
-      // userService.getUsersById(userId).then((response) => {
-      //   setUser(response)
-      // })
-    } // eslint-disable-next-line 
-  }, [])
+    }, [])
 
   //Incluir e Editar
   const handleSubmit = event => {

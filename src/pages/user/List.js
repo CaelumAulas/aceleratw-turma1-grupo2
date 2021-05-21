@@ -53,6 +53,16 @@ export default function List() {
       })
   }, [])
 
+<<<<<<< HEAD
+=======
+useEffect(() => {
+  userService.getUsers().then((response) => {
+    rows = response
+    setUser(response);
+  })
+}, [])
+  
+>>>>>>> development
   return (
     <Grid container spacing={2} className={classes.root}>
       <Grid item xs={2}> <div/></Grid>

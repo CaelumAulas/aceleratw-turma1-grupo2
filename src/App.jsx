@@ -34,7 +34,6 @@ function App() {
         <PrivateRoute authenticated={isAuthenticated} component={NewBrand} path="/cadastro-marca/:id" />
         <PrivateRoute authenticated={isAuthenticated} component={NewVehicle} path="/cadastro-veiculo" />
         <PrivateRoute authenticated={isAuthenticated} component={ListUsers} path="/listar-usuarios" />
-        <PrivateRoute authenticated={isAuthenticated} component={EditPassword} path="/editar-senha" />
         <PrivateRoute authenticated={isAuthenticated} component={Dashboard} path="/dashboard" />
       </Switch>
     </Router>

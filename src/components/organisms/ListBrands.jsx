@@ -29,14 +29,14 @@ export default function List() {
 
   //Deletar
   const handleDelete = () => {
-    setDescricao( descricao.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1));
+    setDescricao(descricao.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1));
 
     const marcaId = deletedRows[0];
 
-      brandService.deleteBrand(marcaId).then((response) => {
-        setDeletedRows([])
-        alert("Marca deletada com sucesso!");
-      }) 
+    brandService.deleteBrand(marcaId.id).then((response) => {
+      setDeletedRows([])
+      alert("Marca deletada com sucesso!");
+    })
   }
 
   //Listar
@@ -51,25 +51,25 @@ export default function List() {
   const classes = useStyles()
 
   return (
-      <Grid container spacing={3} className={classes.root}>
-        <Grid item xs={2}> <div/></Grid>
-        <Grid item xs={12} lg={8} >
-          <div id="dataGrid" style={{ height: 300, width: '100%' }}>
-            <DataGrid rows={descricao} columns={columns} onRowSelected={handleRowSelection}/>
-          </div>
-          <div>
-            <Button variant="outlined" color="primary" id="btnDelete" data-testid="btnDelete" onClick={handleDelete}>
-              Excluir
+    <Grid container spacing={3} className={classes.root}>
+      <Grid item xs={2}> <div /></Grid>
+      <Grid item xs={12} lg={8} >
+        <div id="dataGrid" style={{ height: 300, width: '100%' }}>
+          <DataGrid rows={descricao} columns={columns} onRowSelected={handleRowSelection} />
+        </div>
+        <div>
+          <Button variant="outlined" color="primary" id="btnDelete" data-testid="btnDelete" onClick={handleDelete}>
+            Excluir
             </Button>
-            <Button to={`/cadastro-marca/${editRows}`} component={Link} variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">
-              Alterar
+          <Button to={`/cadastro-marca/${editRows}`} component={Link} variant="outlined" color="primary" id="btnEdit" data-testid="btnEdit">
+            Alterar
             </Button>
-            <Button to="/cadastro-marca" component={Link} variant="outlined" color="primary" id="btnNewBrand" data-testid="btnNewBrand">
-              Incluir
+          <Button to="/cadastro-marca" component={Link} variant="outlined" color="primary" id="btnNewBrand" data-testid="btnNewBrand">
+            Incluir
             </Button>
-          </div>
-         </Grid>
-         <Grid item xs={2}><div/></Grid>
+        </div>
       </Grid>
-    )
-  }
+      <Grid item xs={2}><div /></Grid>
+    </Grid>
+  )
+}
