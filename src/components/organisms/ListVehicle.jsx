@@ -33,6 +33,22 @@ export default function List() {
   const [deletedRows, setDeletedRows] = useState([]);
   let [isUserLogged, setIsUserLogged] = useState(localStorage.getItem('token'))
 
+  //Listar
+  useEffect(() => {
+    vehicleService.getVehicles().then((response) => {
+      let rowMap = []
+      response.content.map((vehicle) => {
+        vehicle = {
+          ...vehicle,
+          marca: vehicle.marca.descricao
+        }
+        return rowMap.push(vehicle)
+      })
+      rows = rowMap
+      setVehicle(rows);
+    })
+  }, [])
+
   const handleRowSelection = (e) => {
     setDeletedRows([...deletedRows, ...vehicle.filter((d) => d.id === e.data.id)]);
     setEditRows(e.data.id);
@@ -51,7 +67,7 @@ export default function List() {
   }
   const history = useHistory();
 
-  let login = localStorage.getItem('token')
+  /*let login = localStorage.getItem('token')
   //Listar
   useEffect(() => {
     login = localStorage.getItem('token')
@@ -66,7 +82,7 @@ export default function List() {
         }
       })
     }
-  }, [])
+  }, [])*/
 
   return (
     <Grid container spacing={3} className={classes.root}>

@@ -9,10 +9,7 @@ async function getVehicles(){
       }
       };
       return await fetch('http://localhost:8081/veiculos/listar', requestOptions)
-      .then(response => {return response.json()})
-      .then(reponse => {
-        return reponse
-      } )
+      .then(response =>  response.json())
     } catch(error){
       throw new Error(`Error`, error);
     }
@@ -37,18 +34,33 @@ async function getVehicles(){
     }
 }
 
-function updateVehicle(vehicle){
+function updateVehicle(vehicle, id){
+  let marca = "";
+
+  if(vehicle.brand === 10){
+    marca = "VOLKS"
+  } else if (vehicle.brand) {
+    marca = "FORD"
+  } else {
+    marca = "FIAT"
+  }
+
   const requestOptions = {
     method: 'PUT',
     headers: { 
       'Content-Type': 'application/json',
       'Authorization' : 'Bearer ' + localStorage.getItem('token')
     },
-    body: JSON.stringify({ vehicle: vehicle })
-  };
+    body: JSON.stringify({ 
+       modelo: vehicle.vehicleModel,
+       ano: vehicle.year,
+       valor: vehicle.value,
+       marca: marca
+      } ) 
+    };
   
   try{
-    fetch(`http://localhost:8081/veiculos/editar/${vehicle.id}`, requestOptions)
+    fetch(`http://localhost:8081/veiculos/editar/` + id, requestOptions)
       .then(response => response.json());
   } catch(error){
     throw new Error(`Error`, error);
@@ -56,10 +68,27 @@ function updateVehicle(vehicle){
 }
 
 function addVehicle(vehicle) {
+  let marca = "";
+
+  if(vehicle.brand === 10){
+    marca = "VOLKS"
+  } else if (vehicle.brand) {
+    marca = "FORD"
+  } else {
+    marca = "FIAT"
+  }
   const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ marca: vehicle.brand , valor: vehicle.value, modelo: vehicle.vehicleModel, ano: vehicle.year} ) //editar
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization' : 'Bearer ' + localStorage.getItem('token')
+    },
+    body: JSON.stringify({ 
+       modelo: vehicle.vehicleModel,
+       ano: vehicle.year,
+       valor: vehicle.value,
+       marca: marca
+      } ) 
   };
 
   try{
@@ -81,8 +110,7 @@ function deleteVehicle(id){
   };
   
   try{
-  
-    return fetch(`http://localhost:8081/veiculos/deletar/${id}`, requestOptions)
+    return fetch(`http://localhost:8081/veiculos/deletar/` + id, requestOptions);
   } catch(error){
     throw new Error(`Error`, error);
   }
