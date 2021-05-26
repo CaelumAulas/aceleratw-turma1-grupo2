@@ -37,8 +37,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: deepOrange[500],
   },
   root: {
-    display: 'flex',
-    width: '100%'
+    flexGrow: 1
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -89,6 +88,9 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
+  },
+  title: {
+    flexGrow: 1,
   }
 }))
 
@@ -122,30 +124,23 @@ export default function PersistentDrawerLeft() {
   }
 
   const handleClickAvatar = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(event.currentTarget)
   }
 
-  const history = useHistory();
+  const history = useHistory()
 
   const handleCloseAndLogout = () => {
-    setAnchorEl(null);
-    localStorage.removeItem('token');
+    setAnchorEl(null)
+    localStorage.removeItem('token')
     isUserLogged = false
     setIsUserLogged(false)
     history.push('/login')
-  };
+  }
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar display="flex"
-        style={{ width: '100%' }}
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
-      >
-        <Toolbar style={{ width: '100%' }}>
+      <AppBar position="static">
+        <Toolbar>
           <IconButton
             id="btnIcon"
             data-testid="btnIcon"
@@ -157,21 +152,22 @@ export default function PersistentDrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography id="headerTitle" variant="h6" noWrap>
-            CARANGO BOM
-              </Typography>
-          {isUserLogged && <Avatar className={classes.orange} onClick={handleClickAvatar}>U</Avatar>}
+          <Typography variant="h6" className={classes.title}>
+            Carango Bom
+          </Typography>
+          {isUserLogged &&
+            <Avatar className={classes.orange} onClick={handleClickAvatar}>U</Avatar>}
           {isUserLogged && <Menu
             id="simple-menu"
             anchorEl={anchorEl}
             keepMounted
             open={Boolean(anchorEl)}
-            onClose={handleCloseAndLogout}
           >
             <MenuItem onClick={handleCloseAndLogout}>Logout</MenuItem>
           </Menu>}
         </Toolbar>
       </AppBar>
+      {/* </div> */}
       <Drawer
         id="headerDrawer"
         data-testid="headerDrawer"

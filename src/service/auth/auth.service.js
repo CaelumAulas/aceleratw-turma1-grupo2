@@ -16,7 +16,7 @@
       return response.jwtAuthenticationResponse.accessToken
     })
     .catch(error => {
-        throw new Error(`Error`);
+        alert("Não foi possível logar, Login/Senha errado(s)!")
     })
 }
 

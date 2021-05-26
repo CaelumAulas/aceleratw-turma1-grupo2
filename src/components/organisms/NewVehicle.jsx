@@ -34,10 +34,8 @@ export default function VehicleForm() {
     // vehicleService.addVehicle(vehicle)
     if (send() && vehicle) {
       if (vehicleId) {
-        console.log('vehicle', vehicle)
         vehicleService.updateVehicle(vehicle, vehicleId)
       } else {
-        console.log('vehicle', vehicle)
         vehicleService.addVehicle(vehicle)
       }
     }

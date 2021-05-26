@@ -15,7 +15,6 @@ describe("Test if fields exists", () => {
   
       // highlight-start
       const report =   ReportWebVitals.reportWebVitals
-      console.log('report>',report)
       expect(report).toBeUndefined()
       // highlight-end
   })

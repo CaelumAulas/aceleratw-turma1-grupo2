@@ -71,6 +71,7 @@ export default function Authentication() {
   const handleSubmit = event => {
     event.preventDefault()
     if ((email && password && send())) {
+      event.preventDefault()
       const login = AuthService.login(email, password)
       if (login && localStorage.getItem('token')) {
         history.push('/')

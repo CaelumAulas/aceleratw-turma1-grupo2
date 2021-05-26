@@ -20,9 +20,12 @@ export default function UserForm() {
   useEffect(() => {
     const userId = route ? route.params.id : '';
     if (userId) {
-      console.log('userId', userId)
       setUpdate(true)
-    }, [])
+      userService.getUsersById(userId).then((response) => {
+        setUser(response)
+      })
+    } // eslint-disable-next-line 
+  }, [])
 
   //Incluir e Editar
   const handleSubmit = event => {

@@ -59,7 +59,6 @@ export default function List() {
     setVehicle(vehicle.filter((d) => deletedRows.filter((sr) => sr.id === d.id).length < 1))
 
     const vehicleId = deletedRows[0];
-    console.log(vehicleId)
 
     vehicleService.deleteVehicle(vehicleId.id).then((response) => {
       setDeletedRows([])
