@@ -1,21 +1,23 @@
-import { useState } from 'react'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import TextField from '@material-ui/core/TextField'
-import { Link } from 'react-router-dom'
-import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles'
-import background from '../../assets/images/logo_carango_bom.jpeg'
-import useFormValidations from '../../hooks/useFormValidations.js'
-import useErrors from '../../hooks/useErrors.js'
-import AuthService from '../../service/auth/auth.service'
-import { Redirect } from 'react-router-dom'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { useHistory } from "react-router-dom"
+import TextField from '@material-ui/core/TextField'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import { useState } from 'react'
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { useHistory } from "react-router-dom"
+
+import background from '../../assets/images/logo_carango_bom.jpeg'
+import useErrors from '../../hooks/useErrors.js'
+import useFormValidations from '../../hooks/useFormValidations.js'
+import AuthService from '../../service/auth/auth.service'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
@@ -69,13 +71,14 @@ export default function Authentication() {
 
 
   const handleSubmit = event => {
-    event.preventDefault()
     if ((email && password && send())) {
       event.preventDefault()
-      const login = AuthService.login(email, password)
-      if (login && localStorage.getItem('token')) {
-        history.push('/')
-      }
+      const login = AuthService.login(email, password).then((response) => {
+        if (login && localStorage.getItem('token')) {
+          window.location.reload()
+          history.push('/')
+        }
+      })
     }
   }
 
