@@ -1,16 +1,16 @@
+import { Redirect } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+
 import Header from "./components/molecules/Header.jsx"
 import Authentication from "./pages/authentication/Authentication.js"
-import ListOfCars from "./pages/vehicle/List.js"
-import NewUser from "./pages/user/NewUser.js"
-import ListUsers from "./pages/user/List.js"
-import NewVehicle from "./pages/vehicle/NewVehicle.js"
 import ListBrands from "./pages/brands/ListBrands.js"
-import EditPassword from "./pages/user/EditUserPassword.js"
-import Dashboard from "./pages/dashboard/Dashboard.js"
 import NewBrand from "./pages/brands/NewBrand.js"
-import { Redirect } from "react-router-dom";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
+import Dashboard from "./pages/dashboard/Dashboard.js"
+import EditPassword from "./pages/user/EditUserPassword.js"
+import ListUsers from "./pages/user/List.js"
+import NewUser from "./pages/user/NewUser.js"
+import ListOfCars from "./pages/vehicle/List.js"
+import NewVehicle from "./pages/vehicle/NewVehicle.js"
 
 function App() {
   const isAuthenticated = localStorage.getItem('token')
@@ -41,10 +41,11 @@ function App() {
 }
 
 function PrivateRoute({ component: Component, authenticated, ...rest }) {
+  const isAuthenticated = localStorage.getItem('token')
   return (
     <Route
       {...rest}
-      render={(props) => authenticated
+      render={(props) => isAuthenticated
         ? <Component {...props} />
         : <Redirect to={{ pathname: '/login' }} />}
     />

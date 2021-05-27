@@ -35,6 +35,8 @@ export default function List() {
 
   //Listar
   useEffect(() => {
+    const isAuthenticated = localStorage.getItem('token')
+    // if (isAuthenticated) window.location.reload();
     vehicleService.getVehicles().then((response) => {
       let rowMap = []
       response.content.map((vehicle) => {
@@ -47,6 +49,7 @@ export default function List() {
       rows = rowMap
       setVehicle(rows);
     })
+
   }, [])
 
   const handleRowSelection = (e) => {
